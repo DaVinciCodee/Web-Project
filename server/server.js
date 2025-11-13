@@ -1,7 +1,8 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 
-require('dotenv').config();
 
 // Middlewares globaux utiles
 app.use(express.json());         // Parse JSON dans les requêtes

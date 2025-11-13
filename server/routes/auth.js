@@ -14,6 +14,7 @@ router.get('/spotify', (req,res) =>{
         + `&scope=${encodeURIComponent(scope)}`
         + `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
         console.log("Redirecting to:", url);
+        console.log('Client ID:', process.env.SPOTIFY_CLIENT_ID);
         res.redirect(url);
 });
 
