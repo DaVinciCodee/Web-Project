@@ -1,0 +1,9 @@
+{
+    "navbar": {
+        "home": "Home",
+        "profile": "Profile",
+        "feed": "Feed",
+        "messages": "Messages",
+        "login": "Login"
+    }
+}
