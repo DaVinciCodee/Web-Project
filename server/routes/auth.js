@@ -6,6 +6,7 @@ const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
+// Route connexion Spotify
 router.get('/spotify', (req,res) =>{
     const scope = 'user-read-email user-read-private user-top-read';
     const url = 
@@ -17,6 +18,7 @@ router.get('/spotify', (req,res) =>{
         res.redirect(url);
 });
 
+// Echange du code contre un token
 router.get('/spotify/callback', async (req, res) => {
     const code = req.query.code;
     if(!code){
