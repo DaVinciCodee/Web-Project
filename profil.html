@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/profil.css">
     <title>SpotiMate</title>
 </head>
 
@@ -12,27 +12,32 @@
     <!-- Navbar Section -->
     <section class="navbar-section">
         <div class="logo">
-            <img src="/img/spotify.png" alt="" width="56">
+            <img src="./img/spotify.png" alt="" width="48">
         </div>
         <div class="navbar-items">
-            <div class="navbar-item" data-lang="navbar.home">Accueil</div>
-            <div class="navbar-item" data-lang="navbar.profile">Profil</div>
+            <a href="accueil.html" class="navbar-item" data-lang="navbar.home">Accueil</a>
+            <a href="profil.html" class="navbar-item" data-lang="navbar.profile">Profil</a>
             <div class="navbar-item" data-lang="navbar.feed">Feed</div>
             <div class="navbar-item" data-lang="navbar.messages">Messages</div>
             <div class="navbar-item" data-lang="navbar.login">Connexion</div>
         </div>
         <div class="language">
-            <img src="/img/language.png" alt="language_icon" width="32" height="32" class="language-logo">
+            <img src="./img/language.png" alt="language_icon" width="32" height="32" class="language-logo">
             <div>FR/EN</div>
         </div>
     </section>
 
     <!-- Center Section -->
     <section class="center-section">
-        <div class="spotimate">SPOTIMATE</div>
-        <div>Où la musique crée des rencontres</div>
+        <div class="center-username">Nom d'utilisateur</div>
+        <section class="center-boxes">
+            <div class="center-box">Top Artistes</div>
+            <div class="center-box">Top Musiques</div>
+            <div class="center-box">Relations d'écoute</div>
+        </section>
+
     </section>
-    <script src="script.js"></script>
+    <script src="./js/profil.js"></script>
 </body>
 
 </html>

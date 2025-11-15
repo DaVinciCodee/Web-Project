@@ -5,5 +5,9 @@
         "feed": "Feed",
         "messages": "Messages",
         "login": "Login"
+    },
+    "center": {
+        "title": "SPOTIMATE",
+        "text": "Where music creates connections"
     }
 }
