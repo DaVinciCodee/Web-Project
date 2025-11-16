@@ -3,9 +3,14 @@ const app = express();
 
 require('dotenv').config();
 
+const authApp = require('./routes/authApp')
+
 // Middlewares globaux utiles
 app.use(express.json());         // Parse JSON dans les requêtes
 app.use(express.urlencoded({ extended: true }));  // Parse formulaire
+
+app.use('/auth-app', authApp);
+
 
 // Monte les routes d’authentification
 app.use('/api/auth', require('./routes/auth'));
