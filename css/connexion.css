@@ -89,3 +89,19 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.center-connexion {
+    border-radius: 15px;
+    border: 2px solid #000;
+    padding: 8px 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.center-connexion:hover {
+    background-color: var(--hover-color-one);
+    color: var(--text-color-two);
+    border: 2px solid var(--text-color-two);
+}

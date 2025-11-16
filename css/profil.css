@@ -9,6 +9,7 @@ body {
 }
 
 :root {
+    /* Color */
     --background-color: #609966;
     --background-color-two: #285430;
     --background-color-three: #5F8D4E;
@@ -17,15 +18,20 @@ body {
     --hover-color-one: #215b08d0;
     --text-color-one: #000;
     --text-color-two: #E5D9B6;
+
+    /* Text */
     --font-size-one: 1.6rem;
     --font-size-two: 2.5rem;
+
+    /* Size */
+    --navbar-height: 120px;
 }
 
 /* Navbar Section */
 .navbar-section {
     position: relative;
     z-index: 10;
-    height: 120px;
+    height: var(--navbar-height);
     margin: 0 100px;
     /* border: 1px black solid; */
     font-size: var(--font-size-one);
@@ -74,7 +80,7 @@ body {
 /* Center Section */
 .center-section {
     font-size: var(--font-size-two);
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - var(--navbar-height));
     display: flex;
     flex-direction: column;
     align-items: center;
