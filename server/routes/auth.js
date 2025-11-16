@@ -1,50 +1,65 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const User = require('../models/User');
+const SpotifyWebApi = require('spotify-web-api-node');
 
-const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
-const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
-const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
+const spotifyApi = new SpotifyWebApi({
+  clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+  redirectUri: process.env.SPOTIFY_REDIRECT_URI,
+});
 
-router.get('/spotify', (req,res) =>{
-    const scope = 'user-read-email user-read-private user-top-read';
-    const url = 
-        'https://accounts.spotify.com/authorize?response_type=code'
-        + `&client_id=${CLIENT_ID}`
-        + `&scope=${encodeURIComponent(scope)}`
-        + `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
-        console.log("Redirecting to:", url);
-        console.log('Client ID:', process.env.SPOTIFY_CLIENT_ID);
-        res.redirect(url);
+router.get('/spotify', (req, res) => {
+  const scope = 'user-read-email user-read-private user-top-read';
+  const url = 'https://accounts.spotify.com/authorize?response_type=code'
+    + `&client_id=${process.env.SPOTIFY_CLIENT_ID}`
+    + `&scope=${encodeURIComponent(scope)}`
+    + `&redirect_uri=${encodeURIComponent(process.env.SPOTIFY_REDIRECT_URI)}`;
+
+  console.log("Redirecting to:", url);
+  res.redirect(url);
 });
 
 router.get('/spotify/callback', async (req, res) => {
-    const code = req.query.code;
-    if(!code){
-        return res.status(400).send('Authorization code not provided');
-    }
-    try {
-        const tokenResponse = await axios.post(
-            'https://accounts.spotify.com/api/token',
-            new URLSearchParams({
-                grant_type: 'authorization_code',
-                code: code,
-                redirect_uri: REDIRECT_URI,
-            }),
-            {
-                headers : {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'Basic ' + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')
+  const code = req.query.code;
+  if (!code) {
+    return res.status(400).send('Authorization code not provided');
+  }
 
-                }
-            }
-        );
-        const {access_token, refresh_token} = tokenResponse.data;
+  try {
+    // Échange code contre tokens
+    console.log("clientId", process.env.SPOTIFY_CLIENT_ID);
+    console.log("clientSecret", process.env.SPOTIFY_CLIENT_SECRET);
+    console.log("redirectUri", process.env.SPOTIFY_REDIRECT_URI);
 
-        res.json({access_token, refresh_token});
-    } catch (error){
-        console.error(error);
-        res.status(400).send('Error exchanging code for tokens');
-    }
+    const data = await spotifyApi.authorizationCodeGrant(code);
+
+    // Configurer tokens dans spotifyApi pour faire d'autres appels si besoin
+    spotifyApi.setAccessToken(data.body.access_token);
+    spotifyApi.setRefreshToken(data.body.refresh_token);
+
+    // Récupérer infos utilisateur Spotify
+    const userProfile = await spotifyApi.getMe();
+    const spotifyId = userProfile.body.id;
+
+    // Chercher ou créer utilisateur en base
+    let user = await User.findOne({ spotifyId });
+    if (!user) user = new User({ spotifyId });
+
+    // Mettre à jour tokens et expiration
+    user.accessToken = data.body.access_token;
+    user.refreshToken = data.body.refresh_token;
+    user.tokenExpiration = new Date(Date.now() + data.body.expires_in * 1000);
+
+    await user.save();
+
+    res.json({ message: 'Authentifié, token sauvegardé', user });
+  } catch (error) {
+    console.error('Spotify Error:', error);
+    res.status(400).send('Error exchanging code for tokens');
+  }
 });
+
+
+
 module.exports = router;

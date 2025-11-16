@@ -1,20 +1,24 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const authRoutes = require('./routes/auth');
 require('dotenv').config();
 
-const express = require('express');
 const app = express();
+const mongoURI = process.env.MONGODB_URI;
+mongoose.connect(mongoURI)
+.then(() => console.log('MongoDB connecté !'))
+.catch(err => console.error('Erreur connexion MongoDB :', err));
 
+// Middlewares globaux (parser le body avant les routes)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Middlewares globaux utiles
-app.use(express.json());         // Parse JSON dans les requêtes
-app.use(express.urlencoded({ extended: true }));  // Parse formulaire
+// Monter les routes Auth sous /api/auth
+app.use('/api/auth', authRoutes);
 
-// Monte les routes d’authentification
-app.use('/api/auth', require('./routes/auth'));
-
-// Autres routes à monter ici, ex:
+// Autres routes ici
 // app.use('/api/users', require('./routes/users'));
 
-// Démarrage serveur
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
