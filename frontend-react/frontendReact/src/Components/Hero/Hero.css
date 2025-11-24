@@ -1,0 +1,14 @@
+.hero-section {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.title {
+    font-size: 3rem;
+}
+.text {
+    font-size: 2.4rem;
+}
