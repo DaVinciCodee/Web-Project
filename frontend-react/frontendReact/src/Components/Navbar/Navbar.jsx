@@ -13,11 +13,11 @@ function Navbar() {
                     width={48}/>
                 </div>
                 <div className="navbar-items">
-                    <div className="navbar-item" >Accueil</div>
-                    <div className="navbar-item" >Profil</div>
-                    <div className="navbar-item" >Feed</div>
-                    <div className="navbar-item" >Messages</div>
-                    <div className="navbar-item">Connexion</div>
+                    <a href="/" className="navbar-item" >Accueil</a>
+                    <a href="/profil" className="navbar-item" >Profil</a>
+                    <a href='/feed' className="navbar-item" >Feed</a>
+                    <a href='/messages' className="navbar-item" >Messages</a>
+                    <a href='/connexion' className="navbar-item">Connexion</a>
                 </div>
                 <div className="language">
                     <img

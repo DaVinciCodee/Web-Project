@@ -1,17 +1,24 @@
 import './App.css'
-import Background from './Components/Background/Background'
-import Hero from './Components/Hero/Hero'
-import Navbar from './Components/Navbar/Navbar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Accueil from './Pages/Accueil';
+import Profil from './Pages/Profil';
+import Connexion from './Pages/Connexion';
+import Feed from './Pages/Feed';
+import Messages from './Pages/Messages';
 
 
 function App() {
 
   return (
-    <>
-      <Background />
-      <Navbar />
-      <Hero />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Accueil />} />
+        <Route path="/profil" element={<Profil />} />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/connexion" element={<Connexion />} />
+      </Routes>
+    </Router>
   )
 }
 
