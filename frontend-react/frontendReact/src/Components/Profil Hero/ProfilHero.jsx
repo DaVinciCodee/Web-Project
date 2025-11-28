@@ -9,16 +9,18 @@ function ProfilHero() {
                     src={ImgUser}
                     alt="imgUser"
                     className="imgUser" />
-                <div>Nom d'utilisateur</div>
+                <div className='nameUser'>Nom d'utilisateur</div>
             </section>
 
             <section className="userInfo">
-                <section className="bio">
+                {/* <section className="bio">
                     <div className='titre'>Bio</div>
                     <div className='bioText'>
-                        Blablablablablablablablablablablablallablablalablablalablablalablablalablablalablablalablablalablablalablablalablablalablablalablablaablablalablablalablabla
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />
+                        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br />
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     </div>
-                </section>
+                </section> */}
                 <section className="topSongs">
                     <div className='titre'>Top Titres</div>
                     <div className="topTitres">
@@ -35,7 +37,17 @@ function ProfilHero() {
                 </section>
                 <section className="topArtists">
                     <div className='titre'>Top Artistes</div>
-                    <div className="topArtistes"></div>
+                    <div className="topArtistes">
+                        <ul>
+                            <li>Isha</li>
+                            <li>Limsa</li>
+                            <li>Nas</li>
+                            <li>Dr Dre</li>
+                            <li>Eminem</li>
+                            <li>Kendrick Lamar</li>
+                            <li>Sch</li>
+                        </ul>
+                    </div>
                 </section>
             </section>
         </>
