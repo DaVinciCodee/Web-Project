@@ -42,6 +42,13 @@ router.get('/spotify/callback', async (req, res) => {
         );
         const {access_token, refresh_token} = tokenResponse.data;
 
+
+        const userProfile = await axios.get('https://api.spotify.com/v1/me', {
+            headers: { 'Authorization': 'Bearer ' + access_token }
+        });
+
+        console.log(userProfile.data)
+
         res.json({access_token, refresh_token});
     } catch (error){
         console.error(error);

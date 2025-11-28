@@ -12,14 +12,14 @@ app.use(express.urlencoded({ extended: true }));  // Parse formulaire
 app.use('/auth-app', authApp);
 
 
-// Monte les routes d’authentification
+// Route authentification
 app.use('/api/auth', require('./routes/auth'));
 
 // Autres routes à monter ici, ex:
 // app.use('/api/users', require('./routes/users'));
 
 // Démarrage serveur
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
 });
