@@ -16,6 +16,11 @@ const UserSchema = new mongoose.Schema({
   
   // Pour savoir quand il s'est connecté la dernière fois
   lastLogin: { type: Date, default: Date.now },
+
+  // Infos de profil basiques
+  user_name: {type: String, default: ''},
+  bio: {type: String, default: ''},
+  profilePicture: {type: String},
   //Les genres musicaux préférés de l'utilisateur
   topGenres: {type: [String] },
   topArtists:[{

@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Ecarte le logo à gauche et le bouton à droite */
+  align-items: center;
+  background-color: #191414; /* Le noir officiel Spotify */
+  padding: 15px 30px;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Une petite ombre pour le relief */
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Pour qu'elle reste toujours au-dessus du reste */
+}
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logout {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none; /* Enlève le souligné du lien */
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar-logout:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
+}

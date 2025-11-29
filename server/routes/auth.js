@@ -10,7 +10,7 @@ const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
 // Route connexion Spotify
 router.get('/spotify', (req,res) =>{
-    const scope = 'user-read-email user-read-private user-top-read';
+    const scope = 'user-read-email user-read-private user-top-read ugc-image-upload';
     const url = 
         'https://accounts.spotify.com/authorize?response_type=code'
         + `&client_id=${CLIENT_ID}`
@@ -49,10 +49,12 @@ router.get('/spotify/callback', async (req, res) => {
             headers: { 'Authorization': 'Bearer ' + access_token }
         });
         const spotifyData = userProfile.data;
-        console.log("Récupération des goûts musicaux...");
         const tasteProfile = await spotifyService.getUserTasteProfile(access_token);
-        console.log(`Trouvé ${tasteProfile.topArtists.length} artistes et ${tasteProfile.topGenres.length} genres.`);
         const expirationDate = new Date(Date.now() + expires_in * 1000);
+        const userImage = spotifyData.images && spotifyData.images.length > 0 
+            ? spotifyData.images[0].url 
+            : null;
+        const userName = spotifyData.display_name || '';
         // Sauvegarde ou mise à jour de l'utilisateur dans la base de données
         const user = await User.findOneAndUpdate(
             { spotifyId: spotifyData.id },
@@ -62,15 +64,14 @@ router.get('/spotify/callback', async (req, res) => {
                 refreshToken: refresh_token,
                 tokenExpiration: expirationDate,
                 lastLogin: new Date(),
+                profilePicture: userImage,
+                user_name: userName,
                 topArtists: tasteProfile.topArtists,
                 topGenres: tasteProfile.topGenres
             },
             {new: true, upsert: true}
         );
-        res.json({
-            message: "Authentication et sauvegarde réussies",
-            user: user
-        });
+        res.redirect(`http://localhost:3000/profile?id=${user.spotifyId}`);
     } catch (error){
         console.error(error);
         res.status(400).send('Error exchanging code for tokens');
