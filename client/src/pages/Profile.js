@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
 import ArtistCard from '../components/ArtistCard';
 import GenreBadge from '../components/GenreBadge';
-import { fetchUserProfile } from '../services/api';
+import EditProfileModal from '../components/EditProfile';
+import NowPlaying from '../components/NowPlaying'; // Import du widget musique
+import { fetchUserProfile, updateUserProfile } from '../services/api';
+import './Profile.css';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -20,95 +23,131 @@ const Profile = () => {
     }
   }, []);
 
-  if (loading) return <div style={{color:'white', textAlign:'center', marginTop:'50px'}}>Chargement...</div>;
-  if (!user) return <div style={{color:'white'}}>Erreur profil</div>;
+  const handleSaveProfile = async (formData) => {
+    try {
+      // Mise à jour optimiste de l'UI
+      setUser({ ...user, ...formData });
+      setIsEditing(false);
+      // Envoi au backend
+      await updateUserProfile(user.spotifyId, formData);
+    } catch (error) {
+      console.error("Erreur sauvegarde", error);
+      alert("Erreur lors de la sauvegarde !");
+    }
+  };
+
+  if (loading) return <div className="loading-screen">Chargement... 🎵</div>;
+  if (!user) return <div className="error-screen">Erreur profil</div>;
 
   return (
-    <div style={{ backgroundColor: '#121212', minHeight: '100vh', color: 'white', fontFamily: 'Arial, sans-serif' }}>
-      <Navbar />
+    <div className="profile-container">
 
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+      <div className="profile-content">
         
-        {/* --- 1. EN-TÊTE DU PROFIL (HEADER) --- */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '30px', marginBottom: '40px', borderBottom: '1px solid #333', paddingBottom: '30px' }}>
-          
-          {/* Photo de profil ronde */}
+        {/* --- 1. EN-TÊTE (HEADER) --- */}
+        <div className="profile-header">
           <img 
             src={user.profilePicture || "https://cdn-icons-png.flaticon.com/512/847/847969.png"} 
             alt="Profil" 
-            style={{ 
-              width: '150px', 
-              height: '150px', 
-              borderRadius: '50%', 
-              objectFit: 'cover',
-              border: '4px solid #1DB954', // Bordure verte Spotify
-              boxShadow: '0 4px 15px rgba(0,0,0,0.5)'
-            }} 
+            className="profile-avatar"
           />
 
-          {/* Infos texte */}
-          <div>
-            <h1 style={{ fontSize: '3rem', margin: '0 0 10px 0', fontWeight: 'bold' }}>
-              {user.user_name} {/* Idéalement afficher le display_name si tu l'as stocké */}
-            </h1>
+          <div className="profile-info">
+            <h1>{user.user_name || user.spotifyId}</h1>
             
-            {/* La BIO */}
-            <p style={{ fontSize: '1.1rem', color: '#b3b3b3', lineHeight: '1.5', maxWidth: '500px' }}>
-              {user.bio}
+            <p className="profile-bio">
+              {user.bio || "Aucune bio renseignée."}
             </p>
 
-            {/* Stats rapides (Faux chiffres pour l'instant) */}
-            <div style={{ display: 'flex', gap: '20px', marginTop: '15px', fontWeight: 'bold' }}>
-              <span>24 <span style={{fontWeight:'normal', color:'#b3b3b3'}}>Abonnés</span></span>
-              <span>12 <span style={{fontWeight:'normal', color:'#b3b3b3'}}>Abonnements</span></span>
+            <div className="profile-stats">
+              {/* On utilise le '?' pour éviter le crash si la liste est undefined au début */}
+              <span>
+                {user.followers ? user.followers.length : 0} 
+                <span className="stat-label"> Abonnés</span>
+              </span>
+              
+              <span>
+                {user.following ? user.following.length : 0} 
+                <span className="stat-label"> Abonnements</span>
+              </span>
             </div>
+
+            {/* --- BOUTONS D'ACTION --- */}
+            <div className="profile-actions">
+              
+              {/* Lien vers le vrai Spotify */}
+              <a 
+                href={`https://open.spotify.com/user/${user.spotifyId}`}
+                target="_blank"
+                rel="noreferrer"
+                className="spotify-link-btn"
+                title="Voir sur Spotify"
+              >
+                 <img 
+                  src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png" 
+                  alt="Spotify" 
+                />
+              </a>
+
+              {/* Bouton Modifier */}
+              <button 
+                  onClick={() => setIsEditing(true)}
+                  className="edit-profile-btn"
+              >
+                  Modifier le profil
+              </button>
+            </div>
+            
+            {/* Widget Musique en cours (Intégré dans le header ou juste dessous) */}
+            <NowPlaying spotifyId={user.spotifyId} />
+
           </div>
         </div>
 
-        {/* --- 2. LES GOÛTS MUSICAUX --- */}
-        <section style={{ marginBottom: '40px' }}>
-          <h2 style={{ borderLeft: '4px solid #1DB954', paddingLeft: '10px' }}>Mes Vibes 🎵</h2>
-          <div style={{ marginTop: '15px' }}>
-            {user.topGenres.map((genre, index) => <GenreBadge key={index} label={genre} />)}
-          </div>
-        </section>
-
-        <section style={{ marginBottom: '40px' }}>
-          <h2 style={{ borderLeft: '4px solid #1DB954', paddingLeft: '10px' }}>Top Artistes 🌟</h2>
-          <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', padding: '10px 0' }}>
-            {user.topArtists.map((artist) => (
-              <ArtistCard key={artist.spotifyId} name={artist.name} imageUrl={artist.imageUrl} genres={artist.genres} />
+        {/* --- 2. VIBES --- */}
+        <section className="profile-section">
+          <h2 className="section-title">Mes Vibes 🎵</h2>
+          <div className="genres-container">
+            {user.topGenres && user.topGenres.map((genre, index) => (
+              <GenreBadge key={index} label={genre} />
             ))}
           </div>
         </section>
 
-        {/* --- 3. LES POSTS (Placeholder) --- */}
-        <section>
-          <h2 style={{ borderLeft: '4px solid #1DB954', paddingLeft: '10px' }}>Publications récentes 📝</h2>
-          
-          {/* Un exemple de "Post" vide pour montrer à quoi ça ressemblera */}
-          <div style={{ 
-            backgroundColor: '#181818', 
-            padding: '20px', 
-            borderRadius: '10px', 
-            marginTop: '20px',
-            textAlign: 'center',
-            color: '#b3b3b3'
-          }}>
+        {/* --- 3. TOP ARTISTES --- */}
+        <section className="profile-section">
+          <h2 className="section-title">Top Artistes 🌟</h2>
+          <div className="artists-scroll-container">
+            {user.topArtists && user.topArtists.map((artist) => (
+              <ArtistCard 
+                key={artist.spotifyId} 
+                name={artist.name} 
+                imageUrl={artist.imageUrl} 
+                genres={artist.genres} 
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* --- 4. POSTS (Placeholder) --- */}
+        <section className="profile-section">
+          <h2 className="section-title">Publications récentes 📝</h2>
+          <div className="empty-post-placeholder">
             <p>Aucun post pour le moment...</p>
-            <button style={{
-              marginTop: '10px',
-              backgroundColor: 'transparent',
-              border: '1px solid #1DB954',
-              color: '#1DB954',
-              padding: '10px 20px',
-              borderRadius: '20px',
-              cursor: 'pointer'
-            }}>
+            <button className="create-post-btn">
               + Créer un post
             </button>
           </div>
         </section>
+
+        {/* --- MODALE --- */}
+        {isEditing && (
+          <EditProfileModal 
+            user={user} 
+            onClose={() => setIsEditing(false)} 
+            onSave={handleSaveProfile} 
+          />
+        )}
 
       </div>
     </div>

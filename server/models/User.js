@@ -21,6 +21,8 @@ const UserSchema = new mongoose.Schema({
   user_name: {type: String, default: ''},
   bio: {type: String, default: ''},
   profilePicture: {type: String},
+  followers: { type: [String], default: [] }, 
+  following: { type: [String], default: [] },
   //Les genres musicaux préférés de l'utilisateur
   topGenres: {type: [String] },
   topArtists:[{

@@ -10,8 +10,7 @@ const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
 // Route connexion Spotify
 router.get('/spotify', (req,res) =>{
-    const scope = 'user-read-email user-read-private user-top-read ugc-image-upload';
-    const url = 
+        const scope = 'user-read-email user-read-private user-top-read ugc-image-upload user-read-currently-playing';    const url = 
         'https://accounts.spotify.com/authorize?response_type=code'
         + `&client_id=${CLIENT_ID}`
         + '&response_type=code'

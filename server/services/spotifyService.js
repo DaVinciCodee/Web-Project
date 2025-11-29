@@ -49,5 +49,29 @@ async function getUserTasteProfile(accessToken) {
     return { topArtists: [], topGenres: [] };
   }
 }
+async function getNowPlaying(access_token) {
+  try {
+    const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+      headers: { 'Authorization': 'Bearer ' + access_token }
+    });
+    if (response.status === 204 || !response.data){
+      return null;
+    }
+    const item = response.data.item;
 
-module.exports = { getUserTasteProfile };
+    return {
+      isPlaying: response.data.is_playing,
+      artist: item.artists.map(artist => artist.name).join(', '),
+      title: item.name,
+      albumImage: item.album.images[0].url,
+      previewUrl: item.preview_url,
+      externalUrl: item.external_urls.spotify
+    };
+  } catch (error) {
+    console.error('Erreur getNowPlaying:', error.response?.data || error.message);
+    return null;
+  }
+};
+
+
+module.exports = { getUserTasteProfile, getNowPlaying };
