@@ -1,16 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const User = require('../models/user');
+
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
+// Route connexion Spotify
 router.get('/spotify', (req,res) =>{
     const scope = 'user-read-email user-read-private user-top-read';
     const url = 
         'https://accounts.spotify.com/authorize?response_type=code'
         + `&client_id=${CLIENT_ID}`
+        + '&response_type=code'
         + `&scope=${encodeURIComponent(scope)}`
         + `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
         console.log("Redirecting to:", url);
@@ -18,6 +22,7 @@ router.get('/spotify', (req,res) =>{
         res.redirect(url);
 });
 
+// Echange du code contre un token
 router.get('/spotify/callback', async (req, res) => {
     const code = req.query.code;
     if(!code){
@@ -35,13 +40,33 @@ router.get('/spotify/callback', async (req, res) => {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Authorization': 'Basic ' + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')
-
                 }
             }
         );
-        const {access_token, refresh_token} = tokenResponse.data;
+        //Récupération des infos utilisateur
+        const {access_token, refresh_token, expires_in} = tokenResponse.data;
+        const userProfile = await axios.get('https://api.spotify.com/v1/me', {
+            headers: { 'Authorization': 'Bearer ' + access_token }
+        });
+        const spotifyData = userProfile.data;
 
-        res.json({access_token, refresh_token});
+        const expirationDate = new Date(Date.now() + expires_in * 1000);
+        // Sauvegarde ou mise à jour de l'utilisateur dans la base de données
+        const user = await User.findOneAndUpdate(
+            { spotifyId: spotifyData.id },
+            {
+                spotifyId: spotifyData.id,
+                accessToken: access_token,
+                refreshToken: refresh_token,
+                tokenExpiration: expirationDate,
+                lastLogin: new Date()
+            },
+            {new: true, upsert: true}
+        );
+        res.json({
+            message: "Authentication et sauvegarde réussies",
+            user: user
+        });
     } catch (error){
         console.error(error);
         res.status(400).send('Error exchanging code for tokens');
