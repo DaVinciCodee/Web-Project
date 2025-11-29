@@ -22,7 +22,7 @@ async function authenticateApp() {
         }
     );
 
-    return response.data; // { access_token, expires_in }
+    return response.data; 
 }
 
 // Route qui renvoie le token de l'app
