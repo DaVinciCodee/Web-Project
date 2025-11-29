@@ -15,7 +15,15 @@ const UserSchema = new mongoose.Schema({
   tokenExpiration: { type: Date, required: true },
   
   // Pour savoir quand il s'est connecté la dernière fois
-  lastLogin: { type: Date, default: Date.now }
+  lastLogin: { type: Date, default: Date.now },
+  //Les genres musicaux préférés de l'utilisateur
+  topGenres: {type: [String] },
+  topArtists:[{
+    spotifyId: String,
+    name: String,
+    imageUrl: String,
+    genres: [String]
+  }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

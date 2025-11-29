@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const User = require('../models/user');
-
+const spotifyService = require('../services/spotifyService');
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
@@ -49,7 +49,9 @@ router.get('/spotify/callback', async (req, res) => {
             headers: { 'Authorization': 'Bearer ' + access_token }
         });
         const spotifyData = userProfile.data;
-
+        console.log("Récupération des goûts musicaux...");
+        const tasteProfile = await spotifyService.getUserTasteProfile(access_token);
+        console.log(`Trouvé ${tasteProfile.topArtists.length} artistes et ${tasteProfile.topGenres.length} genres.`);
         const expirationDate = new Date(Date.now() + expires_in * 1000);
         // Sauvegarde ou mise à jour de l'utilisateur dans la base de données
         const user = await User.findOneAndUpdate(
@@ -59,7 +61,9 @@ router.get('/spotify/callback', async (req, res) => {
                 accessToken: access_token,
                 refreshToken: refresh_token,
                 tokenExpiration: expirationDate,
-                lastLogin: new Date()
+                lastLogin: new Date(),
+                topArtists: tasteProfile.topArtists,
+                topGenres: tasteProfile.topGenres
             },
             {new: true, upsert: true}
         );
