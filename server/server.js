@@ -1,13 +1,10 @@
 require('dotenv').config();
-
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-
-
 const authApp = require('./routes/authApp')
-
-
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users');
 
 // Middlewares globaux utiles
 app.use(express.json());         // Parse JSON dans les requêtes
@@ -30,6 +27,9 @@ app.use('/auth-app', authApp);
 app.use('/api/auth', require('./routes/auth'));
 
 // Autres routes à monter ici, ex:
+app.use('/auth-app', require('./routes/authApp'));
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 // app.use('/api/users', require('./routes/users'));
 
 // Démarrage serveur
