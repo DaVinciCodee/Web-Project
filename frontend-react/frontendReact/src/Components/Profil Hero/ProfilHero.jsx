@@ -1,5 +1,5 @@
 import './ProfilHero.css'
-import ImgUser from './imgUser.jpg'
+import ImgUser from './imggon.jpg'
 
 function ProfilHero() {
     return (
