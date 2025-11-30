@@ -1,12 +1,13 @@
 /* Container global */
 .right-section {
-  width: 100%;
-  padding-top: 10px;
+  width: 80%;
+  padding-top: 25px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   position: sticky;
   top: 0;
+  box-sizing: border-box;
 }
 
 /* --- RECHERCHE --- */

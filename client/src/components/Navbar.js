@@ -55,7 +55,7 @@ const Navbar = () => {
         </div>
         <div className="user-info-mini">
           <span className="name">Déconnexion</span>
-          <span className="handle">@se_deconnecter</span>
+          {/* <span className="handle">@se_deconnecter</span> */}
         </div>
       </div>
     </nav>

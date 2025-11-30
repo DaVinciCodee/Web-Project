@@ -5,7 +5,7 @@
   /* On enlève le max-width restrictif pour laisser le flexbox gérer l'espace */
   width: 100%; 
   justify-content: center; /* Centre le bloc entier [Gauche-Milieu-Droite] */
-  gap: 30px; /* Espace entre les colonnes */
+  /* gap: 30px; Espace entre les colonnes */
 }
 
 /* Colonne Milieu */
@@ -15,14 +15,19 @@
   min-height: 100vh;
   border-right: 1px solid #2F3336;
   border-left: 1px solid #2F3336;
+  background: linear-gradient(to bottom, rgb(0, 80, 0), rgb(0, 20, 0));
+}
+
+.right-sidebar, .left-sidebar {
+  width: calc((100% - 650px) / 2);
 }
 
 /* AJOUT : Colonne Droite */
 .right-sidebar {
-  width: 275px; /* EXACTEMENT la même largeur que la Sidebar de gauche */
   display: flex;
   flex-direction: column;
   /* Pour l'instant vide, mais elle occupe l'espace */
+  align-items: center;
 }
 
 /* Petit fix responsive : Sur petit écran, on cache la colonne de droite pour pas écraser le feed */

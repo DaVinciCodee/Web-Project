@@ -44,7 +44,7 @@ const EditProfile = ({user, onClose, onSave}) => {
                     </div>
                     <div className="modal-actions">
                         <button type="button" className="cancel-btn" onClick={onClose}>Annuler</button>
-                        <button type="submit" className="save-btn">Enrgesistrer</button>
+                        <button type="submit" className="save-btn">Enregistrer</button>
                     </div>
                 </form>
             </div>

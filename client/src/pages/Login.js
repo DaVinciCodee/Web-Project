@@ -1,5 +1,5 @@
 import React from 'react';
-import './Login.css'; 
+import './Login.css';
 
 const Login = () => {
   // Cette fonction redirige l'utilisateur vers ton Backend (Port 8000)
@@ -9,17 +9,20 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h1>Bienvenue sur Spotimate 🎵</h1>
-      <p>Connecte-toi pour découvrir tes compatibilités musicales.</p>
-      
-      <button 
-        onClick={handleLogin}
-        className="login-button"
-      >
-        Se connecter avec Spotify
-      </button>
+    <div className="main">
+      <div className="login-container">
+        <h1>Bienvenue sur Spotimate 🎵</h1>
+        <p>Connecte-toi pour découvrir tes compatibilités musicales.</p>
+
+        <button
+          onClick={handleLogin}
+          className="login-button"
+        >
+          Se connecter avec Spotify
+        </button>
+      </div>
     </div>
+
   );
 };
 

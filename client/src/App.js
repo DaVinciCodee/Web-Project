@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
 import SideBarRight from './components/SideBarRight';
-import './App.css'; 
+import './App.css';
 
 function App() {
   const isLoginPage = window.location.pathname === '/';
@@ -12,9 +12,12 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-layout">
-        
+
         {/* Colonne Gauche : Sidebar */}
-        <SidebarWrapper />
+        <div className='left-sidebar'>
+          <SidebarWrapper />
+        </div>
+
 
         {/* Colonne Milieu : Feed/Contenu */}
         <div className="main-content">
@@ -27,7 +30,7 @@ function App() {
         {/* AJOUT : Colonne Droite (Contrepoids) */}
         {/* Même si elle est vide pour l'instant, elle force le Feed à rester au milieu */}
         <div className="right-sidebar">
-            <SideBarRight />
+          <SideBarRight />
         </div>
 
       </div>
@@ -36,7 +39,7 @@ function App() {
 }
 
 const SidebarWrapper = () => {
-    return window.location.pathname !== '/' ? <Navbar /> : null;
+  return window.location.pathname !== '/' ? <Navbar /> : null;
 }
 
 export default App;
