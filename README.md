@@ -21,7 +21,7 @@
 | Frontend (client)| React, React Router, Axios          |
 | Backend (serveur)| Node.js, Express, Spotify Web API  |
 | Authentification | OAuth 2.0 via Spotify               |
-| Base de données   | MangoDB      |
+| Base de données   | MongoDB      |
 
 ---
 
@@ -29,13 +29,14 @@
 
 ## Côté administratif
 
-- **Équipe de développement :** Trois membres : Mathis Lefebvre, Thibault Lanuzelle et Corentin Lucas
+- **Équipe de développement :** Trois membres : Mathis Lefebvre, Thibault Lannuzel et Corentin Lucas
 - **Gestion des branches Git :** Branche principale `main`, branche d’intégration `developp`, branches features pour chaque fonctionnalité
 - **Planning :**  
   - Phase 1 : Mise en place de l’authentification Spotify  
   - Phase 2 : Développement du système de matching  
   - Phase 3 : Implémentation du chat en temps réel  
-  - Phase 4 : Tests et déploiement  
+  - Phase 4 : Tests et déploiement
+  - Phase X : Développement du frontend en parallèle
 - **Réunions :** Hebdomadaires, tous les lundis à 18h00  
 - **Communication :** Utilisation de Slack et Trello pour le suivi des tâches  
 - **Code review :** Pull requests obligatoires avant fusion dans `developp` puis `main`
@@ -49,7 +50,7 @@
 
 ## Contact
 
-Pour toute question : contact.spoti@example.com
+Pour toute question : spotimate@proton.me
 
 
 
