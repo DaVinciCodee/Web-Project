@@ -1,7 +1,9 @@
 /* src/components/Navbar.css */
 
 .sidebar {
-  width: 275px;
+  /* width: 275px; */
+  width: calc((100% - 750px) / 2);
+  min-width: 275px;
   height: 100vh;
   position: sticky;
   top: 0;
