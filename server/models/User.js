@@ -16,6 +16,13 @@ const UserSchema = new mongoose.Schema({
   
   // Pour savoir quand il s'est connecté la dernière fois
   lastLogin: { type: Date, default: Date.now },
+
+  // Infos de profil basiques
+  user_name: {type: String, default: ''},
+  bio: {type: String, default: ''},
+  profilePicture: {type: String},
+  followers: { type: [String], default: [] }, 
+  following: { type: [String], default: [] },
   //Les genres musicaux préférés de l'utilisateur
   topGenres: {type: [String] },
   topArtists:[{
@@ -26,4 +33,4 @@ const UserSchema = new mongoose.Schema({
   }]
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.models.User || mongoose.model('User', UserSchema);

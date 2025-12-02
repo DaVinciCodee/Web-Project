@@ -1,0 +1,113 @@
+/* src/components/Navbar.css */
+
+.sidebar {
+  width: calc((100% - 750px) / 2);
+  min-width: 275px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  color: white; 
+  align-items: flex-start;
+}
+.sidebar-logo, .sidebar-menu, .sidebar-post-btn, .sidebar-user {
+  width: 90%; /* Prend 90% de la largeur de la sidebar */
+  max-width: 250px; /* Mais ne dépasse pas une certaine taille */
+}
+/* LOGO */
+.sidebar-logo {
+  padding: 10px 10px 20px 10px; /* Un peu d'espace */
+}
+
+/* MENU */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 5px;
+  border-radius: 30px;
+  color: #E7E9EA;
+  font-size: 20px;
+  text-decoration: none;
+  transition: 0.2s;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-item .icon {
+  font-size: 26px;
+  margin-right: 20px;
+}
+
+.menu-item.active {
+  font-weight: 800; /* Plus gras quand actif */
+  color: white;
+}
+
+.sidebar-post-btn {
+  margin-top: 30px;
+  width: 90%;          
+  height: 55px;        
+  border-radius: 50px;
+  border: none;        
+  background-color: #1DB954; 
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+  box-shadow: 0 4px 10px rgba(29, 185, 84, 0.3);
+}
+
+.sidebar-post-btn:hover {
+  background-color: #1ed760; 
+  transform: scale(1.02);
+}
+
+.sidebar-user {
+  margin-top: auto; 
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50px; 
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-user:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  border-radius: 50%;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info-mini {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info-mini .name {
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+}
+
+.user-info-mini .handle {
+  color: #71767B;
+  font-size: 14px;
+}

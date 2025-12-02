@@ -1,5 +1,8 @@
+/* src/index.css */
 body {
-  margin: 0;
+  margin: 0; /* Enlève les marges blanches autour */
+  padding: 0;
+  background-color: #000000; /* Applique le fond noir à TOUTE la page, pas juste le composant */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

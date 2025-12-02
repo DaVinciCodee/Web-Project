@@ -1,0 +1,41 @@
+.artist-card {
+  background-color: #181818; /* Gris très foncé Spotify */
+  padding: 15px;
+  border-radius: 8px;
+  width: 160px; /* Largeur fixe pour que tout soit aligné */
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Petit effet interactif quand on passe la souris dessus */
+.artist-card:hover {
+  background-color: #282828; /* Gris un peu plus clair */
+  transform: translateY(-5px); /* La carte "monte" un peu */
+}
+
+.artist-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Force l'image à être carrée */
+  object-fit: cover; /* Recadre l'image sans l'écraser */
+  border-radius: 50%; /* Rond parfait (style Artiste Spotify) */
+  margin-bottom: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.artist-name {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  overflow: hidden;    /* Cache ce qui dépasse */
+  text-overflow: ellipsis; /* Ajoute "..." si c'est trop long */
+}
+
+.artist-genre {
+  color: #b3b3b3; /* Gris clair */
+  font-size: 13px;
+  margin-top: 5px;
+  text-transform: capitalize;
+}
