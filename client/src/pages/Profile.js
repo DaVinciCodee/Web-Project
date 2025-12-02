@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Pour cliquer sur un profil suggéré
 import ArtistCard from '../components/ArtistCard';
 import GenreBadge from '../components/GenreBadge';
 import EditProfileModal from '../components/EditProfile';
-import NowPlaying from '../components/NowPlaying'; // Import du widget musique
+import NowPlaying from '../components/NowPlaying';
 import { fetchUserProfile, updateUserProfile } from '../services/api';
 import './Profile.css';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
+  const [recommendations, setRecommendations] = useState([]); // Nouveau State
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -16,19 +18,30 @@ const Profile = () => {
     const spotifyId = queryParams.get('id');
 
     if (spotifyId) {
+      setLoading(true);
+      
+      // 1. Charger le Profil
       fetchUserProfile(spotifyId).then(data => {
         setUser(data);
         setLoading(false);
       });
+
+      // 2. Charger les Recommandations (Similaires à cet ID)
+      // On utilise le port 8000 (ou 3000 selon ton serveur)
+      fetch(`http://localhost:8000/api/users/recommendations?id=${spotifyId}`)
+        .then(res => res.json())
+        .then(data => {
+          // On garde le Top 4 pour ne pas encombrer
+          setRecommendations(data.slice(0, 4));
+        })
+        .catch(err => console.error("Erreur chargement recos:", err));
     }
-  }, []);
+  }, []); // Le tableau vide [] assure que ça ne tourne qu'une fois au montage
 
   const handleSaveProfile = async (formData) => {
     try {
-      // Mise à jour optimiste de l'UI
       setUser({ ...user, ...formData });
       setIsEditing(false);
-      // Envoi au backend
       await updateUserProfile(user.spotifyId, formData);
     } catch (error) {
       console.error("Erreur sauvegarde", error);
@@ -41,7 +54,6 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-
       <div className="profile-content">
         
         {/* --- 1. EN-TÊTE (HEADER) --- */}
@@ -54,53 +66,21 @@ const Profile = () => {
 
           <div className="profile-info">
             <h1>{user.user_name || user.spotifyId}</h1>
-            
-            <p className="profile-bio">
-              {user.bio || "Aucune bio renseignée."}
-            </p>
+            <p className="profile-bio">{user.bio || "Aucune bio renseignée."}</p>
 
             <div className="profile-stats">
-              {/* On utilise le '?' pour éviter le crash si la liste est undefined au début */}
-              <span>
-                {user.followers ? user.followers.length : 0} 
-                <span className="stat-label"> Abonnés</span>
-              </span>
-              
-              <span>
-                {user.following ? user.following.length : 0} 
-                <span className="stat-label"> Abonnements</span>
-              </span>
+              <span>{user.followers ? user.followers.length : 0} <span className="stat-label">Abonnés</span></span>
+              <span>{user.following ? user.following.length : 0} <span className="stat-label">Abonnements</span></span>
             </div>
 
-            {/* --- BOUTONS D'ACTION --- */}
             <div className="profile-actions">
-              
-              {/* Lien vers le vrai Spotify */}
-              <a 
-                href={`https://open.spotify.com/user/${user.spotifyId}`}
-                target="_blank"
-                rel="noreferrer"
-                className="spotify-link-btn"
-                title="Voir sur Spotify"
-              >
-                 <img 
-                  src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png" 
-                  alt="Spotify" 
-                />
+              <a href={`https://open.spotify.com/user/${user.spotifyId}`} target="_blank" rel="noreferrer" className="spotify-link-btn">
+                 <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png" alt="Spotify" />
               </a>
-
-              {/* Bouton Modifier */}
-              <button 
-                  onClick={() => setIsEditing(true)}
-                  className="edit-profile-btn"
-              >
-                  Modifier le profil
-              </button>
+              <button onClick={() => setIsEditing(true)} className="edit-profile-btn">Modifier le profil</button>
             </div>
             
-            {/* Widget Musique en cours (Intégré dans le header ou juste dessous) */}
             <NowPlaying spotifyId={user.spotifyId} />
-
           </div>
         </div>
 
@@ -114,7 +94,37 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* --- 3. TOP ARTISTES --- */}
+        {/* --- 3. RECOMMANDATIONS (NOUVELLE SECTION) --- */}
+        {recommendations.length > 0 && (
+          <section className="profile-section">
+            <h2 className="section-title">Profils Similaires 🤝</h2>
+            <div className="recommendations-grid">
+              {recommendations.map((rec, index) => (
+                <Link to={`/profile?id=${rec.user.spotifyId}`} key={index} className="reco-card-link">
+                  <div className="reco-card">
+                    <div className="reco-header">
+                      <img 
+                        src={rec.user.profilePicture || "https://via.placeholder.com/50"} 
+                        alt={rec.user.user_name} 
+                        className="reco-avatar"
+                      />
+                      <span className="reco-score">{rec.displayScore}</span>
+                    </div>
+                    <div className="reco-info">
+                      <h4>{rec.user.user_name}</h4>
+                      <small>
+                        {parseInt(rec.details.commonTracks) > 0 ? "🎵 Mêmes sons" : 
+                         parseInt(rec.details.commonArtists) > 30 ? "🎤 Mêmes artistes" : "🌊 Même Vibe"}
+                      </small>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* --- 4. TOP ARTISTES --- */}
         <section className="profile-section">
           <h2 className="section-title">Top Artistes 🌟</h2>
           <div className="artists-scroll-container">
@@ -129,14 +139,12 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* --- 4. POSTS (Placeholder) --- */}
+        {/* --- 5. POSTS --- */}
         <section className="profile-section">
           <h2 className="section-title">Publications récentes 📝</h2>
           <div className="empty-post-placeholder">
             <p>Aucun post pour le moment...</p>
-            <button className="create-post-btn">
-              + Créer un post
-            </button>
+            <button className="create-post-btn">+ Créer un post</button>
           </div>
         </section>
 

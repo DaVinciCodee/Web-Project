@@ -29,7 +29,13 @@ const UserSchema = new mongoose.Schema({
     spotifyId: String,
     name: String,
     imageUrl: String,
-    genres: [String]
+    genres: [String],
+  }],
+  topTracks:[{
+    spotifyId: String,
+    name: String,
+    artist: String,
+    imageUrl: String
   }]
 });
 
