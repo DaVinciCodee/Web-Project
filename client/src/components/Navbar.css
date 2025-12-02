@@ -1,7 +1,6 @@
 /* src/components/Navbar.css */
 
 .sidebar {
-  /* width: 275px; */
   width: calc((100% - 750px) / 2);
   min-width: 275px;
   height: 100vh;
@@ -10,7 +9,6 @@
   padding: 10px 0;
   display: flex;
   flex-direction: column;
-  /* On s'assure que le texte est blanc par défaut */
   color: white; 
   align-items: flex-start;
 }
@@ -52,35 +50,33 @@
   color: white;
 }
 
-/* BOUTON POST (CORRECTION) */
 .sidebar-post-btn {
   margin-top: 30px;
-  width: 90%;          /* Prend presque toute la largeur */
-  height: 55px;        /* Hauteur fixe pour être bien rond */
-  border-radius: 50px; /* Arrondi total (pilule) */
-  border: none;        /* Enlève la bordure grise moche */
-  background-color: #1DB954; /* Vert Spotify */
+  width: 90%;          
+  height: 55px;        
+  border-radius: 50px;
+  border: none;        
+  background-color: #1DB954; 
   color: white;
   font-size: 19px;
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.1s, background-color 0.2s;
-  box-shadow: 0 4px 10px rgba(29, 185, 84, 0.3); /* Petite ombre */
+  box-shadow: 0 4px 10px rgba(29, 185, 84, 0.3);
 }
 
 .sidebar-post-btn:hover {
-  background-color: #1ed760; /* Plus clair au survol */
+  background-color: #1ed760; 
   transform: scale(1.02);
 }
 
-/* USER / DÉCONNEXION (CORRECTION ALIGNEMENT) */
 .sidebar-user {
-  margin-top: auto; /* Pousse tout en bas */
+  margin-top: auto; 
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   padding: 10px;
-  border-radius: 50px; /* Arrondi comme un bouton */
+  border-radius: 50px; 
   cursor: pointer;
   transition: background-color 0.2s;
 }

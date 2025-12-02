@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 // Import des icônes (bi = Bootstrap Icons, fi = Feather Icons, au choix)
-import { FiHome, FiSearch, FiBell, FiUser, FiLogOut } from "react-icons/fi"; 
+import { FiHome, FiSearch, FiBell, FiUser, FiLogOut, FiMessageCircle } from "react-icons/fi"; 
 import { FaSpotify } from "react-icons/fa"; // Logo Spotify
 import './Navbar.css';
 
@@ -32,6 +32,11 @@ const Navbar = () => {
         <Link to="/search" className={`menu-item ${isActive('/search')}`}>
           <FiSearch className="icon" />
           <span className="label">Explorer</span>
+        </Link>
+
+        <Link to="/messages" className={`menu-item ${isActive('/messages')}`}>
+          <FiMessageCircle className="icon" />
+          <span className="label">Messages</span>
         </Link>
 
         <Link to="/notifications" className={`menu-item ${isActive('/notifications')}`}>
