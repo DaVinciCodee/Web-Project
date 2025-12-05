@@ -86,7 +86,7 @@ const Profile = () => {
 
         {/* --- 2. VIBES --- */}
         <section className="profile-section">
-          <h2 className="section-title">Mes Vibes 🎵</h2>
+          <h2 className="section-title">Mes Vibes</h2>
           <div className="genres-container">
             {user.topGenres && user.topGenres.map((genre, index) => (
               <GenreBadge key={index} label={genre} />

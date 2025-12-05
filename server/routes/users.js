@@ -18,7 +18,6 @@ router.get('/debug-matrix', async (req, res) => {
       for (let j = 0; j < users.length; j++) {
         if (users[i].spotifyId !== users[j].spotifyId) {
           
-          // APPEL DE LA NOUVELLE FONCTION
           const match = recommendationService.calculateCompatibility(users[i], users[j]);
           
           myResult.matches.push({

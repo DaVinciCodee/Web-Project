@@ -7,14 +7,12 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const cors = require('cors');
 
-// Middlewares globaux utiles
-app.use(express.json());         // Parse JSON dans les requêtes
-app.use(express.urlencoded({ extended: true }));  // Parse formulaire
+app.use(express.json());         
+app.use(express.urlencoded({ extended: true }));  
 app.use(cors({
-  origin: 'http://localhost:3000', // On autorise seulement le frontend React
-  credentials: true // Autorise les cookies/sessions si besoin
+  origin: 'http://localhost:3000', 
+  credentials: true 
 }));
-// Connexion à la base MongoDB
 const mongoURI = process.env.MONGODB_URI;
 console.log("Connecting to MongoDB");
 mongoose.connect(mongoURI)
@@ -26,17 +24,13 @@ mongoose.connect(mongoURI)
   });
 
   
-// Route authentification
 app.use('/auth-app', authApp);
 app.use('/api/auth', require('./routes/auth'));
 
-// Autres routes à monter ici, ex:
 app.use('/auth-app', require('./routes/authApp'));
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-// app.use('/api/users', require('./routes/users'));
 
-// Démarrage serveur
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
