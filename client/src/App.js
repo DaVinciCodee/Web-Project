@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
+import Explore from './pages/Explore'
+
 import SideBarRight from './components/SideBarRight';
 import './App.css';
 
@@ -24,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/search" element={<Explore />} />
           </Routes>
         </div>
 

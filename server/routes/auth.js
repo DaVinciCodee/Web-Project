@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const User = require('../models/user');
+const User = require('../models/User');
 const spotifyService = require('../services/spotifyService');
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
@@ -76,4 +76,5 @@ router.get('/spotify/callback', async (req, res) => {
         res.status(400).send('Error exchanging code for tokens');
     }
 });
+
 module.exports = router;
