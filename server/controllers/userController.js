@@ -1,6 +1,10 @@
 // server/controllers/userController.js
 const User = require('../models/User'); 
 const spotifyService = require('../services/spotifyService');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3f72413 (Debut messagerie)
 exports.getUserProfile = async (req, res) => {
   try {
     const { spotifyId } = req.params;
