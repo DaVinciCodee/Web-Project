@@ -1,7 +1,7 @@
 // server/controllers/userController.js
-const User = require('../models/User'); // Assure-toi que le chemin est bon (User.js avec majuscule ?)
+const User = require('../models/User'); 
 const spotifyService = require('../services/spotifyService');
-// 1. Fonction pour récupérer le profil (GET)
+
 exports.getUserProfile = async (req, res) => {
   try {
     const { spotifyId } = req.params;

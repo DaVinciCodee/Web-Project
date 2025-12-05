@@ -1,8 +1,6 @@
 import React from 'react';
 
 const GenreBadge = ({ label }) => {
-  // Une fonction pour générer une couleur aléatoire "pastel" basée sur le nom du genre
-  // (Juste pour que ce soit joli visuellement)
   const stringToColor = (str) => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -14,8 +12,8 @@ const GenreBadge = ({ label }) => {
 
   return (
     <span style={{
-      backgroundColor: 'rgba(255, 255, 255, 0.1)', // Fond transparent léger
-      border: '1px solid ' + stringToColor(label), // Bordure colorée
+      backgroundColor: 'rgba(255, 255, 255, 0.1)', 
+      border: '1px solid ' + stringToColor(label), 
       color: 'white',
       padding: '5px 12px',
       borderRadius: '20px',

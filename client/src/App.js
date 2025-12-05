@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import io from 'socket.io-client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
 import SideBarRight from './components/SideBarRight';
+import Chat from './components/Chat';
 import './App.css';
 
 function App() {
@@ -18,17 +20,15 @@ function App() {
           <SidebarWrapper />
         </div>
 
-
         {/* Colonne Milieu : Feed/Contenu */}
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/messages" element={<Chat />} />
           </Routes>
         </div>
 
-        {/* AJOUT : Colonne Droite (Contrepoids) */}
-        {/* Même si elle est vide pour l'instant, elle force le Feed à rester au milieu */}
         <div className="right-sidebar">
           <SideBarRight />
         </div>

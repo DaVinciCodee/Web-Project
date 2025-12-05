@@ -1,0 +1,24 @@
+.message {
+  display: flex;
+  align-items: center;
+}
+.sended {
+  justify-content: flex-end; /* A droite */
+}
+.sended .content {
+  background-color: #1db954; /* Vert Spotify */
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+}
+.recieved {
+  justify-content: flex-start; /* A gauche */
+}
+.recieved .content {
+  background-color: #333; /* Gris foncé */
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+}
