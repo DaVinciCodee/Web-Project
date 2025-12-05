@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Pour cliquer sur un profil suggéré
 import ArtistCard from '../components/ArtistCard';
+import RecommendationCard from '../components/RecommendationCard';
 import GenreBadge from '../components/GenreBadge';
 import EditProfileModal from '../components/EditProfile';
 import NowPlaying from '../components/NowPlaying';
@@ -94,31 +95,19 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* --- 3. RECOMMANDATIONS (NOUVELLE SECTION) --- */}
+        {/* --- 3. RECOMMANDATIONS --- */}
         {recommendations.length > 0 && (
           <section className="profile-section">
             <h2 className="section-title">Profils Similaires 🤝</h2>
+            
             <div className="recommendations-grid">
-              {recommendations.map((rec, index) => (
-                <Link to={`/profile?id=${rec.user.spotifyId}`} key={index} className="reco-card-link">
-                  <div className="reco-card">
-                    <div className="reco-header">
-                      <img 
-                        src={rec.user.profilePicture || "https://via.placeholder.com/50"} 
-                        alt={rec.user.user_name} 
-                        className="reco-avatar"
-                      />
-                      <span className="reco-score">{rec.displayScore}</span>
-                    </div>
-                    <div className="reco-info">
-                      <h4>{rec.user.user_name}</h4>
-                      <small>
-                        {parseInt(rec.details.commonTracks) > 0 ? "🎵 Mêmes sons" : 
-                         parseInt(rec.details.commonArtists) > 30 ? "🎤 Mêmes artistes" : "🌊 Même Vibe"}
-                      </small>
-                    </div>
-                  </div>
-                </Link>
+              {recommendations.map((rec) => (
+                <RecommendationCard 
+                  key={rec.user.spotifyId} 
+                  user={rec.user} 
+                  score={rec.displayScore} 
+                  details={rec.details} 
+                />
               ))}
             </div>
           </section>
