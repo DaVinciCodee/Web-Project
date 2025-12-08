@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Explore.css';
+import defaultPP from '../img/defaultPP.webp'
 
 
 function Explore() {
@@ -34,8 +35,7 @@ function Explore() {
                     {text.map(user => (
                         <div key={user._id} className='profil-card'>
                             <img
-                                src={user.profilePicture}
-
+                                src={user.profilePicture ? user.profilePicture : defaultPP}
                                 className='artist-image'
                             />
                             <div>{user.user_name}</div>

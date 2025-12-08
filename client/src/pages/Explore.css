@@ -6,7 +6,8 @@
 }
 
 .title {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
     color: white;
 }
 
@@ -42,7 +43,7 @@
 
 .artist-image {
     margin-top: 10px;
-    width: 30%;
+    width: 22%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
@@ -51,7 +52,9 @@
 
 .profil-card {
     display: flex;
-    /* border: 2px red solid; */
+    /* border: 2px solid rgb(0, 0, 0); */
     align-items: center;
     gap: 30px;
+    border-radius: 20px;
+    /* background-color: rgba(128, 128, 128, 0.477); */
 }
