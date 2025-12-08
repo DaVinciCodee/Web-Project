@@ -10,15 +10,35 @@ const Messenger = () => {
 
   useEffect(() => {
     const spotifyId = localStorage.getItem("mySpotifyId");
-    
+    console.log("1. ID récupéré du stockage :", spotifyId);
     if (spotifyId) {
-      fetchUserProfile(spotifyId).then(data => {
-        setCurrentUser(data);
-        setListFriend(data.following || []);
-        setListFriend(data.following && data.following.length > 0 ? data.following : ["Elon Musk", "Daft Punk", "Mon Voisin Totoro"]); 
-      });
+      fetchUserProfile(spotifyId)
+        .then(data => {
+          console.log("2. Données reçues de l'API :", data); 
+          setCurrentUser(data);
+          
+          // Notre logique de secours
+          setListFriend(data.following && data.following.length > 0 
+            ? data.following 
+            : ["Elon Musk", "Daft Punk", "Mon Voisin Totoro"]
+          );
+        })
+        // Dans Messenger.js inside .catch(...)
+
+        .catch(error => {
+        console.error("3. Oups, erreur API :", error);
+        
+        // 1. On invente tes amis (ça tu l'as déjà)
+        setListFriend(["Elon Musk (Erreur)", "Daft Punk (Erreur)"]); 
+
+        // 2. AJOUTE CECI : On s'invente une identité pour que le Chat accepte de s'ouvrir
+        setCurrentUser({ _id: "mon_faux_id_123", user_name: "Moi (Test)" });
+        });
+    } else {
+        console.log("4. Aucun ID trouvé, je ne peux rien charger.");
+        // Optionnel : rediriger vers le login ?
     }
-  }, []); 
+  }, []);
 
   return (
     <div className="messenger-container">

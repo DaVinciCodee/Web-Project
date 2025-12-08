@@ -33,7 +33,67 @@ const RightSidebar = () => {
           <SuggestionItem key={user.id} user={user} />
         ))}
 
-        <div className="show-more">Voir plus</div>
+        <div className="show-more">Voir plus</div>import React, { useState, useEffect } from 'react';
+import { fetchSuggestions, followUser } from '../services/api';
+import './SideBarRight.css'; // On s'occupera du style juste après
+
+const SideBarRight = () => {
+  const [suggestions, setSuggestions] = useState([]);
+  // On récupère l'ID qu'on a stocké (notre "faux" login pour l'instant)
+  const currentUserId = localStorage.getItem("mySpotifyId");
+
+  useEffect(() => {
+    if (currentUserId) {
+      fetchSuggestions(currentUserId).then(data => {
+        setSuggestions(data);
+      });
+    }
+  }, [currentUserId]);
+
+  const handleFollow = async (idToFollow) => {
+    // 1. Appel API pour suivre
+    const success = await followUser(idToFollow, currentUserId);
+    
+    if (success) {
+      // 2. Si ça marche, on retire la personne de la liste visuellement
+      setSuggestions(suggestions.filter(user => user._id !== idToFollow));
+      
+      // Optionnel : Tu pourrais aussi déclencher un rechargement de la liste d'amis à gauche
+      // mais pour l'instant, un simple rechargement de page suffira pour voir le changement.
+      alert("Utilisateur suivi ! Rafraîchis la page pour le voir à gauche.");
+    }
+  };
+
+  if (!currentUserId) return null; // Ne rien afficher si pas connecté
+
+  return (
+    <div className="sidebar-right-container">
+      <h3>Suggestions pour vous</h3>
+      <div className="suggestions-list">
+        {suggestions.length > 0 ? (
+          suggestions.map(user => (
+            <div key={user._id} className="suggestion-item">
+              <div className="suggestion-info">
+                <div className="avatar-placeholder">👤</div>
+                <span className="username">{user.username}</span>
+              </div>
+              <button 
+                className="follow-btn"
+                onClick={() => handleFollow(user._id)}
+              >
+                Suivre
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="no-suggestions">Aucune suggestion pour le moment.</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default SideBarRight;
       </div>
 
     </div>
