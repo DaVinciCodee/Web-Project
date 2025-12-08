@@ -2,9 +2,13 @@
 const User = require('../models/User'); 
 const spotifyService = require('../services/spotifyService');
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 3f72413 (Debut messagerie)
+=======
+
+>>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
 exports.getUserProfile = async (req, res) => {
   try {
     const { spotifyId } = req.params;

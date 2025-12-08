@@ -1,13 +1,25 @@
+<<<<<<< HEAD
 
 .messenger-container {
   display: flex;
   height: calc(100vh - 80px); 
   background-color: #000; 
+=======
+/* Messenger.css */
+.messenger-container {
+  display: flex;
+  height: calc(100vh - 80px); /* Hauteur totale moins la navbar */
+  background-color: #000; /* Fond noir style Spotify/X */
+>>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
   color: white;
   width: 100%;
 }
 
+<<<<<<< HEAD
 
+=======
+/* --- COLONNE GAUCHE --- */
+>>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
 .messenger-sidebar {
   width: 300px;
   border-right: 1px solid #333;
@@ -54,14 +66,24 @@
   font-size: 1.2rem;
 }
 
+<<<<<<< HEAD
 
 .messenger-chat-window {
   flex: 1; 
+=======
+/* --- COLONNE DROITE --- */
+.messenger-chat-window {
+  flex: 1; /* Prend tout le reste de la place */
+>>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
   display: flex;
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 
+=======
+/* L'écran "Pas de message sélectionné" */
+>>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
 .no-chat-selected {
   display: flex;
   flex-direction: column;

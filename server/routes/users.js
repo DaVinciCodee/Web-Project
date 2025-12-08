@@ -42,8 +42,11 @@ router.get('/:spotifyId', userController.getUserProfile);
 router.put('/:spotifyId', userController.updateUserProfile);
 router.get('/:spotifyId/now-playing', userController.getUserNowPlaying);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
 router.put('/:id/follow', async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
@@ -90,5 +93,8 @@ router.get('/suggestions/:userId', async (req, res) => {
     res.status(500).json(err);
   }
 });
+<<<<<<< HEAD
 >>>>>>> b1bd565 (caca)
+=======
+>>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
 module.exports = router;
