@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
 import SideBarRight from './components/SideBarRight';
-import Chat from './components/Chat';
+import Messenger from './pages/Messenger';
 import './App.css';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/messages" element={<Chat />} />
+            <Route path="/messages" element={<Messenger />} />
           </Routes>
         </div>
 
