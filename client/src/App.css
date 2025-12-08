@@ -20,13 +20,16 @@
 /* Colonnes extérieures*/
 .right-sidebar, .left-sidebar {
   width: calc((100% - 800px) / 2);
+  display: flex; 
 }
-
+.left-sidebar {
+  justify-content: flex-end; 
+  padding-right: 20px; /* Optionnel : Garde un petit espace pour pas que ça touche littéralement le bord si tu veux */
+}
 /* Colonne Droite */
 .right-sidebar {
-  display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Centre le contenu de droite */
 }
 
 /* Petit fix responsive : Sur petit écran, on cache la colonne de droite pour pas écraser le feed */

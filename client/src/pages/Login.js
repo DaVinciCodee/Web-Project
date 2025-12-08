@@ -11,7 +11,7 @@ const Login = () => {
   return (
     <div className="main">
       <div className="login-container">
-        <h1>Bienvenue sur Spotimate 🎵</h1>
+        <h1>Caca sur Spotimate 🎵</h1>
         <p>Connecte-toi pour découvrir tes compatibilités musicales.</p>
 
         <button
