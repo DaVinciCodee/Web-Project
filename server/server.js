@@ -55,22 +55,10 @@ const mongoose = require('mongoose');
 const authApp = require('./routes/authApp')
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
-const cors = require('cors');
 
-<<<<<<< HEAD
-// Middlewares globaux utiles
-app.use(express.json());         // Parse JSON dans les requêtes
-app.use(express.urlencoded({ extended: true }));  // Parse formulaire
-app.use(cors({
-  origin: 'http://localhost:3000', // On autorise seulement le frontend React
-  credentials: true // Autorise les cookies/sessions si besoin
-}));
-// Connexion à la base MongoDB
-=======
 app.use(express.json());        
 app.use(express.urlencoded({ extended: true }));  
 
->>>>>>> 3f72413 (Debut messagerie)
 const mongoURI = process.env.MONGODB_URI;
 console.log("Connecting to MongoDB");
 mongoose.connect(mongoURI)
