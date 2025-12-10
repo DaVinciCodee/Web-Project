@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 
 // Functions to find the users corresponding to the search
-router.get('/', async (req, res) => {
+router.get('/users/', async (req, res) => {
 
         const searchTerm = req.query.q?.trim();
 
@@ -25,5 +25,9 @@ router.get('/', async (req, res) => {
                 res.status(500).json({ error: "Erreur serveur" });
         }
 });
+
+router.get('/albums/', async (req, res) => {
+        res.json("Test réussi.");
+})
 
 module.exports = router;
