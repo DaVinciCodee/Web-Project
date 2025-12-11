@@ -8,7 +8,7 @@ function Explore() {
     const [text, setText] = useState(null);
     const [selected, setSelected] = useState(null);
     const [albums, setAlbums] = useState(null);
-    const [artist, setArtist] = useState(null);
+    const [artists, setArtists] = useState(null);
 
     const handleSearch = (e) => {
 
@@ -32,13 +32,13 @@ function Explore() {
 
         if (selected === "Artiste") {
             if (!query) {
-                setArtist(null);
+                setArtists(null);
                 return;
             }
 
-            fetch(`http://localhost:8000/search-request/albums/?q=${query}`)
+            fetch(`http://localhost:8000/search-request/artists/?q=${query}`)
                 .then(res => res.json())
-                .then(data => setAlbums(data))
+                .then(data => setArtists(data))
                 .catch(err => console.error(err));
         }
     };
@@ -104,23 +104,25 @@ function Explore() {
 
                 {/* Result zone */}
                 <div className='response-search'>
-                    Résultats :
-                    {text !== null && selected === "Profil" && (
+                    <div className='result-text'>Résultats :</div>
+                    {selected === "Profil" && text !== null ? (
                         text.map(user => (
                             <div key={user._id} className='profil-card'>
                                 <img
-                                    src={user.profilePicture ? user.profilePicture : defaultPP}
+                                    src={user.profilePicture || defaultPP}
                                     className='profil-image'
                                 />
                                 <div>{user.user_name}</div>
                             </div>
                         ))
-                    )}
-                    {artist !== null && selected === "Artiste" && (
-                        artist.map((art, index) => (
-                            <div key={index}>{JSON.stringify(art)}</div>
+                    ) : selected === "Artiste" && artists !== null ? (
+                        artists.map(artist => (
+                            <div className='artist-result' key={artist.id}>
+                                <img className='artist-img' src={artist.images[0]?.url} alt="artist_img" />
+                                {artist.name}
+                            </div>
                         ))
-                    )}
+                    ) : null}
                 </div>
             </section>
         </>
