@@ -35,7 +35,6 @@ router.get('/artists/', async (req, res) => {
         const accessToken = user?.accessToken;
 
         console.log("Access Token:", accessToken);
-        console.log("Search Term :", searchTerm);
 
         let artistParams = {
                 method: "GET",
@@ -54,15 +53,91 @@ router.get('/artists/', async (req, res) => {
                 .then((data) => {
                         // Retourner les 5 premiers
                         if (!data.artists || !data.artists.items) {
-                                console.log("pas d'artiste");
+                                console.log("Pas d'artiste");
                                 return [];
                         }
-                        console.log("artistes trouvés");
+                        console.log("Artistes trouvés");
                         return data.artists.items.slice(0, 5);
                 });
-        
+
 
         res.json(artists);
+})
+
+// Get Album
+router.get('/albums/', async (req, res) => {
+
+        const searchTerm = req.query.q?.trim();
+
+        const user = await User.findOne({ user_name: "Turn down?" });
+        const accessToken = user?.accessToken;
+
+        console.log("Access Token:", accessToken);
+        console.log("Search Term :", searchTerm);
+
+        let albumsParams = {
+                method: "GET",
+                headers: {
+                        Authorization: "Bearer " + accessToken,
+                },
+        };
+
+        // Get Album
+        const response = await fetch(
+                "https://api.spotify.com/v1/search?q=" + encodeURIComponent(searchTerm) + "&type=album",
+                albumsParams
+        );
+
+        const data = await response.json();
+
+        let albums = [];
+
+        if (data.albums?.items) {
+                albums = data.albums.items.slice(0, 5);
+                console.log("Albums trouvés");
+        } else {
+                console.log("Pas d'albums");
+        }
+
+        res.json(albums);
+})
+
+// Get Songs
+router.get('/songs/', async (req, res) => {
+
+        const searchTerm = req.query.q?.trim();
+
+        const user = await User.findOne({ user_name: "Turn down?" });
+        const accessToken = user?.accessToken;
+
+        console.log("Access Token:", accessToken);
+        console.log("Search Term :", searchTerm);
+
+        let songsParams = {
+                method: "GET",
+                headers: {
+                        Authorization: "Bearer " + accessToken,
+                },
+        };
+
+        // Get Songs
+        const response = await fetch(
+                "https://api.spotify.com/v1/search?q=" + encodeURIComponent(searchTerm) + "&type=track",
+                songsParams
+        );
+
+        const data = await response.json();
+
+        let songs = [];
+
+        if (data.tracks?.items) {
+                songs = data.tracks.items.slice(0, 5);
+                console.log("Morceaux trouvés");
+        } else {
+                console.log("Pas de morceaux");
+        }
+
+        res.json(songs);
 })
 
 module.exports = router;
