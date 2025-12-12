@@ -56,10 +56,12 @@ Pour toute question : spotimate@proton.me
 ## Avancement du projet 
 
 ### Page se connecter à l'ouverture
+![Connexion page](./images/img1.png)
 
 ### Page Profil Utilisateur
+![Profil page](./images/img2.png)
 
 ### Page Explorer (Profil, Artistes, Albums)
-
+![Explorer page](./images/img3.png)
 
     
