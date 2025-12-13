@@ -1,9 +1,11 @@
+@import "../variables.css";
+
 .navbar{
-  width: 250px;
+  width: var(--left-sidebar-width);
   height: 100vh;
   position: sticky;
   top: 0;
-  color: white; 
+  color: var(--color-white); 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
