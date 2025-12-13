@@ -32,9 +32,9 @@ function App() {
 
         {/* AJOUT : Colonne Droite (Contrepoids) */}
         {/* Même si elle est vide pour l'instant, elle force le Feed à rester au milieu */}
-        <div className="right-sidebar">
+        {/* <div className="right-sidebar">
           <SideBarRight />
-        </div>
+        </div> */}
 
       </div>
     </BrowserRouter>
