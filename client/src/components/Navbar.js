@@ -1,7 +1,6 @@
-import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 // Import des icônes (bi = Bootstrap Icons, fi = Feather Icons, au choix)
-import { FiHome, FiSearch, FiBell, FiUser, FiLogOut, FiMessageCircle } from "react-icons/fi"; 
+import { FiHome, FiSearch, FiBell, FiUser, FiLogOut, FiMessageCircle } from "react-icons/fi";
 import { FaSpotify } from "react-icons/fa"; // Logo Spotify
 import './Navbar.css';
 
@@ -13,13 +12,16 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
   return (
-    <nav className="sidebar">
+    <nav className="navbar">
       {/* 1. Logo */}
-      <div className="sidebar-logo">
+      <div className="navbar-logo">
         <Link to="/feed">
-            {/* Logo vert Spotify-like */}
-            <FaSpotify size={40} color="#1DB954" />
-        </Link> 
+          {/* Logo vert Spotify-like */}
+          <FaSpotify className='logo' size={40} color="#1DB954" />
+        </Link>
+        <Link to="/feed">
+          <div>SpotiMate</div>
+        </Link>
       </div>
 
       {/* 2. Menu */}
@@ -56,7 +58,7 @@ const Navbar = () => {
       {/* 4. User (Logout) */}
       <div className="sidebar-user" onClick={() => navigate('/')}>
         <div className="user-avatar-placeholder">
-            <FiLogOut size={20} color="white" />
+          <FiLogOut size={20} color="white" />
         </div>
         <div className="user-info-mini">
           <span className="name">Déconnexion</span>

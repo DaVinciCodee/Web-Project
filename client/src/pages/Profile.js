@@ -15,13 +15,12 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const spotifyId = queryParams.get('id');
+    const spotifyId =
+      new URLSearchParams(window.location.search).get("id")
+      || localStorage.getItem("spotifyId");
 
     if (spotifyId) {
-      setLoading(true);
-      
-      // 1. Charger le Profil
+      localStorage.setItem("spotifyId", spotifyId);
       fetchUserProfile(spotifyId).then(data => {
         setUser(data);
         setLoading(false);
@@ -56,31 +55,61 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <div className="profile-content">
-        
+
         {/* --- 1. EN-TÊTE (HEADER) --- */}
         <div className="profile-header">
-          <img 
-            src={user.profilePicture || "https://cdn-icons-png.flaticon.com/512/847/847969.png"} 
-            alt="Profil" 
+          <img
+            src={user.profilePicture || "https://cdn-icons-png.flaticon.com/512/847/847969.png"}
+            alt="Profil"
             className="profile-avatar"
           />
 
           <div className="profile-info">
             <h1>{user.user_name || user.spotifyId}</h1>
-            <p className="profile-bio">{user.bio || "Aucune bio renseignée."}</p>
+
+            <p className="profile-bio">
+              {user.bio || "Aucune bio renseignée."}
+            </p>
 
             <div className="profile-stats">
-              <span>{user.followers ? user.followers.length : 0} <span className="stat-label">Abonnés</span></span>
-              <span>{user.following ? user.following.length : 0} <span className="stat-label">Abonnements</span></span>
+              {/* On utilise le '?' pour éviter le crash si la liste est undefined au début */}
+              <span>
+                {user.followers ? user.followers.length : 0}
+                <span className="stat-label"> Abonnés</span>
+              </span>
+
+              <span>
+                {user.following ? user.following.length : 0}
+                <span className="stat-label"> Abonnements</span>
+              </span>
             </div>
 
             <div className="profile-actions">
-              <a href={`https://open.spotify.com/user/${user.spotifyId}`} target="_blank" rel="noreferrer" className="spotify-link-btn">
-                 <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png" alt="Spotify" />
+
+              {/* Lien vers le vrai Spotify */}
+              <a
+                href={`https://open.spotify.com/user/${user.spotifyId}`}
+                target="_blank"
+                rel="noreferrer"
+                className="spotify-link-btn"
+                title="Voir sur Spotify"
+              >
+                <img
+                  src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png"
+                  alt="Spotify"
+                />
               </a>
-              <button onClick={() => setIsEditing(true)} className="edit-profile-btn">Modifier le profil</button>
+
+              {/* Bouton Modifier */}
+              <button
+                onClick={() => setIsEditing(true)}
+                className="edit-profile-btn"
+              >
+                Modifier le profil
+              </button>
             </div>
-            
+
+            {/* Widget Musique en cours (Intégré dans le header ou juste dessous) */}
             <NowPlaying spotifyId={user.spotifyId} />
           </div>
         </div>
@@ -118,11 +147,11 @@ const Profile = () => {
           <h2 className="section-title">Top Artistes 🌟</h2>
           <div className="artists-scroll-container">
             {user.topArtists && user.topArtists.map((artist) => (
-              <ArtistCard 
-                key={artist.spotifyId} 
-                name={artist.name} 
-                imageUrl={artist.imageUrl} 
-                genres={artist.genres} 
+              <ArtistCard
+                key={artist.spotifyId}
+                name={artist.name}
+                imageUrl={artist.imageUrl}
+                genres={artist.genres}
               />
             ))}
           </div>
@@ -139,10 +168,10 @@ const Profile = () => {
 
         {/* --- MODALE --- */}
         {isEditing && (
-          <EditProfileModal 
-            user={user} 
-            onClose={() => setIsEditing(false)} 
-            onSave={handleSaveProfile} 
+          <EditProfileModal
+            user={user}
+            onClose={() => setIsEditing(false)}
+            onSave={handleSaveProfile}
           />
         )}
 
