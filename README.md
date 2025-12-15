@@ -1,6 +1,6 @@
-## Images de l'avancement du projet en bas ↓↓↓
+## ↓ Images de l'avancement du projet plus bas ↓
 
-# SpotiMate 🎵
+# SpotiMate
 
 **SpotiMate** est une application web de réseau social musical unique qui connecte les utilisateurs selon leurs goûts Spotify. Grâce à une intégration avec l’API Spotify et une interface React dynamique, SpotiMate propose un système de matching basé sur les préférences musicales et un chat en temps réel pour échanger.
 
@@ -45,23 +45,26 @@
 - **Communication :** Utilisation de Slack et Trello pour le suivi des tâches  
 - **Code review :** Pull requests obligatoires avant fusion dans `developp` puis `main`
 
+## Avancement du projet en images
 
-## License
+#### Login Page :
+![Connexion page](./images/img11.png)
+
+#### Profil User :
+![Profil page](./images/img12.png)
+
+#### Page Explorer (Profil, Artistes, Albums) :
+![Explorer page](./images/img13.png)
+![Explorer page](./images/img14.png)
+
+
+### License
 [Polytech Angers](LICENSE) © SpotiMate Team
 
 
-## Contact
+### Contact
 Pour toute question : spotimate@proton.me
 
-## Avancement du projet 
 
-### Page se connecter à l'ouverture
-![Connexion page](./images/img1.png)
-
-### Page Profil Utilisateur
-![Profil page](./images/img2.png)
-
-### Page Explorer (Profil, Artistes, Albums)
-![Explorer page](./images/img3.png)
 
     
