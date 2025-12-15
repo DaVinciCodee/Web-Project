@@ -46,7 +46,7 @@ router.get('/artists/', async (req, res) => {
 
         // Get Artist
         const artists = await fetch(
-                "https://api.spotify.com/v1/search?q=" + searchTerm + "&type=artist",
+                "https://api.spotify.com/v1/search?q=" + encodeURIComponent(searchTerm) + "&type=artist" + "&limit=10",
                 artistParams
         )
                 .then((result) => result.json())
@@ -64,7 +64,7 @@ router.get('/artists/', async (req, res) => {
         res.json(artists);
 })
 
-// Get Album
+// Get Albums
 router.get('/albums/', async (req, res) => {
 
         const searchTerm = req.query.q?.trim();
@@ -84,7 +84,7 @@ router.get('/albums/', async (req, res) => {
 
         // Get Album
         const response = await fetch(
-                "https://api.spotify.com/v1/search?q=" + encodeURIComponent(searchTerm) + "&type=album",
+                "https://api.spotify.com/v1/search?q=" + encodeURIComponent(searchTerm) + "&type=album" + "&limit=10",
                 albumsParams
         );
 
@@ -94,9 +94,9 @@ router.get('/albums/', async (req, res) => {
 
         if (data.albums?.items) {
                 albums = data.albums.items.slice(0, 5);
-                console.log("Albums trouvés");
+                // console.log("Albums trouvés");
         } else {
-                console.log("Pas d'albums");
+                // console.log("Pas d'albums");
         }
 
         res.json(albums);
@@ -122,7 +122,7 @@ router.get('/songs/', async (req, res) => {
 
         // Get Songs
         const response = await fetch(
-                "https://api.spotify.com/v1/search?q=" + encodeURIComponent(searchTerm) + "&type=track",
+                "https://api.spotify.com/v1/search?q=" + encodeURIComponent(searchTerm) + "&type=track" + "&limit=10",
                 songsParams
         );
 
@@ -132,9 +132,9 @@ router.get('/songs/', async (req, res) => {
 
         if (data.tracks?.items) {
                 songs = data.tracks.items.slice(0, 5);
-                console.log("Morceaux trouvés");
+                // console.log("Morceaux trouvés");
         } else {
-                console.log("Pas de morceaux");
+                // console.log("Pas de morceaux");
         }
 
         res.json(songs);

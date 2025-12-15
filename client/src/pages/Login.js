@@ -1,6 +1,5 @@
 import './Login.css';
 import Vinyle from '../img/vinyle.png'
-import CD1 from '../img/cd1.png'
 
 const Login = () => {
   // Cette fonction redirige l'utilisateur vers le Backend (Port 8000)
@@ -10,7 +9,7 @@ const Login = () => {
   };
 
   return (
-    <div className="main">
+    <div className="login-main">
       <div className="login-container">
         <div className='login-title'>Bienvenue sur Spotimate</div>
         <div className='login-text'>Découvrez vos compatibilités musicales.</div>

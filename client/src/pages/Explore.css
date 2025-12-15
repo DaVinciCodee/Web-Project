@@ -1,20 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-.main {
+.explore-main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 75px;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.title {
+.explore-title {
     font-size: 2.5rem;
     font-weight: 600;
     color: #F5F0BB;
 }
 
-.search-btn {
+/* Search Zone */
+.explore-search-zone {
+    margin-top: 50px;
+}
+
+.explore-search-input {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     padding: 10px 20px;
@@ -26,107 +31,112 @@
     outline: none;
 }
 
-.search-input:focus {
+.explore-search-input:focus {
     outline: none;
-    border: 2px solid white;
+    border: 2px solid rgb(197, 197, 197);
 }
 
-.response-search {
-    width: 50%;
-    margin-top: 20px;
+/* Choices buttons */
+.explore-choices {
+    margin-top: 15px;
+    display: flex;
+    column-gap: 15px;
+}
+
+.explore-choice {
+    background: rgb(35, 83, 35);
+    color: white;
+    padding: 10px 35px;
+    border-radius: 10px;
+    border: rgb(150, 150, 150) 2px solid;
+    cursor: pointer;
+}
+
+.explore-choice:hover, .explore-choice.active {
+    background-color: rgb(0, 44, 0);
+    border: 2px rgb(150, 150, 150) solid;
+}
+
+/* Result Zone */
+.explore-response-zone {
+    width: 85%;
+    height: 400px;
+    margin-top: 60px;
     font-size: 1.5rem;
     font-weight: 600;
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    text-align: center;
+    gap: 50px;
 }
 
-.search-zone {
-    margin-top: 50px;
+.explore-result-text {
+    font-size: 1.8rem;
 }
 
-.choices {
-    margin-top: 5px;
+.explore-result-items {
     display: flex;
-    justify-content: space-evenly;
-}
-
-.choice {
-    background: black;
-    color: white;
-    padding: 10px 35px;
-    border-radius: 10px;
-    border: gray 2px solid;
-    cursor: pointer;
-}
-
-.choice:hover {
-    background-color: rgb(44, 44, 44);
-    border: 2px rgb(173, 173, 173) solid;
-}
-
-.choice.active {
-    background-color: rgb(45, 45, 45);
-    border: 2px rgb(173, 173, 173) solid;
-}
-
-/* Profil */
-.profil-image {
-    width: 65px;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    background: transparent;
-    border-radius: 50%;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-.profil-card {
-    display: flex;
-    align-items: center;
+    justify-content: center;
     gap: 30px;
-    border-radius: 15px;
-    padding: 6px;
-    /* background-color: rgba(128, 128, 128, 0.477); */
 }
 
-.artist-result, .album-result {
-    font-size: 1.5rem;
-    font-weight: 400;
+.explore-result-item {
+    height: 300px;
+    width: 180px;
+    background-color: rgb(61, 61, 61);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    column-gap: 20px;
-    background: transparent;
-    padding: 6px;
-    border-radius: 15px;
-}
-
-.artist-result:hover, .profil-card:hover, .album-result:hover {
-    background: rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-}
-
-.artist-img, .album-cover {
-    width: 65px;
-    height: auto;
-    border-radius: 50%;
-}
-
-.result-text {
-    margin: 10px 0px;
-}
-
-.response-search {
-    display: flex;
-}
-
-.album-result {
+    justify-content: space-evenly;
+    border-radius: 10px;
+    padding: 0px 12px;
     font-size: 1.2rem;
 }
 
-.album-cover {
-    width: 65px;
-    height: auto;
-    border-radius: 5%;
+.explore-result-item:hover {
+    background: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transform: translateY(-5px);
 }
+
+.artist-img,
+.album-cover,
+.profil-image,
+.song-cover {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.explore-link {
+    background-color: white;
+    padding: 6px 10px;
+    color: black;
+    border-radius: 5px;
+}
+
+/* Profil Card */
+.profil-card {
+    font-size: 1.8rem;
+}
+
+/* Album Card */
+.album-cover,
+.song-cover {
+    border-radius: 5px;
+}
+
+/* Artiste Card */
+.artist-card .explore-link {
+    font-size: 1.2rem;
+}
+
+/* Profil */
+
+.artist-card {
+    font-size: 1.5rem;
+}
+
