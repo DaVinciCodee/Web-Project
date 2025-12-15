@@ -1,8 +1,9 @@
-import React from 'react';
 import './Login.css';
+import Vinyle from '../img/vinyle.png'
+import CD1 from '../img/cd1.png'
 
 const Login = () => {
-  // Cette fonction redirige l'utilisateur vers ton Backend (Port 8000)
+  // Cette fonction redirige l'utilisateur vers le Backend (Port 8000)
   // Grâce au proxy, pas besoin de mettre http://localhost:8000 devant
   const handleLogin = () => {
     window.location.href = 'http://localhost:8000/api/auth/spotify';
@@ -11,8 +12,8 @@ const Login = () => {
   return (
     <div className="main">
       <div className="login-container">
-        <h1>Bienvenue sur Spotimate 🎵</h1>
-        <p>Connecte-toi pour découvrir tes compatibilités musicales.</p>
+        <div className='login-title'>Bienvenue sur Spotimate</div>
+        <div className='login-text'>Découvrez vos compatibilités musicales.</div>
 
         <button
           onClick={handleLogin}
@@ -20,6 +21,7 @@ const Login = () => {
         >
           Se connecter avec Spotify
         </button>
+        <img className='login-img' src={Vinyle} alt="" />
       </div>
     </div>
 

@@ -1,12 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+
 .login-container {
   text-align: center;
-  padding: 50px 0 100px 0;
+  padding: 50px 0 0 0;
   color: white;
+  /* border: 2px red solid; */
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 50px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.login-title {
+  font-size: 2.7rem;
+  font-weight: 600;
+  color: #F5F0BB;
+}
+
+.login-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #f4f1c8;
 }
 
 .login-button {
   padding: 15px 30px;
   font-size: 18px;
+  width: 50%;
   background-color: #1aa74b;
   /* Vert Spotify */
   color: white;
@@ -18,6 +41,19 @@
 }
 
 .login-button:hover {
-  border: 1px solid gray;
-  background-color: #15893e8e;
+  border: 1px solid #F5F0BB;
+  background-color: #116e318e;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login-img {
+  animation: rotate 18s linear infinite;
 }
