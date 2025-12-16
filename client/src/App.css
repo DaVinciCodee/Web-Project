@@ -15,6 +15,7 @@
   border-right: 1px solid #2F3336;
   border-left: 1px solid #2F3336;
   background: var(--background-green-one);
+  background-attachment: fixed;
 }
 
 /* Colonnes extérieures*/

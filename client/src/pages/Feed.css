@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.feed-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
+    margin-bottom: 100px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.feed-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #F5F0BB;
+}
+
+.feed-posts {
+    width: 100%;
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 25px;
+}
+
+.feed-post {
+    width: 45%;
+    height: 250px;
+    border: 2px gray dashed;
+    display: flex;
+    flex-direction: column;
+}
+
+.feed-post-user-info {
+    width: 100%;
+    height: 25%;
+    border: gray 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    font-size: 1.5rem;
+    color: white;
+    box-sizing: border-box;
+}
+
+.post-content {
+    width: 100%;
+    height: 75%;
+    border: gray 2px solid;
+    font-size: 1.2rem;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+

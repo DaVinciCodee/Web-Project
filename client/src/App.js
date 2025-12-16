@@ -3,8 +3,10 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
 import Explore from './pages/Explore'
+import Feed from './pages/Feed';
 import SideBarRight from './components/SideBarRight';
 import './App.css';
+
 
 function App() {
   const isLoginPage = window.location.pathname === '/';
@@ -30,6 +32,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/search" element={<Explore />} />
+            <Route path="/feed" element={<Feed />} />
           </Routes>
         </div>
 
