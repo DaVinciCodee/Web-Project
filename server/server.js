@@ -7,6 +7,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const searchRoutes = require('./routes/search-request');
 const createPost = require('./routes/create-post');
+const sendPost = require('./routes/send-post');
 const cors = require("cors");
 
 
@@ -46,6 +47,9 @@ app.use('/search-request', searchRoutes);
 
 // Route création d'un nouveau post
 app.use('/create-post', createPost);
+
+// Route recevoir le dernier post :
+app.use('/send-post', sendPost);
 
 // Démarrage serveur
 const PORT = process.env.PORT || 8000;

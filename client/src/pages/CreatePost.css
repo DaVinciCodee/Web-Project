@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.create-post-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.create-post-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #F5F0BB;
+}
+
+textarea {
+    margin-top: 50px;
+    width: 600px;
+    height: 300px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+.send-post {
+    margin-top: 20px;
+    width: 150px;
+    height: 50px;
+    background-color: rgb(0, 100, 0);
+    border-radius: 20px;
+    border: 2px gray solid;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+}
+
+.send-post:hover {
+    background-color: black;
+}

@@ -53,7 +53,10 @@ const Navbar = () => {
       </div>
 
       {/* 3. Bouton POST */}
-      <button className="sidebar-post-btn">Post</button>
+      <Link to="/createPost">
+        <button className="sidebar-post-btn">Post</button>
+      </Link>
+
 
       {/* 4. User (Logout) */}
       <div className="sidebar-user" onClick={() => navigate('/')}>
