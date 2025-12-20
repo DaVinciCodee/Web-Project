@@ -53,9 +53,15 @@
 #### Profil User :
 ![Profil page](./images/img12.png)
 
+#### Page Feed :
+![Feed page](./images/img21.png)
+
 #### Page Explorer (Profil, Artistes, Albums) :
-![Explorer page](./images/img13.png)
+![Explorer page](./images/img22.png)
 ![Explorer page](./images/img14.png)
+
+#### Page Créer un post
+![Creer un post page](./images/img23.png)
 
 
 ### License
