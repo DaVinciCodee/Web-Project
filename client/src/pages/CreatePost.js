@@ -27,12 +27,13 @@ function CreatePost() {
             <section className="create-post-main">
                 <div className="create-post-title">Créer un nouveau Post</div>
                 <textarea
-                    placeholder="Ecrivez ici votre post"
+                    placeholder="Ecrivez ici votre post ..."
+                    maxLength="500"
                     className="create-post-textarea"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                 />
-                <button onClick={handlePost} className='send-post'>Poster</button>
+                <button onClick={handlePost} className='send-post-btn'>Poster</button>
             </section>
 
         </>

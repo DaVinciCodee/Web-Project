@@ -128,14 +128,14 @@ const Profile = () => {
         {recommendations.length > 0 && (
           <section className="profile-section">
             <h2 className="section-title">Profils Similaires 🤝</h2>
-            
+
             <div className="recommendations-grid">
               {recommendations.map((rec) => (
-                <RecommendationCard 
-                  key={rec.user.spotifyId} 
-                  user={rec.user} 
-                  score={rec.displayScore} 
-                  details={rec.details} 
+                <RecommendationCard
+                  key={rec.user.spotifyId}
+                  user={rec.user}
+                  score={rec.displayScore}
+                  details={rec.details}
                 />
               ))}
             </div>
@@ -162,7 +162,9 @@ const Profile = () => {
           <h2 className="section-title">Publications récentes 📝</h2>
           <div className="empty-post-placeholder">
             <p>Aucun post pour le moment...</p>
-            <button className="create-post-btn">+ Créer un post</button>
+            <Link to="/createPost">
+              <button className="create-post-btn">+ Créer un post</button>
+            </Link>
           </div>
         </section>
 

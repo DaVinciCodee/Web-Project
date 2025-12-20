@@ -53,7 +53,7 @@ const Navbar = () => {
       </div>
 
       {/* 3. Bouton POST */}
-      <Link to="/createPost">
+      <Link to="/createPost" className='link-post-btn'>
         <button className="sidebar-post-btn">Post</button>
       </Link>
 

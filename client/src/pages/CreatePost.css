@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 75px;
+    margin: 75px auto;
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
@@ -15,26 +15,40 @@
 }
 
 textarea {
-    margin-top: 50px;
+    margin-top: 70px;
     width: 600px;
     height: 300px;
     box-sizing: border-box;
-    font-size: 1.2rem;
-    padding: 10px;
+    font-size: 1.1rem;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #ccc;
+    resize: none;
+    background-color: #1f1f1f;
+    color: white;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
 }
 
-.send-post {
-    margin-top: 20px;
-    width: 150px;
+textarea:focus {
+    border-color: #006400;
+    box-shadow: 0 0 8px rgba(0, 100, 0, 0.6);
+}
+
+.send-post-btn {
+    margin-top: 30px;
+    width: 160px;
     height: 50px;
-    background-color: rgb(0, 100, 0);
-    border-radius: 20px;
-    border: 2px gray solid;
-    font-size: 1.2rem;
+    background-color: #006400;
+    border-radius: 25px;
+    border: none;
+    font-size: 1.1rem;
     color: white;
     cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
-.send-post:hover {
-    background-color: black;
+.send-post-btn:hover {
+    background-color: #004d00;
+    transform: translateY(-2px);
 }
