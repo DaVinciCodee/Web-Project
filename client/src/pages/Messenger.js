@@ -1,42 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { fetchUserProfile } from '../services/api'; // Ton service API
-import Chat from '../components/Chat'; // On réutilise ton composant Chat existant
-import './Messenger.css'; // N'oublie pas de créer ce fichier CSS pour la mise en page
+import { fetchUserProfile } from '../services/api';
+import Chat from '../components/Chat'; 
+import './Messenger.css'; 
+import Suggestions from '../components/Suggestions';
 
 const Messenger = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [listFriend, setListFriend] = useState([]);
   const [selectedFriend, setSelectedFriend] = useState(null);
-
   useEffect(() => {
     const spotifyId = localStorage.getItem("mySpotifyId");
-    console.log("1. ID récupéré du stockage :", spotifyId);
+    
     if (spotifyId) {
       fetchUserProfile(spotifyId)
         .then(data => {
-          console.log("2. Données reçues de l'API :", data); 
-          setCurrentUser(data);
-          
-          // Notre logique de secours
-          setListFriend(data.following && data.following.length > 0 
-            ? data.following 
-            : ["Elon Musk", "Daft Punk", "Mon Voisin Totoro"]
-          );
+          setCurrentUser(data);          
+          if (data.following && data.following.length > 0) {
+              setListFriend(data.following);
+          } else {
+              setListFriend([]); 
+          }
         })
-        // Dans Messenger.js inside .catch(...)
-
         .catch(error => {
-        console.error("3. Oups, erreur API :", error);
-        
-        // 1. On invente tes amis (ça tu l'as déjà)
-        setListFriend(["Elon Musk (Erreur)", "Daft Punk (Erreur)"]); 
-
-        // 2. AJOUTE CECI : On s'invente une identité pour que le Chat accepte de s'ouvrir
-        setCurrentUser({ _id: "mon_faux_id_123", user_name: "Moi (Test)" });
+          console.error("Erreur API :", error);
         });
-    } else {
-        console.log("4. Aucun ID trouvé, je ne peux rien charger.");
-        // Optionnel : rediriger vers le login ?
     }
   }, []);
 
@@ -48,18 +35,24 @@ const Messenger = () => {
         <h3>Vos Messages</h3>
         <div className="friends-list">
           {listFriend.length > 0 ? (
-             listFriend.map((friendId, index) => (
+            listFriend.map((friend, index) => {
+            const friendName = typeof friend === 'string' ? friend : friend.username || "Utilisateur inconnu";
+            const friendId = typeof friend === 'string' ? friend : friend._id;
+
+            return (
               <div 
-                key={index}
+                key={index} // Idéalement utilisez friendId comme key si dispo
                 className={`friend-item ${selectedFriend?._id === friendId ? 'active' : ''}`}
                 onClick={() => {
-                    setSelectedFriend({ _id: friendId, username: friendId });
+                  // On passe un objet structurellement correct au composant Chat
+                  setSelectedFriend({ _id: friendId, username: friendName });
                 }}
               >
                 <div className="friend-avatar-placeholder">👤</div>
-                <span>{friendId}</span>
+                <span>{friendName}</span> 
               </div>
-            ))
+            );
+          })
           ) : (
             <p>Vous ne suivez personne pour l'instant.</p>
           )}
@@ -77,6 +70,15 @@ const Messenger = () => {
           </div>
         )}
       </div>
+      <div className="messenger-sidebar">
+        <h3>Vos Messages</h3>
+        <div className="friends-list">
+            {/* ... votre liste d'amis ... */}
+        </div>
+
+        {/* On ajoute les suggestions en bas de la sidebar */}
+        {/* {currentUser && <Suggestions currentUser={currentUser} />} */}
+</div>
 
     </div>
   );

@@ -1,25 +1,14 @@
-<<<<<<< HEAD
-
-.messenger-container {
-  display: flex;
-  height: calc(100vh - 80px); 
-  background-color: #000; 
-=======
 /* Messenger.css */
 .messenger-container {
   display: flex;
   height: calc(100vh - 80px); /* Hauteur totale moins la navbar */
   background-color: #000; /* Fond noir style Spotify/X */
->>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
   color: white;
   width: 100%;
 }
 
-<<<<<<< HEAD
 
-=======
 /* --- COLONNE GAUCHE --- */
->>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
 .messenger-sidebar {
   width: 300px;
   border-right: 1px solid #333;
@@ -45,7 +34,112 @@
   margin-bottom: 5px;
 }
 
+.friend-item:hover {/* Messenger.css */
+
+/* Conteneur principal qui prend toute la hauteur disponible */
+.messenger-container {
+  display: flex;
+  height: calc(100vh - 80px); /* Ajustez selon la hauteur de votre Navbar */
+  background-color: #121212; /* Fond sombre Spotify */
+  color: white;
+  overflow: hidden;
+}
+
+/* --- SIDEBAR (Liste des amis) --- */
+.messenger-sidebar {
+  width: 300px; /* Largeur fixe pour la sidebar */
+  background-color: #000000;
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.messenger-sidebar h3 {
+  padding: 20px;
+  margin: 0;
+  border-bottom: 1px solid #333;
+  font-size: 1.2rem;
+  color: #1db954; /* Vert Spotify */
+}
+
+.friends-list {
+  flex: 1;
+  overflow-y: auto; /* Scroll si la liste est longue */
+}
+
+/* Un ami dans la liste */
+.friend-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #1a1a1a;
+}
+
 .friend-item:hover {
+  background-color: #181818;
+}
+
+.friend-item.active {
+  background-color: #282828; /* Surbrillance quand sélectionné */
+  border-left: 4px solid #1db954;
+}
+
+.friend-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: #535353;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1.2rem;
+}
+
+/* --- CHAT WINDOW (Zone de droite) --- */
+.messenger-chat-window {
+  flex: 1; /* Prend tout l'espace restant */
+  display: flex;
+  flex-direction: column;
+  background-color: #121212;
+}
+
+/* --- Écran "Pas de conversation sélectionnée" --- */
+.no-chat-selected {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #b3b3b3;
+}
+
+.no-chat-selected h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.new-msg-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.1s;
+}
+
+.new-msg-btn:hover {
+  transform: scale(1.05);
+  background-color: #1ed760;
+}
   background-color: #1a1a1a;
 }
 
@@ -66,24 +160,15 @@
   font-size: 1.2rem;
 }
 
-<<<<<<< HEAD
 
 .messenger-chat-window {
   flex: 1; 
-=======
-/* --- COLONNE DROITE --- */
-.messenger-chat-window {
-  flex: 1; /* Prend tout le reste de la place */
->>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
   display: flex;
   flex-direction: column;
 }
 
-<<<<<<< HEAD
 
-=======
 /* L'écran "Pas de message sélectionné" */
->>>>>>> b1bd565a49636cedb5f9c42c80eda03c649680a6
 .no-chat-selected {
   display: flex;
   flex-direction: column;

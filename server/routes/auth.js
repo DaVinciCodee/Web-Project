@@ -62,11 +62,9 @@ router.get('/spotify/callback', async (req, res) => {
         user_name: spotifyData.display_name,
         profilePicture: spotifyData.images?.[0]?.url,
         
-        // C'est ici que ça change : que du concret
         topArtists: tasteData.topArtists,
-        topGenres: tasteData.topGenres, // La "Vibe" textuelle
-        topTracks: tracksData           // Les sons en commun
-        // Plus d'audioFeatures ici !
+        topGenres: tasteData.topGenres,
+        topTracks: tracksData           
       },
       { new: true, upsert: true }
     );

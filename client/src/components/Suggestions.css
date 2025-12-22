@@ -1,0 +1,44 @@
+.suggestions-container {
+    padding: 20px;
+    background-color: #181818;
+    color: white;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.suggestions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.suggestion-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282828;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.follow-btn {
+    background-color: transparent;
+    border: 1px solid #1db954;
+    color: #1db954;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.follow-btn:hover {
+    background-color: #1db954;
+    color: white;
+}

@@ -4,26 +4,29 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
-const Message = require('./models/Message');
+const mongoose = require('mongoose');
 
-const onLineUsers = new Map();
+const Message = require('./models/Message');
+const authApp = require('./routes/authApp');
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users');
+
+const onlineUsers = new Map();
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000', 
     methods: ['GET', 'POST']
   }
 });
 
 io.on('connection', (socket) => {
   
-  // 1. QUAND UN USER SE CONNECTE, IL DOIT S'IDENTIFIER
   socket.on('register', (userId) => {
     onlineUsers.set(userId, socket.id);
-    console.log(`Utilisateur ${userId} associé au socket ${socket.id}`);
+    console.log(`Utilisateur ${userId} connecté avec le socket ${socket.id}`);
   });
 
-  // 2. GESTION DU MESSAGE PRIVÉ
   socket.on('private message', async ({ content, to, from }) => {
     try {
       const newMessage = new Message({
@@ -37,47 +40,37 @@ io.on('connection', (socket) => {
       if (receiverSocketId) {
         io.to(receiverSocketId).emit('private message', newMessage);
       }
-
-      socket.emit('private message', newMessage);
-
     } catch (err) {
       console.error("Erreur sauvegarde message:", err);
     }
   });
 
   socket.on('disconnect', () => {
-    console.log('User déconnecté');
+    let disconnectedUser = null;
+    for (const [userId, socketId] of onlineUsers.entries()) {
+      if (socketId === socket.id) {
+        disconnectedUser = userId;
+        onlineUsers.delete(userId); 
+        break;
+      }
+    }
+    console.log(`User ${disconnectedUser || 'inconnu'} déconnecté`);
   });
 });
-
-
-const mongoose = require('mongoose');
-const authApp = require('./routes/authApp')
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
 
 app.use(express.json());        
 app.use(express.urlencoded({ extended: true }));  
 
 const mongoURI = process.env.MONGODB_URI;
-console.log("Connecting to MongoDB");
+console.log("Connecting to MongoDB...");
 mongoose.connect(mongoURI)
-  .then(
-    () => { console.log('Connected to MongoDB'); }
-  )
-  .catch(err => {
-    console.error('Error connecting to MongoDB:', err);
-  });
+  .then(() => { console.log('Connected to MongoDB'); })
+  .catch(err => { console.error('Error connecting to MongoDB:', err); });
 
   
 app.use('/auth-app', authApp);
-app.use('/api/auth', require('./routes/auth'));
-
-app.use('/auth-app', require('./routes/authApp'));
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-
-
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
