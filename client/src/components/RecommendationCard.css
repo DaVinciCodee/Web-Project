@@ -76,3 +76,25 @@
   font-size: 0.85rem;
   display: block;
 }
+/* Ajoutez ceci dans RecommendationCard.css */
+
+.btn-follow-card {
+  margin-top: 10px;
+  background-color: transparent;
+  border: 1px solid #1db954;
+  color: #1db954;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  width: 100%; /* Prend toute la largeur dispo dans la carte */
+  max-width: 120px; /* Mais pas trop large non plus */
+}
+
+.btn-follow-card:hover {
+  background-color: #1db954;
+  color: white;
+  transform: scale(1.05);
+}

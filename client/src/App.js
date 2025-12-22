@@ -1,19 +1,10 @@
-<<<<<<< HEAD
-import React, { useEffect } from 'react';
-import io from 'socket.io-client';
-=======
->>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
-<<<<<<< HEAD
 
 import Messenger from './pages/Messenger';
-=======
 import Explore from './pages/Explore'
-import SideBarRight from './components/SideBarRight';
->>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 import './App.css';
 
 function App() {
@@ -38,15 +29,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-<<<<<<< HEAD
-            <Route path="/messages" element={<Messenger />} />
-          </Routes>
-        </div>
-
-        <div className="right-sidebar">
-        </div>
-=======
             <Route path="/search" element={<Explore />} />
+            <Route path="/messages" element={<Messenger />} />
           </Routes>
         </div>
 
@@ -55,7 +39,6 @@ function App() {
         {/* <div className="right-sidebar">
           <SideBarRight />
         </div> */}
->>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 
       </div>
     </BrowserRouter>

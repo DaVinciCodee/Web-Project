@@ -11,13 +11,8 @@ const Login = () => {
   return (
     <div className="login-main">
       <div className="login-container">
-<<<<<<< HEAD
-        <h1>Caca sur Spotimate 🎵</h1>
-        <p>Connecte-toi pour découvrir tes compatibilités musicales.</p>
-=======
         <div className='login-title'>Bienvenue sur Spotimate</div>
         <div className='login-text'>Découvrez vos compatibilités musicales.</div>
->>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 
         <button
           onClick={handleLogin}

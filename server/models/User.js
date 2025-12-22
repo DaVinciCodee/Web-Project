@@ -22,7 +22,10 @@ const UserSchema = new mongoose.Schema({
   bio: {type: String, default: ''},
   profilePicture: {type: String},
   followers: { type: [String], default: [] }, 
-  following: { type: [String], default: [] },
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   //Les genres musicaux préférés de l'utilisateur
   topGenres: {type: [String] },
   topArtists:[{

@@ -7,6 +7,7 @@ import EditProfileModal from '../components/EditProfile';
 import NowPlaying from '../components/NowPlaying';
 import { fetchUserProfile, updateUserProfile } from '../services/api';
 import './Profile.css';
+import axios from 'axios';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -46,6 +47,38 @@ const Profile = () => {
     } catch (error) {
       console.error("Erreur sauvegarde", error);
       alert("Erreur lors de la sauvegarde !");
+    }
+  };
+
+  const handleFollow = async (idToFollow) => {
+    try {
+        // On récupère VOTRE ID mongo (stocké au login). 
+        // Si vous n'avez pas encore géré le localStorage, remplacez par un ID en dur pour tester.
+        const myId = localStorage.getItem("spotifyId") 
+
+        if (!myId) {
+            alert("Erreur: Impossible de vous identifier. Êtes-vous bien connecté ?");
+            return;
+        }
+
+        if (!idToFollow) {
+            console.error("Erreur: ID de l'ami introuvable (undefined)");
+            return;
+        }
+
+        // Utilisation des backticks ` ` pour l'URL
+        await axios.put(`http://localhost:8000/api/users/${idToFollow}/follow`, {
+            userId: myId
+        });
+        
+        alert("Utilisateur suivi avec succès ! 🎉");
+        
+        // Optionnel : Recharger pour voir la mise à jour
+        // window.location.reload();
+
+    } catch (err) {
+        console.error("Erreur lors du follow :", err);
+        alert("Une erreur est survenue lors de l'ajout.");
     }
   };
 
@@ -124,7 +157,7 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* --- 3. RECOMMANDATIONS --- */}
+        {/* --- SECTION RECOMMANDATIONS --- */}
         {recommendations.length > 0 && (
           <section className="profile-section">
             <h2 className="section-title">Profils Similaires 🤝</h2>
@@ -135,7 +168,10 @@ const Profile = () => {
                   key={rec.user.spotifyId} 
                   user={rec.user} 
                   score={rec.displayScore} 
-                  details={rec.details} 
+                  details={rec.details}
+                  
+                  // 👇 PASSAGE DE LA FONCTION AU COMPOSANT ENFANT
+                  onFollow={() => handleFollow(rec.user._id)} 
                 />
               ))}
             </div>

@@ -4,19 +4,20 @@ const spotifyService = require('../services/spotifyService');
 exports.getUserProfile = async (req, res) => {
   try {
     const { spotifyId } = req.params;
-    const user = await User.findOne({ spotifyId }).populate('following', 'user_name _id images');
+    
+    // 👇 MODIFICATION ICI : On ajoute .populate(...)
+    // Cela dit : "Va chercher les infos (user_name, images) pour chaque ID dans 'following'"
+    const user = await User.findOne({ spotifyId })
+                           .populate('following', 'user_name _id profilePicture'); 
 
-    if (!user) {
-      return res.status(404).json({ message: 'Utilisateur non trouvé' });
-    }
+    if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé' });
     
     res.json(user);
   } catch (error) {
-    console.error('Erreur getUserProfile:', error);
+    console.error(error);
     res.status(500).json({ message: 'Erreur serveur' });
   }
 };
-
 exports.updateUserProfile = async (req, res) => {
   try {
     const { spotifyId } = req.params;

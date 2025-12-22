@@ -11,6 +11,21 @@ const Navbar = () => {
   // Fonction pour vérifier si le lien est actif
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
+  const handleLogout = () => {
+    // 1. On vide TOUTE la mémoire locale
+    localStorage.clear(); 
+    
+    // (Alternative : supprimer seulement les clés spécifiques)
+    // localStorage.removeItem("mySpotifyId");
+    // localStorage.removeItem("myMongoId");
+    // localStorage.removeItem("accessToken");
+
+    // 2. On redirige vers l'accueil ou la page de login
+    navigate('/');
+    
+    // 3. (Optionnel) On recharge la page pour remettre à zéro tous les états React
+    window.location.reload(); 
+  };
   return (
     <nav className="navbar">
       {/* 1. Logo */}
@@ -61,7 +76,9 @@ const Navbar = () => {
           <FiLogOut size={20} color="white" />
         </div>
         <div className="user-info-mini">
-          <span className="name">Déconnexion</span>
+          <button onClick={handleLogout} className="btn-logout">
+         Déconnexion
+       </button>
           {/* <span className="handle">@se_deconnecter</span> */}
         </div>
       </div>

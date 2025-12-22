@@ -4,6 +4,8 @@ const userController = require('../controllers/userController');
 const User = require('../models/User');
 const recommendationService = require('../services/recommendationService');
 const recommendationController = require('../controllers/recommendationController');
+const mongoose = require('mongoose');
+
 
 router.get('/debug-matrix', async (req, res) => {
   try {
@@ -58,29 +60,74 @@ router.get('/suggestions/:userId', async (req, res) => {
 
 // Route PUT Follow (Spécifique avec l'ID en paramètre)
 router.put('/:id/follow', async (req, res) => {
-  if (req.body.userId !== req.params.id) {
-    try {
-      const userToFollow = await User.findById(req.params.id);
-      const currentUser = await User.findById(req.body.userId);
+  console.log("--- ⚡ DEBUG FOLLOW REQUEST ⚡ ---");
+  console.log("1. ID Ami reçu (URL) :", req.params.id);
+  console.log("2. Mon ID reçu (Body) :", req.body.userId);
 
-      if (!userToFollow.followers.includes(req.body.userId)) {
-        await userToFollow.updateOne({ $push: { followers: req.body.userId } });
-        await currentUser.updateOne({ $push: { following: req.params.id } });
-        
-        res.status(200).json("L'utilisateur a été suivi !");
-      } else {
-        res.status(403).json("Tu suis déjà cet utilisateur");
+  // ÉTAPE A : Trouver l'ami (Gestion Mongo ID vs Spotify ID)
+  let userToFollow;
+  const targetId = req.params.id;
+
+  try {
+      // Est-ce un ID Mongo valide (24 caractères hex) ?
+      if (mongoose.Types.ObjectId.isValid(targetId)) {
+          userToFollow = await User.findById(targetId);
+      } 
+      
+      // Si pas trouvé par ID Mongo, on cherche par spotifyId
+      if (!userToFollow) {
+          console.log("   -> Pas un ID Mongo, recherche par spotifyId...");
+          userToFollow = await User.findOne({ spotifyId: targetId });
       }
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  } else {
-    res.status(403).json("Tu ne peux pas te suivre toi-même");
+
+      if (!userToFollow) {
+          console.log("❌ ERREUR : Ami introuvable en base.");
+          return res.status(404).json("Ami introuvable (ni par ID, ni par SpotifyId)");
+      }
+      console.log("✅ Ami trouvé :", userToFollow.user_name);
+
+
+      // ÉTAPE B : Me trouver MOI (Gestion Mongo ID vs Spotify ID)
+      let currentUser;
+      const myId = req.body.userId;
+
+      if (mongoose.Types.ObjectId.isValid(myId)) {
+          currentUser = await User.findById(myId);
+      }
+
+      if (!currentUser) {
+           console.log("   -> Mon ID n'est pas Mongo, recherche par spotifyId...");
+           currentUser = await User.findOne({ spotifyId: myId });
+      }
+
+      if (!currentUser) {
+          console.log("❌ ERREUR : Je suis introuvable en base.");
+          return res.status(404).json("Votre profil est introuvable");
+      }
+      console.log("✅ Je suis trouvé :", currentUser.user_name);
+
+
+      // ÉTAPE C : Exécution du Follow
+      if (currentUser._id.equals(userToFollow._id)) {
+          return res.status(403).json("Vous ne pouvez pas vous suivre vous-même");
+      }
+
+      if (!userToFollow.followers.includes(currentUser._id)) {
+          await userToFollow.updateOne({ $push: { followers: currentUser._id } });
+          await currentUser.updateOne({ $push: { following: userToFollow._id } });
+          console.log("🎉 SUCCESS : Follow effectué !");
+          res.status(200).json("L'utilisateur a été suivi !");
+      } else {
+          console.log("⚠️ INFO : Déjà suivi.");
+          res.status(403).json("Vous suivez déjà cet utilisateur");
+      }
+
+  } catch (err) {
+      console.error("🔥 CRASH SERVEUR :", err);
+      res.status(500).json({ error: err.message });
   }
 });
 
-// 2. Routes dynamiques générales (EN DERNIER)
-// Attention : :spotifyId capture tout ce qui n'est pas défini avant
 router.get('/:spotifyId', userController.getUserProfile);
 router.put('/:spotifyId', userController.updateUserProfile);
 router.get('/:spotifyId/now-playing', userController.getUserNowPlaying);

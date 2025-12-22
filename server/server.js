@@ -10,12 +10,9 @@ const Message = require('./models/Message');
 const authApp = require('./routes/authApp');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
-<<<<<<< HEAD
-=======
 const searchRoutes = require('./routes/search-request');
 const cors = require("cors");
 
->>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 
 const onlineUsers = new Map();
 
@@ -26,6 +23,13 @@ const io = new Server(server, {
   }
 });
 
+app.use(cors());
+app.use(express.json());        
+app.use(express.urlencoded({ extended: true }));  
+
+// Route authentification
+app.use('/auth-app', authApp);
+
 io.on('connection', (socket) => {
   
   socket.on('register', (userId) => {
@@ -33,22 +37,14 @@ io.on('connection', (socket) => {
     console.log(`Utilisateur ${userId} connecté avec le socket ${socket.id}`);
   });
 
-<<<<<<< HEAD
-  socket.on('private message', async ({ content, to, from }) => {
+  socket.on('send-msg', async ({ to, from, msg }) => {
     try {
       const newMessage = new Message({
         sender: from,
         recipient: to,
-        content: content
+        content: msg
       });
       await newMessage.save();
-=======
-  
-app.use(cors());
-  
-// Route authentification
-app.use('/auth-app', authApp);
->>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 
       const receiverSocketId = onlineUsers.get(to);
       if (receiverSocketId) {
@@ -72,9 +68,6 @@ app.use('/auth-app', authApp);
   });
 });
 
-app.use(express.json());        
-app.use(express.urlencoded({ extended: true }));  
-
 const mongoURI = process.env.MONGODB_URI;
 console.log("Connecting to MongoDB...");
 mongoose.connect(mongoURI)
@@ -86,12 +79,9 @@ app.use('/auth-app', authApp);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 
-<<<<<<< HEAD
-=======
 app.use('/search-request', searchRoutes);
 
 // Démarrage serveur
->>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);

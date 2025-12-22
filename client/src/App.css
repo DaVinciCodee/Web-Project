@@ -19,16 +19,7 @@
 
 /* Colonnes extérieures*/
 .right-sidebar, .left-sidebar {
-<<<<<<< HEAD
-  width: calc((100% - 800px) / 2);
-  display: flex; 
-}
-.left-sidebar {
-  justify-content: flex-end; 
-  padding-right: 20px; /* Optionnel : Garde un petit espace pour pas que ça touche littéralement le bord si tu veux */
-=======
   width: var(--left-sidebar-width);
->>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 }
 /* Colonne Droite */
 .right-sidebar {
