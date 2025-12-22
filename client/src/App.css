@@ -1,30 +1,34 @@
+@import './variables.css';
+
+/* Fond */
 .app-layout {
-  /* On enlève le max-width restrictif pour laisser le flexbox gérer l'espace */
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
-  background-color: #000000;
+  background-color: var(--background-black);
   display: flex;
-  justify-content: center;
 }
 
 /* Colonne Milieu */
 .main-content {
-  width: 800px;
-  flex-shrink: 0;
+  width: var(--main-content-width);
   min-height: 100vh;
   border-right: 1px solid #2F3336;
   border-left: 1px solid #2F3336;
-  background: linear-gradient(to bottom, rgb(0, 80, 0), rgb(0, 20, 0));
+  background: var(--background-green-one);
 }
 
 /* Colonnes extérieures*/
 .right-sidebar, .left-sidebar {
+<<<<<<< HEAD
   width: calc((100% - 800px) / 2);
   display: flex; 
 }
 .left-sidebar {
   justify-content: flex-end; 
   padding-right: 20px; /* Optionnel : Garde un petit espace pour pas que ça touche littéralement le bord si tu veux */
+=======
+  width: var(--left-sidebar-width);
+>>>>>>> 3a003f2d5fa83a89d7e166335e8ed53184bc2102
 }
 /* Colonne Droite */
 .right-sidebar {
