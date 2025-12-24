@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // Pour cliquer sur un profil suggéré
+import { Link } from 'react-router-dom'; 
 import ArtistCard from '../components/ArtistCard';
 import RecommendationCard from '../components/RecommendationCard';
 import GenreBadge from '../components/GenreBadge';
@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
-  const [recommendations, setRecommendations] = useState([]); // Nouveau State
+  const [recommendations, setRecommendations] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -27,17 +27,14 @@ const Profile = () => {
         setLoading(false);
       });
 
-      // 2. Charger les Recommandations (Similaires à cet ID)
-      // On utilise le port 8000 (ou 3000 selon ton serveur)
       fetch(`http://localhost:8000/api/users/recommendations?id=${spotifyId}`)
         .then(res => res.json())
         .then(data => {
-          // On garde le Top 4 pour ne pas encombrer
           setRecommendations(data.slice(0, 4));
         })
         .catch(err => console.error("Erreur chargement recos:", err));
     }
-  }, []); // Le tableau vide [] assure que ça ne tourne qu'une fois au montage
+  }, []); 
 
   const handleSaveProfile = async (formData) => {
     try {
@@ -52,8 +49,6 @@ const Profile = () => {
 
   const handleFollow = async (idToFollow) => {
     try {
-        // On récupère VOTRE ID mongo (stocké au login). 
-        // Si vous n'avez pas encore géré le localStorage, remplacez par un ID en dur pour tester.
         const myId = localStorage.getItem("spotifyId") 
 
         if (!myId) {
@@ -66,15 +61,13 @@ const Profile = () => {
             return;
         }
 
-        // Utilisation des backticks ` ` pour l'URL
         await axios.put(`http://localhost:8000/api/users/${idToFollow}/follow`, {
             userId: myId
         });
         
         alert("Utilisateur suivi avec succès ! 🎉");
         
-        // Optionnel : Recharger pour voir la mise à jour
-        // window.location.reload();
+        window.location.reload();
 
     } catch (err) {
         console.error("Erreur lors du follow :", err);
@@ -89,7 +82,6 @@ const Profile = () => {
     <div className="profile-container">
       <div className="profile-content">
 
-        {/* --- 1. EN-TÊTE (HEADER) --- */}
         <div className="profile-header">
           <img
             src={user.profilePicture || "https://cdn-icons-png.flaticon.com/512/847/847969.png"}
@@ -105,7 +97,6 @@ const Profile = () => {
             </p>
 
             <div className="profile-stats">
-              {/* On utilise le '?' pour éviter le crash si la liste est undefined au début */}
               <span>
                 {user.followers ? user.followers.length : 0}
                 <span className="stat-label"> Abonnés</span>
@@ -119,7 +110,6 @@ const Profile = () => {
 
             <div className="profile-actions">
 
-              {/* Lien vers le vrai Spotify */}
               <a
                 href={`https://open.spotify.com/user/${user.spotifyId}`}
                 target="_blank"
@@ -133,7 +123,6 @@ const Profile = () => {
                 />
               </a>
 
-              {/* Bouton Modifier */}
               <button
                 onClick={() => setIsEditing(true)}
                 className="edit-profile-btn"
@@ -142,12 +131,10 @@ const Profile = () => {
               </button>
             </div>
 
-            {/* Widget Musique en cours (Intégré dans le header ou juste dessous) */}
             <NowPlaying spotifyId={user.spotifyId} />
           </div>
         </div>
 
-        {/* --- 2. VIBES --- */}
         <section className="profile-section">
           <h2 className="section-title">Mes Vibes 🎵</h2>
           <div className="genres-container">
@@ -157,7 +144,6 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* --- SECTION RECOMMANDATIONS --- */}
         {recommendations.length > 0 && (
           <section className="profile-section">
             <h2 className="section-title">Profils Similaires 🤝</h2>
@@ -170,7 +156,6 @@ const Profile = () => {
                   score={rec.displayScore} 
                   details={rec.details}
                   
-                  // 👇 PASSAGE DE LA FONCTION AU COMPOSANT ENFANT
                   onFollow={() => handleFollow(rec.user._id)} 
                 />
               ))}
@@ -178,7 +163,6 @@ const Profile = () => {
           </section>
         )}
 
-        {/* --- 4. TOP ARTISTES --- */}
         <section className="profile-section">
           <h2 className="section-title">Top Artistes 🌟</h2>
           <div className="artists-scroll-container">
@@ -193,7 +177,6 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* --- 5. POSTS --- */}
         <section className="profile-section">
           <h2 className="section-title">Publications récentes 📝</h2>
           <div className="empty-post-placeholder">

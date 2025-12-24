@@ -11,6 +11,7 @@ const authApp = require('./routes/authApp');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const searchRoutes = require('./routes/search-request');
+const messageRoutes = require('./routes/messages');
 const cors = require("cors");
 
 
@@ -81,6 +82,7 @@ app.use('/api/users', userRoutes);
 
 app.use('/search-request', searchRoutes);
 
+app.use('/api/messages', messageRoutes);
 // Démarrage serveur
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
