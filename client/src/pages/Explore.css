@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+:root {
+    --primary: #006400;
+    --primary-dark: #002c00;
+    --accent: #F5F0BB;
+    --bg-card: #3d3d3d;
+    --bg-dark: #000;
+    --border-soft: #969696;
+    --text-main: #ffffff;
+}
+
 .explore-main {
     display: flex;
     flex-direction: column;
@@ -20,20 +30,20 @@
 }
 
 .explore-search-input {
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    padding: 10px 20px;
-    border: 2px solid gray;
+    background-color: var(--bg-dark);
+    color: white;
+    padding: 12px 24px;
+    border: 2px solid var(--border-soft);
     border-radius: 30px;
     width: 500px;
-    height: 30px;
-    font-size: 1rem;
     outline: none;
+    font-size: 1.05rem;
+    transition: border 0.2s, box-shadow 0.2s;
 }
 
 .explore-search-input:focus {
-    outline: none;
-    border: 2px solid rgb(197, 197, 197);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(245, 240, 187, 0.3);
 }
 
 /* Choices buttons */
@@ -44,17 +54,24 @@
 }
 
 .explore-choice {
-    background: rgb(35, 83, 35);
+    background: var(--primary);
     color: white;
     padding: 10px 35px;
-    border-radius: 10px;
-    border: rgb(150, 150, 150) 2px solid;
+    border-radius: 20px;
+    border: 2px solid transparent;
     cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
 }
 
-.explore-choice:hover, .explore-choice.active {
-    background-color: rgb(0, 44, 0);
-    border: 2px rgb(150, 150, 150) solid;
+.explore-choice:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.explore-choice.active {
+    background-color: var(--accent);
+    color: black;
+    font-weight: 600;
 }
 
 /* Result Zone */
@@ -84,20 +101,21 @@
 .explore-result-item {
     height: 300px;
     width: 180px;
-    background-color: rgb(61, 61, 61);
+    background-color: var(--bg-card);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     border-radius: 10px;
-    padding: 0px 12px;
-    font-size: 1.2rem;
+    padding: 12px;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .explore-result-item:hover {
-    background: rgba(0, 0, 0, 0.35);
-    cursor: pointer;
-    transform: translateY(-5px);
+    background: #2b2b2b;
+    transform: translateY(-6px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.4);
 }
 
 .artist-img,
@@ -105,7 +123,7 @@
 .profil-image,
 .song-cover {
     width: 120px;
-    height: auto;
+    height: 120px;
     border-radius: 50%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
@@ -113,14 +131,21 @@
 
 .explore-link {
     background-color: white;
-    padding: 6px 10px;
+    padding: 6px 14px;
     color: black;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background 0.1s;
+}
+
+.explore-link:hover {
+    background-color: var(--accent);
 }
 
 /* Profil Card */
 .profil-card {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 
 /* Album Card */
@@ -130,8 +155,8 @@
 }
 
 /* Artiste Card */
-.artist-card .explore-link {
-    font-size: 1.2rem;
+.artist-card {
+    font-size: 1.1rem;
 }
 
 /* Profil */

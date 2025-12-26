@@ -5,7 +5,11 @@ import Navbar from './components/Navbar';
 
 import Messenger from './pages/Messenger';
 import Explore from './pages/Explore'
+import Feed from './pages/Feed';
+import CreatePost from './pages/CreatePost';
+import SideBarRight from './components/SideBarRight';
 import './App.css';
+
 
 function App() {
   const isLoginPage = window.location.pathname === '/';
@@ -31,6 +35,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/search" element={<Explore />} />
             <Route path="/messages" element={<Messenger />} />
+            <Route path="/feed" element={<Feed />} />
+            <Route path='/createPost' element={<CreatePost />}></Route>
           </Routes>
         </div>
 

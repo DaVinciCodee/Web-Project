@@ -26,6 +26,30 @@ router.get('/users/', async (req, res) => {
         }
 });
 
+router.get('/user/', async (req, res) => {
+
+        const userId = req.query.q?.trim();
+
+        if (!userId) {
+                return res.status(400).json({ error: "Paramètre 'q' manquant" });
+        }
+
+        try {
+                const user = await User.findOne({ user_name: userId });
+
+                if (!user) {
+                        return res.status(404).json({ message: "Utilisateur introuvable" });
+                }
+
+                res.json(user);
+        } catch (error) {
+                console.error("Erreur :", error);
+                res.status(500).json({ error: "Erreur serveur" });
+        }
+});
+
+
+
 // Get Artists
 router.get('/artists/', async (req, res) => {
 

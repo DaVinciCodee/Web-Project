@@ -71,6 +71,10 @@ a {
   color: white;
 }
 
+.link-post-btn {
+  width: 100%;
+}
+
 .sidebar-post-btn {
   margin-top: 30px;
   margin-left: 38px;  
@@ -92,6 +96,7 @@ a {
 }
 
 .sidebar-user {
+  width: 90%;
   margin-top: auto; 
   margin-bottom: 20px;
   display: flex;
