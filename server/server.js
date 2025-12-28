@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: __dirname + '/.env' });
 
 const express = require('express');
 const app = express();
@@ -17,10 +17,9 @@ const Message = require('./models/Message');
 const authApp = require('./routes/authApp');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
-const searchRoutes = require('./routes/search-request');
-const messageRoutes = require('./routes/messages');
-const createPost = require('./routes/create-post');
-const sendPost = require('./routes/send-post');
+const exploreRoutes = require('./routes/exploreRoutes');
+const messageRoutes = require('./routes/messagesRoutes');
+const postRoutes = require('./routes/postRoutes');
 
 
 // ********* Middlewares globaux utiles *********
@@ -95,10 +94,9 @@ io.on('connection', (socket) => {
 app.use('/auth-app', authApp);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/search-request', searchRoutes);
+app.use('/explore-routes', exploreRoutes);
 app.use('/api/messages', messageRoutes);
-app.use('/create-post', createPost);
-app.use('/send-post', sendPost);
+app.use('/post', postRoutes);
 
 // ********* Démarrage serveur *********
 const PORT = process.env.PORT || 8000;

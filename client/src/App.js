@@ -1,13 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import Navbar from './components/Navbar';
-
-import Messenger from './pages/Messenger';
-import Explore from './pages/Explore'
-import Feed from './pages/Feed';
-import CreatePost from './pages/CreatePost';
-import SideBarRight from './components/SideBarRight';
+import Login from './pages/Login/Login';
+import Profile from './pages/Profile/Profile';
+import Navbar from './components/Navbar/Navbar';
+import Messenger from './pages/Messenger/Messenger';
+import Explore from './pages/Explore/Explore'
+import Feed from './pages/Feed/Feed';
+import CreatePost from './pages/CreatePost/CreatePost';
 import './App.css';
 
 
