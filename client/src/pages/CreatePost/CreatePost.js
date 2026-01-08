@@ -9,7 +9,7 @@ function CreatePost() {
 
         const data = {
             content: content,
-            userId: localStorage.getItem("spotifyId"),
+            spotifyId: localStorage.getItem("spotifyId"),
         };
 
         fetch("http://localhost:8000/post/create-post", {
@@ -20,6 +20,8 @@ function CreatePost() {
             body: JSON.stringify(data),
         })
             .catch(err => console.error(err));
+
+        console.log("Post en cours de création 1");
     }
 
     return (

@@ -2,6 +2,8 @@ const postService = require('../services/postService');
 
 module.exports.createPost = async (req, res) => {
 
+    console.log("Post en cours de création 2");
+
     try {
         const { content, spotifyId } = req.body;
 
@@ -27,13 +29,14 @@ module.exports.createPost = async (req, res) => {
 
 module.exports.displayPost = async (req, res) => {
     try {
-        const latestPost = await postService.getLatestPost();
+        // const latestPost = await postService.getLatestPost();
+        const allPosts = await postService.getAllPosts();
 
-        if (!latestPost) {
+        if (!allPosts) {
             return res.status(404).json({ message: "Pas de post trouvé" });
         }
 
-        res.json(latestPost);
+        res.json(allPosts);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Erreur serveur" });

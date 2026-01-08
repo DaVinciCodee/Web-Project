@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const { getAppAccessToken } = require('./spotifyAppAuth');
 
 // Users
 const findUsersBySearch = async (searchTerm) => {
@@ -20,13 +21,13 @@ const findUserByUsername = async (username) => {
 
 
 // Spotify requests
-const getAccessToken = async () => {
-    const user = await User.findOne({ user_name: "Turn down?" });
-    return user?.accessToken;
-};
+// const getAccessToken = async () => {
+//     const user = await User.findOne({ user_name: "Spotimate" });
+//     return user?.accessToken;
+// };
 
 const spotifySearch = async (type, searchTerm) => {
-    const accessToken = await getAccessToken();
+    const accessToken = await getAppAccessToken();
 
     if (!accessToken) {
         throw new Error("Access token manquant");
@@ -41,6 +42,10 @@ const spotifySearch = async (type, searchTerm) => {
             },
         }
     );
+
+    if (!response.ok) {
+        throw new Error(`Spotify API error: ${response.status}`);
+    }
 
     const data = await response.json();
 

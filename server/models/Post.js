@@ -2,12 +2,6 @@ const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema(
     {
-
-        postId: {
-            type: String,
-            required: true,
-        },
-
         postUserName: {
             type: String,
             required: true
@@ -26,6 +20,6 @@ const PostSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-PostSchema.index({ postId: 1 }, { unique: true });
+// PostSchema.index({ postId: 1 }, { unique: true });
 
 module.exports = mongoose.models.Post || mongoose.model('Post', PostSchema);
