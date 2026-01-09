@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const { getAppAccessToken } = require('./spotifyAppAuth');
+const { getAppAccessToken } = require('./spotifyAppAuthService');
 
 // Users
 const findUsersBySearch = async (searchTerm) => {
@@ -18,13 +18,6 @@ const findUsersBySearch = async (searchTerm) => {
 const findUserByUsername = async (username) => {
     return await User.findOne({ user_name: username });
 };
-
-
-// Spotify requests
-// const getAccessToken = async () => {
-//     const user = await User.findOne({ user_name: "Spotimate" });
-//     return user?.accessToken;
-// };
 
 const spotifySearch = async (type, searchTerm) => {
     const accessToken = await getAppAccessToken();

@@ -7,11 +7,6 @@ const PostSchema = new mongoose.Schema(
             required: true
         },
 
-        // postDate: {
-        //     type: Date,
-        //     default: Date.now
-        // },
-
         postContent: {
             type: String,
             required: true
@@ -19,7 +14,5 @@ const PostSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-
-// PostSchema.index({ postId: 1 }, { unique: true });
 
 module.exports = mongoose.models.Post || mongoose.model('Post', PostSchema);

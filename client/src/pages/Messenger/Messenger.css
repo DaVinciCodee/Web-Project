@@ -4,8 +4,8 @@
 
 .messenger-container {
   display: flex;
-  height: calc(100vh - 80px); /* Ajustez selon la hauteur de votre Navbar */
-  background-color: #121212;  /* Fond principal sombre */
+  height: 100vh;
+  background-color: #121212;
   color: white;
   width: 100%;
   overflow: hidden; /* Empêche le scroll global de la page */
@@ -131,7 +131,8 @@
   flex: 1; /* Prend tout l'espace restant */
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #1e1e1e 0%, #121212 40%); /* Léger dégradé en haut */
+  /* background: linear-gradient(180deg, #1e1e1e 0%, #121212 40%); Léger dégradé en haut */
+  background: linear-gradient(to bottom, rgb(0, 80, 0), rgb(0, 20, 0));
   position: relative;
 }
 

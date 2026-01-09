@@ -13,8 +13,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     // 1. On vide TOUTE la mémoire locale
-    localStorage.clear(); 
-    
+    localStorage.clear();
+
     // (Alternative : supprimer seulement les clés spécifiques)
     // localStorage.removeItem("mySpotifyId");
     // localStorage.removeItem("myMongoId");
@@ -22,9 +22,9 @@ const Navbar = () => {
 
     // 2. On redirige vers l'accueil ou la page de login
     navigate('/');
-    
+
     // 3. (Optionnel) On recharge la page pour remettre à zéro tous les états React
-    window.location.reload(); 
+    window.location.reload();
   };
   return (
     <nav className="navbar">
@@ -80,8 +80,8 @@ const Navbar = () => {
         </div>
         <div className="user-info-mini">
           <button onClick={handleLogout} className="btn-logout">
-         Déconnexion
-       </button>
+            Déconnexion
+          </button>
           {/* <span className="handle">@se_deconnecter</span> */}
         </div>
       </div>
