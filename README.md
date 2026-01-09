@@ -36,36 +36,45 @@
 - **Phases de développement :**  
   - Mise en place de l’authentification Spotify ✔
   - Configuration page Profil ✔
-  - Développement page Explorer (presque)
-  - Développement du système de matching (en cours)
-  - Implémentation du chat en temps réel  
+  - Développement page Explorer ✔
+  - Développement du système de matching ✔
+  - Implémentation du chat en temps réel ✔
   - Tests et déploiement (à chaque changement)
-  - Développement du frontend (en parallèle)
+  - Développement du frontend (en parallèle) ✔
 - **Réunions :** Hebdomadaires, tous les lundis à 18h00  
-- **Communication :** Utilisation de Slack et Trello pour le suivi des tâches  
 - **Code review :** Pull requests obligatoires avant fusion dans `developp` puis `main`
 
 ## Avancement du projet en images
 
-#### Login Page :
+### Login Page :
 ![Connexion page](./images/img11.png)
 
-#### Profil User :
+### Profil User :
 ![Profil page](./images/img12.png)
 
-#### Page Feed :
-![Feed page](./images/img21.png)
+### Page Feed :
+![Feed page](./images/img32.png)
+![Feed page](./images/img31.png)
 
-#### Page Explorer (Profil, Artistes, Albums) :
-![Explorer page](./images/img22.png)
-![Explorer page](./images/img14.png)
-
-#### Page Créer un post
+### Page Créer un post :
 ![Creer un post page](./images/img23.png)
 
+### Page Explorer (Profil, Artistes, Albums) :
+![Explorer page](./images/img22.png)
+![Explorer page](./images/img33.png)
+
+### Page Messagerie :
+![Messagerie page](./images/img34.png)
+![Messagerie page](./images/img35.png)
+
+### Base de données MongoDB :
+![Bdd page](./images/img36.png)
+
+### Architecture du projet :
+![Architecture page](./images/img37.png)
 
 ### License
-[Polytech Angers](LICENSE) © SpotiMate Team
+[Polytech Angers](LICENSE) © Spotimate Team
 
 
 ### Contact
