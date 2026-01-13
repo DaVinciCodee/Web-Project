@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import DefaultPP from '../../img/defaultPP.webp';
 import './Feed.css';
+import LinkPreview from '../../components/LinkPreview/LinkPreview'; 
 
 function Feed() {
 
@@ -14,14 +15,12 @@ function Feed() {
 
     const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
 
-
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const response = await fetch("http://localhost:8000/post/display-post");
                 const data = await response.json();
 
-                // On récupère aussi les images des utilisateurs
                 const postsWithImages = await Promise.all(data.map(async (post) => {
                     const userRes = await fetch(`http://localhost:8000/explore-routes/users/?q=${post.postUserName}`);
                     const userData = await userRes.json();
@@ -42,37 +41,12 @@ function Feed() {
         fetchPosts();
     }, []);
 
-
-    function linkify(text) {
-        // Groupes NON capturants (?: ...)
-        const urlRegex = /((?:https?:\/\/|www\.)[^\s]+)/g;
-
-        const parts = text.split(urlRegex);
-
-        return parts.map((part, index) => {
-            if (urlRegex.test(part)) {
-                const href = part.startsWith("http")
-                    ? part
-                    : `https://${part}`;
-
-                return (
-                    <a
-                        key={index}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: "#1DB954", textDecoration: "underline" }}
-                    >
-                        {part}
-                    </a>
-                );
-            }
-            return part;
-        });
-    }
-
-
-
+    // Cette fonction sert à extraire l'URL pour la LinkPreview
+    const extractUrl = (text) => {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        const match = text.match(urlRegex);
+        return match ? match[0] : null;
+    };
 
     return (
         <section className="feed-main">
@@ -91,8 +65,33 @@ function Feed() {
                                     <div className="day">{post.date.toLocaleDateString("fr-FR")}</div>
                                 </div>
                             </div>
-                            {/* <div className="post-content">{post.postContent}</div> */}
-                            <div className="post-content">{linkify(post.postContent)}</div>
+                            
+                            <div className="post-content">
+                                {(() => {
+                                    const content = post.postContent;
+                                    const urlFound = extractUrl(content);
+
+                                    return (
+                                        <>
+                                            <p>
+                                                {content.split(' ').map((word, i) => {
+                                                    if (word.match(/(https?:\/\/[^\s]+)/g)) {
+                                                        return null;
+                                                    }
+                                                    return <span key={i}>{word} </span>;
+                                                })}
+                                            </p>
+
+                                            {urlFound && (
+                                                <div style={{ marginTop: '10px' }}>
+                                                    <LinkPreview url={urlFound} />
+                                                </div>
+                                            )}
+                                        </>
+                                    );
+                                })()}
+                            </div>
+
                         </div>
                     ))
                 ) : (
@@ -104,7 +103,7 @@ function Feed() {
                     onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
                     disabled={currentPage === 1}
                 >
-                    ◀
+
                 </button>
 
                 <span>{currentPage} / {totalPages}</span>
@@ -122,4 +121,3 @@ function Feed() {
 }
 
 export default Feed;
-

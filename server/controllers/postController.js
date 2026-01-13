@@ -42,3 +42,32 @@ module.exports.displayPost = async (req, res) => {
         res.status(500).json({ message: "Erreur serveur" });
     }
 }
+
+module.exports.getUrlMetadata = async (req, res, next) => {
+    try {
+        const { url } = req.body;
+
+        if (!url) {
+            return res.status(400).json({ error: "URL manquante." });
+        }
+
+        const { data } = await axios.get(url, {
+            headers: { 'User-Agent': 'Mozilla/5.0 (compatible; SpotiMateBot/1.0)' }
+        });
+
+        const $ = cheerio.load(data);
+
+        const metaTags = {
+            title: $('meta[property="og:title"]').attr('content') || $('title').text(),
+            description: $('meta[property="og:description"]').attr('content') || $('meta[name="description"]').attr('content'),
+            image: $('meta[property="og:image"]').attr('content'),
+            siteName: $('meta[property="og:site_name"]').attr('content'),
+            url: url
+        };
+        
+        res.json(metaTags);
+    } catch (error) {
+        console.error("Erreur getUrlMetadata:", error.message);
+        res.json({ title: null, image: null });
+    }
+};

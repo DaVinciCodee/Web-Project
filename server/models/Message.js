@@ -5,7 +5,7 @@ const MessageSchema = mongoose.Schema(
     message: {
       text: { type: String, required: true },
     },
-    users: Array, // Contient les IDs de [expéditeur, receveur]
+    users: Array, 
     sender: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -13,7 +13,7 @@ const MessageSchema = mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Ajoute automatiquement createdAt et updatedAt
+    timestamps: true, 
   }
 );
 

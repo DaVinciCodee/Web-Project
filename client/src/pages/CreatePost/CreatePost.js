@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CreatePost.css';
 
 function CreatePost() {
-
+    const navigate = useNavigate();
     const [content, setContent] = useState("");
 
     const handlePost = () => {
@@ -19,9 +20,13 @@ function CreatePost() {
             },
             body: JSON.stringify(data),
         })
-            .catch(err => console.error(err));
+        .catch(err => console.error(err));
 
         console.log("Post en cours de création 1");
+        setTimeout(() => {
+            console.log("Post créé !");
+        }, 5000);
+        navigate('/feed');
     }
 
     return (
