@@ -55,8 +55,8 @@ const Navbar = () => {
           <FiMessageCircle className="icon" />
           <span className="label">Messages</span>
         </Link>
-
-     
+        
+        {/* suppresion de notifications */}
 
         <Link to="/profile" className={`menu-item ${isActive('/profile')}`}>
           <FiUser className="icon" />
