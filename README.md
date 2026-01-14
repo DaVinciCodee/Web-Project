@@ -13,6 +13,7 @@
 - Matching intelligent basé sur la similarité des playlists et morceaux préférés
 - Messagerie instantanée en temps réel entre utilisateurs compatibles
 - Interface utilisateur fluide et responsive avec React
+- Possibilité de publier des posts sur un fil d'actualité
 
 ---
 
@@ -79,6 +80,7 @@
 
 ### Contact
 Pour toute question : spotimate@proton.me
+
 
 
 
