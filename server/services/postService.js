@@ -9,6 +9,7 @@ const createPost = (user, content) => {
     return Post.create({
         postUserName: user.user_name,
         postContent: content,
+        postLikes: false,
     });
 }
 

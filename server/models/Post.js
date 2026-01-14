@@ -13,7 +13,7 @@ const PostSchema = new mongoose.Schema(
         },
 
         postLikes:{
-            type: boolean,
+            type: Boolean,
             required: true
         }
     },
