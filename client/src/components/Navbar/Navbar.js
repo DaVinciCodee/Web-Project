@@ -56,10 +56,10 @@ const Navbar = () => {
           <span className="label">Messages</span>
         </Link>
 
-        <Link to="/notifications" className={`menu-item ${isActive('/notifications')}`}>
+        {/* <Link to="/notifications" className={`menu-item ${isActive('/notifications')}`}>
           <FiBell className="icon" />
           <span className="label">Notifications</span>
-        </Link>
+        </Link> */}
 
         <Link to="/profile" className={`menu-item ${isActive('/profile')}`}>
           <FiUser className="icon" />
