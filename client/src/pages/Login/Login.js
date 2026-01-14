@@ -2,8 +2,6 @@ import './Login.css';
 import Vinyle from './vinyle.png';
 
 const Login = () => {
-  // Cette fonction redirige l'utilisateur vers le Backend (Port 8000)
-  // Grâce au proxy, pas besoin de mettre http://localhost:8000 devant
   const handleLogin = () => {
     window.location.href = 'http://localhost:8000/api/auth/spotify';
   };

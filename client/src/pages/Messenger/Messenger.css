@@ -1,6 +1,3 @@
-/* =========================================
-   MESSENGER LAYOUT GLOBAL
-   ========================================= */
 
 .messenger-container {
   display: flex;
@@ -8,25 +5,20 @@
   background-color: #121212;
   color: white;
   width: 100%;
-  overflow: hidden; /* Empêche le scroll global de la page */
+  overflow: hidden; 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* =========================================
-   SIDEBAR GAUCHE (AMIS)
-   ========================================= */
 
 .messenger-sidebar {
-  width: 320px; /* Largeur confortable */
+  width: 320px; 
   background-color: #000000;
   border-right: 1px solid #282828;
   display: flex;
-  flex-direction: column;
-  flex-shrink: 0; /* La sidebar ne rétrécit pas */
+  flex-direction: column;/* La sidebar ne rétrécit pas */
   z-index: 2;
 }
 
-/* En-tête "Vos Messages" */
 .sidebar-header {
   padding: 20px;
   border-bottom: 1px solid #282828;
@@ -43,23 +35,21 @@
   letter-spacing: -0.5px;
 }
 
-/* Zone de liste scrollable */
 .friends-list {
   flex: 1;
   overflow-y: auto;
   padding: 10px 0;
 }
 
-/* --- ITEM AMI (La ligne cliquable) --- */
 .friend-item {
   display: flex;
   align-items: center;
   padding: 12px 15px;
-  margin: 0 10px 4px 10px; /* Petit espace sur les côtés */
-  border-radius: 8px;      /* Coins arrondis style moderne */
+  margin: 0 10px 4px 10px; 
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  border-left: 4px solid transparent; /* Prépare la bordure active */
+  border-left: 4px solid transparent; 
 }
 
 .friend-item:hover {
@@ -68,19 +58,16 @@
 
 .friend-item.active {
   background-color: #2a2a2a;
-  border-left-color: #1db954; /* Indicateur vert actif */
+  border-left-color: #1db954; 
 }
 
-/* --- AVATAR ROND --- */
 .friend-avatar {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: #333; /* Fond gris si pas d'image */
+  background-color: #333; 
   margin-right: 15px;
   overflow: hidden;
-  
-  /* Centrage de l'emoji par défaut */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,21 +78,20 @@
 .friend-avatar img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* L'image remplit le rond sans déformation */
+  object-fit: cover; 
 }
 
-/* Nom de l'ami */
 .friend-name {
   font-weight: 500;
   font-size: 1rem;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Ajoute "..." si le nom est trop long */
+  text-overflow: ellipsis; 
   color: #e0e0e0;
 }
 
 .friend-item.active .friend-name {
-  color: #1db954; /* Nom vert quand actif */
+  color: #1db954;
   font-weight: 700;
 }
 
@@ -116,27 +102,21 @@
   font-size: 0.9rem;
 }
 
-/* Zone Suggestions en bas de sidebar */
 .sidebar-suggestions {
   border-top: 1px solid #282828;
   padding-top: 10px;
   background-color: #050505;
 }
 
-/* =========================================
-   ZONE PRINCIPALE DROITE (CHAT)
-   ========================================= */
 
 .messenger-chat-window {
-  flex: 1; /* Prend tout l'espace restant */
+  flex: 1; 
   display: flex;
   flex-direction: column;
-  /* background: linear-gradient(180deg, #1e1e1e 0%, #121212 40%); Léger dégradé en haut */
   background: linear-gradient(to bottom, rgb(0, 80, 0), rgb(0, 20, 0));
   position: relative;
 }
 
-/* --- ÉCRAN D'ACCUEIL (PAS DE CHAT) --- */
 .no-chat-selected {
   height: 100%;
   display: flex;
@@ -162,11 +142,6 @@
   font-size: 1.1rem;
 }
 
-/* =========================================
-   CUSTOM SCROLLBAR (Style Dark Mode)
-   ========================================= */
-
-/* Pour Chrome, Edge, Safari */
 .friends-list::-webkit-scrollbar {
   width: 8px;
 }
@@ -178,7 +153,7 @@
 .friends-list::-webkit-scrollbar-thumb {
   background-color: #444;
   border-radius: 10px;
-  border: 2px solid #000; /* Crée un espace autour de la barre */
+  border: 2px solid #000; 
 }
 
 .friends-list::-webkit-scrollbar-thumb:hover {

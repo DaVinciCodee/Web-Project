@@ -1,6 +1,3 @@
-/* src/pages/Profile.css */
-
-/* --- Layout Général --- */
 .profile-container {
   background-color: #121212;
   min-height: 100vh;
@@ -12,13 +9,12 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  padding-bottom: 100px; /* Espace pour le scroll */
+  padding-bottom: 100px; 
 }
 
-/* --- Header --- */
 .profile-header {
   display: flex;
-  align-items: flex-start; /* Aligné en haut pour gérer le widget musique */
+  align-items: flex-start; 
   gap: 30px;
   padding: 30px 20px;
   margin-bottom: 40px;
@@ -33,7 +29,7 @@
   object-fit: cover;
   border: 4px solid #1DB954;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  flex-shrink: 0; /* Empêche l'image de s'écraser */
+  flex-shrink: 0; 
 }
 
 .profile-info {
@@ -51,7 +47,7 @@
   color: #b3b3b3;
   line-height: 1.5;
   max-width: 600px;
-  white-space: pre-wrap; /* Garde les sauts de ligne */
+  white-space: pre-wrap; 
 }
 
 .profile-stats {
@@ -66,7 +62,6 @@
   color: #b3b3b3;
 }
 
-/* --- Boutons d'actions --- */
 .profile-actions {
   margin-top: 20px;
   display: flex;
@@ -116,7 +111,6 @@
   transform: scale(1.05);
 }
 
-/* --- Sections --- */
 .profile-section {
   margin-bottom: 40px;
 }
@@ -133,17 +127,13 @@
   gap: 10px;
 }
 
-/* --- Section Recommandations (Layout uniquement) --- */
-/* Note: Le design visuel des cartes est dans RecommendationCard.css */
 .recommendations-grid {
   display: grid;
-  /* Crée des colonnes responsive : min 160px de large */
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 20px;
   margin-top: 15px;
 }
 
-/* --- Top Artistes --- */
 .artists-scroll-container {
   display: flex;
   gap: 20px;
@@ -153,7 +143,6 @@
   scrollbar-color: #333 transparent;
 }
 
-/* --- Posts Placeholder --- */
 .empty-post-placeholder {
   background-color: #181818;
   padding: 40px 20px;
@@ -179,7 +168,6 @@
   color: white;
 }
 
-/* --- Utilitaires --- */
 .loading-screen, .error-screen {
   color: white;
   text-align: center;

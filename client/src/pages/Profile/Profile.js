@@ -15,6 +15,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
 
+  // Fetch user profile on component mount
   useEffect(() => {
     const spotifyId =
       new URLSearchParams(window.location.search).get("id")
@@ -36,6 +37,7 @@ const Profile = () => {
     }
   }, []); 
 
+  // Handle profile save
   const handleSaveProfile = async (formData) => {
     try {
       setUser({ ...user, ...formData });
@@ -47,6 +49,7 @@ const Profile = () => {
     }
   };
 
+  // Handle follow action
   const handleFollow = async (idToFollow) => {
     try {
         const myId = localStorage.getItem("spotifyId") 
@@ -55,17 +58,15 @@ const Profile = () => {
             alert("Erreur: Impossible de vous identifier. Êtes-vous bien connecté ?");
             return;
         }
-
         if (!idToFollow) {
             console.error("Erreur: ID de l'ami introuvable (undefined)");
             return;
         }
-
         await axios.put(`http://localhost:8000/api/users/${idToFollow}/follow`, {
             userId: myId
         });
         
-        alert("Utilisateur suivi avec succès ! 🎉");
+        alert("Utilisateur suivi avec succès !");
         
         window.location.reload();
 
@@ -81,14 +82,12 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <div className="profile-content">
-
         <div className="profile-header">
           <img
             src={user.profilePicture || "https://cdn-icons-png.flaticon.com/512/847/847969.png"}
             alt="Profil"
             className="profile-avatar"
           />
-
           <div className="profile-info">
             <h1>{user.user_name || user.spotifyId}</h1>
 
@@ -186,7 +185,6 @@ const Profile = () => {
           </div>
         </section>
 
-        {/* --- MODALE --- */}
         {isEditing && (
           <EditProfileModal
             user={user}

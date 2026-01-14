@@ -15,6 +15,7 @@ function Feed() {
 
     const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
 
+    // Fetch posts from the backend
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -41,7 +42,7 @@ function Feed() {
         fetchPosts();
     }, []);
 
-    // Cette fonction sert à extraire l'URL pour la LinkPreview
+    // Function to extract URL from post content
     const extractUrl = (text) => {
         const urlRegex = /(https?:\/\/[^\s]+)/g;
         const match = text.match(urlRegex);
