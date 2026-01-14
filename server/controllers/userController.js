@@ -1,14 +1,13 @@
+//Controllers for user routes
 const User = require('../models/User'); 
 const spotifyService = require('../services/spotifyService');
 
+// Get user profile by spotifyId
 exports.getUserProfile = async (req, res) => {
   try {
     const { spotifyId } = req.params;
     
-    // 👇 MODIFICATION ICI : On ajoute .populate(...)
-    // Cela dit : "Va chercher les infos (user_name, images) pour chaque ID dans 'following'"
-    const user = await User.findOne({ spotifyId })
-                           .populate('following', 'user_name _id profilePicture'); 
+    const user = await User.findOne({ spotifyId }).populate('following', 'user_name _id profilePicture'); 
 
     if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé' });
     
@@ -18,6 +17,8 @@ exports.getUserProfile = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur' });
   }
 };
+
+// Update user profile (bio and user_name)
 exports.updateUserProfile = async (req, res) => {
   try {
     const { spotifyId } = req.params;
@@ -40,6 +41,7 @@ exports.updateUserProfile = async (req, res) => {
   }
 };
 
+// Get user's currently playing track from Spotify
 exports.getUserNowPlaying = async (req, res) => {
     try {
         const { spotifyId } = req.params;

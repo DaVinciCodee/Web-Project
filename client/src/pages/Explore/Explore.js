@@ -13,21 +13,18 @@ function Explore() {
     const handleSearch = (e) => {
 
         const query = e.target.value;
-
-        /* Profil Search */
+        /* User Search */
         if (selected === "Profil") {
             if (!query) {
                 setText(null);
                 return;
             }
-
             fetch(`http://localhost:8000/explore-routes/users?q=${encodeURIComponent(query)}`)
                 .then(res => res.json())
                 .then(data => setText(data))
                 .catch(err => console.error(err));
         }
-
-        /* Albums Search */
+        /* Album Search */
         if (selected === "Album") {
             if (!query) {
                 setAlbums(null);
@@ -39,27 +36,23 @@ function Explore() {
                 .then(data => setAlbums(data))
                 .catch(err => console.error(err));
         }
-
         /* Artists Search */
         if (selected === "Artiste") {
             if (!query) {
                 setArtists(null);
                 return;
             }
-
             fetch(`http://localhost:8000/explore-routes/artists?q=${encodeURIComponent(query)}`)
                 .then(res => res.json())
                 .then(data => setArtists(data))
                 .catch(err => console.error(err));
         }
-
         /* Songs Search */
         if (selected === "Morceau") {
             if (!query) {
                 setSongs(null);
                 return;
             }
-
             fetch(`http://localhost:8000/explore-routes/songs?q=${encodeURIComponent(query)}`)
                 .then(res => res.json())
                 .then(data => setSongs(data))

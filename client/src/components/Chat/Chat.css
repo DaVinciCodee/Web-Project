@@ -1,38 +1,35 @@
-/* src/components/Chat.css */
-
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Prend toute la hauteur disponible */
-  background-color: #121212; /* Fond sombre Spotify */
+  height: 100%; 
+  background-color: #121212; 
   color: #ffffff;
-  overflow: hidden; /* Empêche les doubles barres de défilement */
+  overflow: hidden; 
 }
 
-/* --- EN-TÊTE (Header) --- */
 .chat-header {
   display: flex;
   align-items: center;
   padding: 15px 20px;
-  background-color: #181818; /* Légèrement plus clair que le fond */
+  background-color: #181818; 
   border-bottom: 1px solid #282828;
-  flex-shrink: 0; /* Hauteur fixe */
+  flex-shrink: 0; 
 }
 
-/* Conteneur de l'avatar dans le header */
+
 .header-avatar {
   width: 45px;
   height: 45px;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 15px;
-  background-color: #333; /* Couleur de fond si pas d'image */
+  background-color: #333; 
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
   flex-shrink: 0;
-  border: 2px solid #121212; /* Petite bordure pour le style */
+  border: 2px solid #121212;
 }
 
 .header-avatar img {
@@ -48,19 +45,16 @@
   letter-spacing: 0.5px;
 }
 
-/* --- LISTE DES MESSAGES --- */
 .chat-messages {
-  flex-grow: 1; /* Remplit l'espace disponible */
+  flex-grow: 1;
   padding: 20px;
-  overflow-y: auto; /* Zone scrollable */
+  overflow-y: auto; 
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Espace entre les messages */
-  /* background-image: radial-gradient(circle at center, #1a1a1a 0%, #121212 100%); Subtil dégradé */
+  gap: 12px; 
   background: linear-gradient(to bottom, rgb(0, 80, 0), rgb(0, 20, 0));
 }
 
-/* Scrollbar personnalisée */
 .chat-messages::-webkit-scrollbar {
   width: 6px;
 }
@@ -69,27 +63,23 @@
   border-radius: 3px;
 }
 
-/* --- BULLES DE MESSAGE --- */
 .message {
   display: flex;
   width: 100%;
 }
 
-/* Message envoyé (à droite) */
 .message.sended {
   justify-content: flex-end;
 }
 
-/* Message reçu (à gauche) */
 .message.recieved {
   justify-content: flex-start;
 }
 
-/* Le contenu de la bulle */
 .content {
-  max-width: 75%; /* Largeur max */
+  max-width: 75%; 
   padding: 12px 18px;
-  border-radius: 20px; /* Bordures arrondies */
+  border-radius: 20px; 
   font-size: 0.95rem;
   line-height: 1.4;
   word-wrap: break-word;
@@ -97,25 +87,22 @@
   position: relative;
 }
 
-/* Style bulle envoyée (Vert Spotify) */
 .sended .content {
   background-color: #1db954;
   color: white;
-  border-bottom-right-radius: 4px; /* Petit effet de coin */
+  border-bottom-right-radius: 4px; 
 }
 
-/* Style bulle reçue (Gris foncé) */
 .recieved .content {
   background-color: #2a2a2a;
   color: #e0e0e0;
-  border-bottom-left-radius: 4px; /* Petit effet de coin */
+  border-bottom-left-radius: 4px; 
 }
 
 .content p {
     margin: 0;
 }
 
-/* --- ZONE DE SAISIE (Input) --- */
 .chat-input-container {
   display: flex;
   align-items: center;
@@ -126,12 +113,12 @@
 }
 
 .chat-input-container input {
-  flex-grow: 1; /* Prend tout l'espace */
+  flex-grow: 1; 
   background-color: #333;
   border: none;
   color: white;
   padding: 14px 20px;
-  border-radius: 30px; /* Input bien arrondi */
+  border-radius: 30px; 
   font-size: 1rem;
   margin-right: 15px;
   outline: none;

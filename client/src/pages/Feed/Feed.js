@@ -15,6 +15,7 @@ function Feed() {
 
     const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
 
+    // Fetch posts from the backend
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -44,19 +45,7 @@ function Feed() {
         fetchPosts();
     }, []);
 
-    // AJOUT : Fonction pour gérer le click sur le coeur
-    const toggleLike = (postId) => {
-        setPosts(prevPosts => prevPosts.map(post => {
-            if (post._id === postId) {
-                return { ...post, liked: !post.postLikes};
-            }
-            return post;
-        }));
-        
-        // TODO: Ici, tu devras probablement faire un appel API (fetch/axios) 
-        // pour sauvegarder le like dans ta base de données.
-    };
-
+    // Function to extract URL from post content
     const extractUrl = (text) => {
         const urlRegex = /(https?:\/\/[^\s]+)/g;
         const match = text.match(urlRegex);

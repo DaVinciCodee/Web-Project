@@ -46,7 +46,6 @@
     box-shadow: 0 0 10px rgba(245, 240, 187, 0.3);
 }
 
-/* Choices buttons */
 .explore-choices {
     margin-top: 15px;
     display: flex;
@@ -74,7 +73,6 @@
     font-weight: 600;
 }
 
-/* Result Zone */
 .explore-response-zone {
     width: 85%;
     height: 400px;
@@ -143,23 +141,18 @@
     background-color: var(--accent);
 }
 
-/* Profil Card */
 .profil-card {
     font-size: 1.5rem;
 }
 
-/* Album Card */
 .album-cover,
 .song-cover {
     border-radius: 5px;
 }
 
-/* Artiste Card */
 .artist-card {
     font-size: 1.1rem;
 }
-
-/* Profil */
 
 .artist-card {
     font-size: 1.5rem;

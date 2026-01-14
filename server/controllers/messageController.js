@@ -1,8 +1,10 @@
+// Controllers for message routes
 const axios = require('axios');
 const cheerio = require('cheerio');
 
 const Message = require('../models/Message');
 
+// Get all messages between two users
 module.exports.getMessages = async (req, res, next) => {
     try {
         const { from, to } = req.body;
@@ -26,6 +28,7 @@ module.exports.getMessages = async (req, res, next) => {
     }
 };
 
+// Add a new message
 module.exports.addMessage = async (req, res, next) => {
     try {
         const { from, to, message } = req.body;
@@ -56,6 +59,7 @@ module.exports.addMessage = async (req, res, next) => {
     }
 };
 
+// Get metadata from a URL
 module.exports.getUrlMetadata = async (req, res, next) => {
     try {
         const { url } = req.body;

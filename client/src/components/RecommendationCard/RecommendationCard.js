@@ -6,9 +6,9 @@ const RecommendationCard = ({ user, score, details, onFollow }) => {
   const [isFollowed, setIsFollowed] = useState(false);
 
   const getReasonText = () => {
-    if (details?.commonTracks > 0) return "🎵 Mêmes sons";
-    if (details?.commonArtists > 0) return "🎤 Mêmes artistes";
-    return "🌊 Même Vibe";
+    if (details?.commonTracks > 0) return "Mêmes sons";
+    if (details?.commonArtists > 0) return "Mêmes artistes";
+    return "Même Vibe";
   };
 
   const handleFollowClick = (e) => {
@@ -24,10 +24,8 @@ const RecommendationCard = ({ user, score, details, onFollow }) => {
   };
 
   return (
-
     <Link to={`/profile?id=${user.spotifyId}`} className="reco-card-link">
       <div className="reco-card">
-        
         <div className="reco-header">
           <img 
             src={user.profilePicture || "https://cdn-icons-png.flaticon.com/512/847/847969.png"} 
@@ -38,11 +36,9 @@ const RecommendationCard = ({ user, score, details, onFollow }) => {
             <span className="reco-score">{score} Match</span>
           </div>
         </div>
-
         <div className="reco-info">
           <h4>{user.user_name || "Utilisateur"}</h4>
           <small>{getReasonText()}</small>
-
           <button 
             className="btn-follow-card" 
             onClick={handleFollowClick}
@@ -50,9 +46,7 @@ const RecommendationCard = ({ user, score, details, onFollow }) => {
           >
             {isFollowed ? "Abonné" : "Suivre +"}
           </button>
-
         </div>
-
       </div>
     </Link>
   );

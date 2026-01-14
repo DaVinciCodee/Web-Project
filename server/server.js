@@ -10,10 +10,10 @@ const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 const cors = require("cors");
 
-// ********* Models ********
+// Models
 const Message = require('./models/Message');
 
-// ********* Routes ********
+// Routes
 const authApp = require('./routes/authApp');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
@@ -22,15 +22,15 @@ const messageRoutes = require('./routes/messagesRoutes');
 const postRoutes = require('./routes/postRoutes');
 
 
-// ********* Middlewares globaux utiles *********
-app.use(express.json());         // Parse JSON dans les requêtes
-app.use(express.urlencoded({ extended: true }));  // Parse formulaire
+// Middleware
+app.use(express.json());         
+app.use(express.urlencoded({ extended: true }));  
 app.use(cors({
-  origin: 'http://localhost:3000', // On autorise seulement le frontend React
-  credentials: true // Autorise les cookies/sessions si besoin
+  origin: 'http://localhost:3000', 
+  credentials: true  //Cookies
 }));
 
-// ********* Connexion à la base MongoDB *********
+// MongoDB Connection
 const mongoURI = process.env.MONGODB_URI;
 console.log("Connecting to MongoDB");
 mongoose.connect(mongoURI)
@@ -42,7 +42,7 @@ mongoose.connect(mongoURI)
   });
 
 
-// ********* Socket.IO *********
+// Socket.io setup for real-time messaging
 const onlineUsers = new Map();
 const io = new Server(server, {
   cors: {
@@ -90,7 +90,7 @@ io.on('connection', (socket) => {
 });
 
 
-// ********* Routes Express *********
+// Express routes
 app.use('/auth-app', authApp);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -98,7 +98,7 @@ app.use('/explore-routes', exploreRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/post', postRoutes);
 
-// ********* Démarrage serveur *********
+// Server start
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);

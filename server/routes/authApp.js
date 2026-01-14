@@ -5,7 +5,7 @@ const router = express.Router();
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 
-// Fonction pour authentifier l'app
+// Authenticate the application and get an app token
 async function authenticateApp() {
     const tokenUrl = "https://accounts.spotify.com/api/token";
 
@@ -25,7 +25,7 @@ async function authenticateApp() {
     return response.data; 
 }
 
-// Route qui renvoie le token de l'app
+// Route to get app token
 router.get('/token-app', async (req, res) => {
     console.log("CLIENT_ID =", CLIENT_ID);
     console.log("CLIENT_SECRET =", CLIENT_SECRET ? "OK" : "MISSING");

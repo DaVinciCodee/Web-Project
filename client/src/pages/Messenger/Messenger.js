@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchUserProfile } from '../../services/api'; // Ou axios
+import { fetchUserProfile } from '../../services/api'; 
 import Chat from '../../components/Chat/Chat'; 
 import './Messenger.css'; 
 
@@ -8,6 +8,7 @@ const Messenger = () => {
   const [listFriend, setListFriend] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
 
+  // Load user profile and friends on component mount
   useEffect(() => {
     const spotifyId = localStorage.getItem("spotifyId");
     
@@ -33,8 +34,6 @@ const Messenger = () => {
 
   return (
     <div className="messenger-container">
-      
-      {/* --- COLONNE GAUCHE : Liste des amis --- */}
       <div className="messenger-sidebar">
         <div className="sidebar-header">
             <h3>Vos Messages</h3>
@@ -49,7 +48,6 @@ const Messenger = () => {
                 onClick={() => setCurrentChat(friend)}
               >
                 <div className="friend-avatar">
-                {/* On vérifie si profilePicture existe */}
                 {friend.profilePicture ? (
                     <img src={friend.profilePicture} alt="avatar" />
                 ) : "👤"}
@@ -66,7 +64,6 @@ const Messenger = () => {
         </div>
       </div>
 
-      {/* --- COLONNE DROITE : Fenêtre de Chat --- */}
       <div className="messenger-chat-window">
         {currentChat && currentUser ? (
           <Chat currentUser={currentUser} currentChat={currentChat} />

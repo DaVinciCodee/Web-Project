@@ -1,7 +1,8 @@
+// Service for exploring users and Spotify content
 const User = require('../models/User');
 const { getAppAccessToken } = require('./spotifyAppAuthService');
 
-// Users
+// Find users by search term in username
 const findUsersBySearch = async (searchTerm) => {
     let userList = await User.find();
 
@@ -19,6 +20,7 @@ const findUserByUsername = async (username) => {
     return await User.findOne({ user_name: username });
 };
 
+// Search Spotify for artists, albums, or tracks
 const spotifySearch = async (type, searchTerm) => {
     const accessToken = await getAppAccessToken();
 

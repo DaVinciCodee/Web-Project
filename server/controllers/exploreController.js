@@ -1,6 +1,7 @@
+// Controllers for explore routes
 const exploreService = require("../services/exploreService");
 
-// ***** Users requests *****
+//Find users in database
 module.exports.findUsers = async (req, res) => {
 
     const searchTerm = req.query.q?.trim();
@@ -35,7 +36,7 @@ module.exports.findUser = async (req, res) => {
     }
 };
 
-// ***** Spotify requests *****
+// Find artists, albums, songs on Spotify
 module.exports.findArtists = async (req, res) => {
     const searchTerm = req.query.q?.trim();
 
