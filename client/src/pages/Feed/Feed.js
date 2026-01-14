@@ -104,7 +104,7 @@ function Feed() {
                     onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
                     disabled={currentPage === 1}
                 >
-
+                    ◀
                 </button>
 
                 <span>{currentPage} / {totalPages}</span>
