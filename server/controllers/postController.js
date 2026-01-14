@@ -71,3 +71,27 @@ module.exports.getUrlMetadata = async (req, res, next) => {
         res.json({ title: null, image: null });
     }
 };
+
+module.exports.createLike = async (req, res) => {
+
+    console.log("Post en cours de création 2");
+
+
+    try {
+        const { postId, } = req.body;
+
+        if (!postId) {
+            return res.status(400).json({ message: "Données manquantes" });
+        }
+
+        const post = await postService.likePost(postId);
+
+        res.status(201).json(post);
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Erreur serveur" });
+    }
+}
+
+

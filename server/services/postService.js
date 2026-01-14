@@ -20,9 +20,14 @@ const getAllPosts = () => {
     return Post.find().sort({ createdAt: -1 });
 }
 
+const likePost = (postId) => {
+    return Post.findByIdAndUpdate(postId, { $inc: { postLikes: 1 } }, { new: true });
+}
+
 module.exports = {
     findUserById,
     createPost,
     getLatestPost,
-    getAllPosts
+    getAllPosts,
+    likePost,
 }
