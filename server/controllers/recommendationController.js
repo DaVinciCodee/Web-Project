@@ -1,7 +1,8 @@
-// server/controllers/recommendationController.js
+// Controllers for recommendation routes
 const User = require('../models/User');
 const recommendationService = require('../services/recommendationService');
 
+// Get user recommendations based on compatibility
 exports.getRecommendations = async (req, res) => {
     try {
         const currentSpotifyId = req.query.id; 
@@ -13,7 +14,7 @@ exports.getRecommendations = async (req, res) => {
         const currentUser = await User.findOne({ spotifyId: currentSpotifyId });
         if (!currentUser) return res.status(404).json({ error: "Utilisateur non trouvé" });
 
-        // On récupère tout le monde sauf l'utilisateur actuel
+        // Find all other users
         const candidates = await User.find({ spotifyId: { $ne: currentSpotifyId } });
 
         const recommendations = candidates.map(candidate => {
@@ -35,10 +36,10 @@ exports.getRecommendations = async (req, res) => {
             };
         });
 
-        // Tri par score décroissant
+        // Decreasing order by score
         recommendations.sort((a, b) => b.score - a.score);
 
-        // On renvoie le top 10
+        // Return top 10 recommendations
         res.json(recommendations.slice(0, 10));
 
     } catch (error) {

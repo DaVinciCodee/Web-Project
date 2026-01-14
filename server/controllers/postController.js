@@ -1,5 +1,7 @@
+// Controllers for post routes
 const postService = require('../services/postService');
 
+// Create a new post
 module.exports.createPost = async (req, res) => {
 
     console.log("Post en cours de création 2");
@@ -27,6 +29,7 @@ module.exports.createPost = async (req, res) => {
     }
 }
 
+// Display posts
 module.exports.displayPost = async (req, res) => {
     try {
         // const latestPost = await postService.getLatestPost();
@@ -43,6 +46,8 @@ module.exports.displayPost = async (req, res) => {
     }
 }
 
+
+// Get metadata from a URL
 module.exports.getUrlMetadata = async (req, res, next) => {
     try {
         const { url } = req.body;

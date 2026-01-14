@@ -1,7 +1,7 @@
-// services/spotifyService.js
+// Service for fetching user music data from Spotify
 const axios = require('axios');
 
-// 1. Récupérer Artistes et Genres (Vibes)
+// Get user's taste profile (top artists and genres)
 async function getUserTasteProfile(accessToken) {
   try {
     const response = await axios.get('https://api.spotify.com/v1/me/top/artists', {
@@ -11,7 +11,6 @@ async function getUserTasteProfile(accessToken) {
 
     let items = response.data.items || [];
     
-    // Formatage des artistes
     const topArtists = items.map(artist => ({
       spotifyId: artist.id,
       name: artist.name,
@@ -19,7 +18,6 @@ async function getUserTasteProfile(accessToken) {
       genres: artist.genres
     }));
 
-    // Extraction des genres uniques (La "Vibe")
     const allGenres = items.flatMap(artist => artist.genres);
     const topGenres = [...new Set(allGenres)].slice(0, 15);
 
@@ -30,10 +28,9 @@ async function getUserTasteProfile(accessToken) {
   }
 }
 
-// 2. Récupérer les Top Tracks (Pour la comparaison de chansons)
+// Get user's top tracks
 async function getUserTopTracks(accessToken) {
   try {
-    // On utilise le proxy /0 qui fonctionnait bien pour les tracks
     const response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
       headers: { 'Authorization': 'Bearer ' + accessToken },
       params: { limit: 50, time_range: 'medium_term' }
@@ -53,7 +50,7 @@ async function getUserTopTracks(accessToken) {
   }
 }
 
-// 3. Lecture en cours (Optionnel, on garde si tu l'utilises ailleurs)
+// Get user's currently playing track from Spotify
 async function getNowPlaying(accessToken) {
   try {
     const response = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
