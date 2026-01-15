@@ -1,6 +1,7 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FiHome, FiSearch, FiBell, FiUser, FiLogOut, FiMessageCircle } from "react-icons/fi";
 import { FaSpotify } from "react-icons/fa"; 
+import logo from './logo_spotimate_v2.png';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -19,7 +20,12 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo">
         <Link to="/feed">
-          <FaSpotify className='logo' size={40} color="#1DB954" />
+          <img 
+            src={logo} 
+            alt="Logo SpotiMate"
+            className="logo" 
+            style={{ width: '40px', height: 'auto' }}
+          />
         </Link>
         <Link to="/feed">
           <div>SpotiMate</div>
