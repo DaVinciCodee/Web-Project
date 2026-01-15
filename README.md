@@ -49,7 +49,7 @@
 ## Démonstration de l'application
 
 Image cliquable.
-<a href="https://www.youtube.com/watch?v=QAV93LQJ7pc" title="Démonstration de l'application">
+<a href="https://www.youtube.com/watch?v=QAV93LQJ7pc" title="Démonstration de l'application" target="_blank">
   <img src="logo_spotimate_v2.png" alt="Demontration" width="300" />
 </a>
 
