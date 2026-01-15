@@ -15,3 +15,5 @@ server/.env
 # Build front
 dist/
 build/
+
+# End of file

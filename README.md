@@ -58,7 +58,7 @@ Image cliquable.
 ## Bugs connus 
 - Mauvaise gestion du cache, parfois il n'est pas vidé après déconnexion.
 - Messagerie "preque" instantanée, la gestion des sockets est à améliorer.
-- On peut modifier le profile des autres.
+- On peut modifier le profil des autres.
 
 ---
 
