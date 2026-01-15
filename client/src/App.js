@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Navbar from './components/Navbar/Navbar';
@@ -10,10 +10,10 @@ import './App.css';
 
 
 function App() {
-  const isLoginPage = window.location.hash === '#/';
+  const isLoginPage = window.location.pathname === '/';
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="app-layout">
 
         {/* Colonne Gauche : Sidebar */}
@@ -38,7 +38,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

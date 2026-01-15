@@ -28,7 +28,7 @@ const Profile = () => {
         setLoading(false);
       });
 
-      fetch(`https://spotimate-7eqq.onrender.com/api/users/recommendations?id=${spotifyId}`)
+      fetch(`http://localhost:8000/api/users/recommendations?id=${spotifyId}`)
         .then(res => res.json())
         .then(data => {
           setRecommendations(data.slice(0, 4));

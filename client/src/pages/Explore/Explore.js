@@ -19,7 +19,7 @@ function Explore() {
                 setText(null);
                 return;
             }
-            fetch(`https://spotimate-7eqq.onrender.com/explore-routes/users?q=${encodeURIComponent(query)}`)
+            fetch(`http://localhost:8000/explore-routes/users?q=${encodeURIComponent(query)}`)
                 .then(res => res.json())
                 .then(data => setText(data))
                 .catch(err => console.error(err));
@@ -31,7 +31,7 @@ function Explore() {
                 return;
             }
 
-            fetch(`https://spotimate-7eqq.onrender.com/explore-routes/albums?q=${encodeURIComponent(query)}`)
+            fetch(`http://localhost:8000/explore-routes/albums?q=${encodeURIComponent(query)}`)
                 .then(res => res.json())
                 .then(data => setAlbums(data))
                 .catch(err => console.error(err));
@@ -42,7 +42,7 @@ function Explore() {
                 setArtists(null);
                 return;
             }
-            fetch(`https://spotimate-7eqq.onrender.com/explore-routes/artists?q=${encodeURIComponent(query)}`)
+            fetch(`http://localhost:8000/explore-routes/artists?q=${encodeURIComponent(query)}`)
                 .then(res => res.json())
                 .then(data => setArtists(data))
                 .catch(err => console.error(err));
@@ -53,7 +53,7 @@ function Explore() {
                 setSongs(null);
                 return;
             }
-            fetch(`https://spotimate-7eqq.onrender.com/explore-routes/songs?q=${encodeURIComponent(query)}`)
+            fetch(`http://localhost:8000/explore-routes/songs?q=${encodeURIComponent(query)}`)
                 .then(res => res.json())
                 .then(data => setSongs(data))
                 .catch(err => console.error(err));
