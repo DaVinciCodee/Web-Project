@@ -10,7 +10,7 @@ import './App.css';
 
 
 function App() {
-  const isLoginPage = window.location.pathname === '/';
+  const isLoginPage = window.location.hash === '#/';
 
   return (
     <HashRouter>
