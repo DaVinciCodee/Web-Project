@@ -41,11 +41,8 @@ const Navbar = () => {
           <FiMessageCircle className="icon" />
           <span className="label">Messages</span>
         </Link>
-
-        <Link to="/notifications" className={`menu-item ${isActive('/notifications')}`}>
-          <FiBell className="icon" />
-          <span className="label">Notifications</span>
-        </Link>
+        
+        {/* suppresion de notifications */}
 
         <Link to="/profile" className={`menu-item ${isActive('/profile')}`}>
           <FiUser className="icon" />

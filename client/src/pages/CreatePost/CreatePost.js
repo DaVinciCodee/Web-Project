@@ -22,11 +22,11 @@ function CreatePost() {
         })
         .catch(err => console.error(err));
 
-        console.log("Post en cours de création 1");
         setTimeout(() => {
             console.log("Post créé !");
-        }, 5000);
-        navigate('/feed');
+            navigate('/feed');
+        }, 1000);
+        
     }
 
     return (
