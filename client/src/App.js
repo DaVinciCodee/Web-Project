@@ -37,20 +37,9 @@ function App() {
             <Route path='/createPost' element={<CreatePost />}></Route>
           </Routes>
         </div>
-
-        {/* AJOUT : Colonne Droite (Contrepoids) */}
-        {/* Même si elle est vide pour l'instant, elle force le Feed à rester au milieu */}
-        {/* <div className="right-sidebar">
-          <SideBarRight />
-        </div> */}
-
-      </div>
+        </div>
     </BrowserRouter>
   );
 }
-
-// const SidebarWrapper = () => {
-//   return window.location.pathname !== '/' ? <Navbar /> : null;
-// }
 
 export default App;
