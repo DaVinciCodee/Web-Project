@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import DefaultPP from '../../img/defaultPP.webp';
 import './Feed.css';
-import LinkPreview from '../../components/LinkPreview/LinkPreview'; 
+import LinkPreview from '../../components/LinkPreview/LinkPreview';
 
 function Feed() {
 
@@ -31,7 +31,7 @@ function Feed() {
                         date: new Date(post.createdAt),
                         // AJOUT : Initialisation de l'état "liked" 
                         // (Si ton backend renvoie déjà si l'user a liké, mets cette valeur ici)
-                        liked: false 
+                        liked: false
                     };
                 }));
 
@@ -52,6 +52,34 @@ function Feed() {
         return match ? match[0] : null;
     };
 
+    const toggleLike = async (postId) => {
+        setPosts(prevPosts =>
+            prevPosts.map(post =>
+                post._id === postId
+                    ? {
+                        ...post,
+                        postLikes: !post.postLikes
+                    }
+                    : post
+            )
+        );
+
+        try {
+            await fetch(`http://localhost:8000/post/create-like/?q=${postId}`,{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    postId: postId,
+                    userId: localStorage.getItem("userId"),
+                }),
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <section className="feed-main">
             <div className="feed-title">Fil d'actualité</div>
@@ -69,7 +97,7 @@ function Feed() {
                                     <div className="day">{post.date.toLocaleDateString("fr-FR")}</div>
                                 </div>
                             </div>
-                            
+
                             <div className="post-content">
                                 {(() => {
                                     const content = post.postContent;
@@ -98,19 +126,19 @@ function Feed() {
 
                             {/* AJOUT : Section des interactions (Like) en dessous du contenu */}
                             <div className="post-actions" style={{ marginTop: '15px', paddingTop: '10px', borderTop: '1px solid #eee' }}>
-                                <button 
+                                <button
                                     onClick={() => toggleLike(post._id)}
-                                    style={{ 
-                                        background: 'none', 
-                                        border: 'none', 
-                                        cursor: 'pointer', 
-                                        display: 'flex', 
-                                        alignItems: 'center', 
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
                                         gap: '5px',
                                         fontSize: '1.2rem'
                                     }}
                                 >
-                                    {/* Icône Coeur SVG */} 
+                                    {/* Icône Coeur SVG */}
                                     {post.postLikes ? (
                                         // Coeur Rempli (Rouge)
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#e74c3c" stroke="#e74c3c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -122,7 +150,7 @@ function Feed() {
                                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                         </svg>
                                     )}
-                                    
+
                                     {/* Texte optionnel ou compteur */}
                                     <span style={{ fontSize: '0.9rem', color: post.postLikes ? '#e74c3c' : '#555' }}>
                                         {post.postLikes ? 'Aimé' : 'J\'aime'}

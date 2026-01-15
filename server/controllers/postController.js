@@ -79,11 +79,8 @@ module.exports.getUrlMetadata = async (req, res, next) => {
 
 module.exports.createLike = async (req, res) => {
 
-    console.log("Post en cours de création 2");
-
-
     try {
-        const { postId, } = req.body;
+        const { postId } = req.body;
 
         if (!postId) {
             return res.status(400).json({ message: "Données manquantes" });
