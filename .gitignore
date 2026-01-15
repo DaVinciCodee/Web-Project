@@ -1,4 +1,3 @@
-.env
 .vscode/settings.json
 
 # dependencies
@@ -6,5 +5,13 @@
 node_modules/
 **/node_modules/
 
-# production
-/build
+# Env
+.env
+server/.env
+
+# VSCode
+.vscode/
+
+# Build front
+dist/
+build/
