@@ -13,7 +13,7 @@ function App() {
   const isLoginPage = window.location.pathname === '/';
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="app-layout">
 
         {/* Colonne Gauche : Sidebar */}
@@ -37,8 +37,8 @@ function App() {
             <Route path='/createPost' element={<CreatePost />}></Route>
           </Routes>
         </div>
-        </div>
-    </BrowserRouter>
+      </div>
+    </HashRouter>
   );
 }
 
