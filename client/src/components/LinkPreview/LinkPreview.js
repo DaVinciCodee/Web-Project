@@ -1,7 +1,7 @@
 // client/src/components/LinkPreview.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './LinkPreview.css'; // On créera le CSS juste après
+import './LinkPreview.css';
 
 const LinkPreview = ({ url }) => {
     const [metaData, setMetaData] = useState(null);

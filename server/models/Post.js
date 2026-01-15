@@ -10,6 +10,11 @@ const PostSchema = new mongoose.Schema(
         postContent: {
             type: String,
             required: true
+        },
+
+        postLikes:{
+            type: Boolean,
+            required: true
         }
     },
     { timestamps: true }
