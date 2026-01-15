@@ -1,0 +1,70 @@
+.now-playing-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(45deg, #1DB954, #191414);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  color: white;
+  border: 1px solid #333;
+  box-shadow: 0 4px 15px rgba(29, 185, 84, 0.2); 
+  transition: transform 0.2s ease;
+}
+
+.now-playing-card:hover {
+  transform: scale(1.02); 
+}
+
+.now-playing-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; 
+  object-fit: cover;
+  border: 2px solid #121212;
+  animation: spin 6s linear infinite;
+}
+
+.now-playing-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.now-playing-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #000; 
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+.now-playing-title {
+  font-weight: bold;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; 
+}
+
+.now-playing-artist {
+  font-size: 14px;
+  opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

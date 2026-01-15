@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --primary: #006400;
+    --primary-dark: #002c00;
+    --accent: #F5F0BB;
+    --bg-card: #3d3d3d;
+    --bg-dark: #000;
+    --border-soft: #969696;
+    --text-main: #ffffff;
+}
+
+.explore-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.explore-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #F5F0BB;
+}
+
+/* Search Zone */
+.explore-search-zone {
+    margin-top: 50px;
+}
+
+.explore-search-input {
+    background-color: var(--bg-dark);
+    color: white;
+    padding: 12px 24px;
+    border: 2px solid var(--border-soft);
+    border-radius: 30px;
+    width: 500px;
+    outline: none;
+    font-size: 1.05rem;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.explore-search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(245, 240, 187, 0.3);
+}
+
+.explore-choices {
+    margin-top: 15px;
+    display: flex;
+    column-gap: 15px;
+}
+
+.explore-choice {
+    background: var(--primary);
+    color: white;
+    padding: 10px 35px;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.explore-choice:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.explore-choice.active {
+    background-color: var(--accent);
+    color: black;
+    font-weight: 600;
+}
+
+.explore-response-zone {
+    width: 85%;
+    height: 400px;
+    margin-top: 60px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+}
+
+.explore-result-text {
+    font-size: 1.8rem;
+}
+
+.explore-result-items {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.explore-result-item {
+    height: 300px;
+    width: 180px;
+    background-color: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.explore-result-item:hover {
+    background: #2b2b2b;
+    transform: translateY(-6px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+}
+
+.artist-img,
+.album-cover,
+.profil-image,
+.song-cover {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.explore-link {
+    background-color: white;
+    padding: 6px 14px;
+    color: black;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background 0.1s;
+}
+
+.explore-link:hover {
+    background-color: var(--accent);
+}
+
+.profil-card {
+    font-size: 1.5rem;
+}
+
+.album-cover,
+.song-cover {
+    border-radius: 5px;
+}
+
+.artist-card {
+    font-size: 1.1rem;
+}
+
+.artist-card {
+    font-size: 1.5rem;
+}
+

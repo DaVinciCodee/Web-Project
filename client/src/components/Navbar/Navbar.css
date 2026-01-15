@@ -1,0 +1,151 @@
+@import "../../variables.css";
+
+.navbar{
+  width: var(--left-sidebar-width);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  color: var(--color-white); 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.navbar-logo, .sidebar-menu, .sidebar-post-btn, .sidebar-user {
+  width: 100%;
+}
+
+/* LOGO */
+.navbar-logo {
+  margin-top: 10px;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.logo {
+  margin-top: 9px;
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* MENU */
+.sidebar-menu {
+  margin-top: 15px;
+}
+
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 24px 17px 20px;
+  margin-bottom: 5px;
+  border-radius: 30px;
+  color: #E7E9EA;
+  font-size: 20px;
+  text-decoration: none;
+  transition: 0.2s;
+  cursor: pointer;
+  width: fit-content;
+  text-align: center;
+}
+
+.menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.menu-item .icon {
+  font-size: 26px;
+  margin-right: 20px;
+}
+
+.menu-item.active {
+  font-weight: 800;
+  color: white;
+}
+
+.link-post-btn {
+  width: 100%;
+}
+
+.sidebar-post-btn {
+  margin-top: 30px;
+  margin-left: 38px;  
+  width: 60%;          
+  height: 50px;        
+  border-radius: 50px;
+  border: none;        
+  background-color: #1DB954; 
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(29, 185, 84, 0.3);
+}
+
+.sidebar-post-btn:hover {
+  background-color: #1ed760; 
+  transform: scale(1.02);
+}
+
+.sidebar-user {
+  width: 90%;
+  margin-top: auto; 
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50px; 
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-user:hover {
+  background-color: rgba(60, 60, 60, 0.74);
+}
+
+.user-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  border-radius: 50%;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info-mini {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.user-info-mini .name {
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+}
+
+.user-info-mini .handle {
+  color: #71767B;
+  font-size: 14px;
+}
+
+.user-info-mini .btn-logout {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: 1.1rem;
+  cursor: pointer;
+}

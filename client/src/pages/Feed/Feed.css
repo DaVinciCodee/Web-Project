@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.feed-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
+    margin-bottom: 100px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.feed-title {
+    font-size: 2.5rem;
+    font-weight: 600; 
+    color: #F5F0BB;
+}
+
+.feed-posts {
+    width: 100%;
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 25px;
+}
+
+.feed-post {
+    width: 45%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(20, 20, 20, 0.75);
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feed-post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.6);
+}
+
+.post-info {
+    display: flex;
+    width: 100%;
+    height: 35%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+}
+
+.feed-post-user-info {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 25px;
+    font-size: 1.5rem;
+    color: white;
+    box-sizing: border-box;
+}
+
+.post-timestamps {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.800);
+    font-size: 0.85rem;
+    padding-right: 20px;
+
+}
+
+.post-content {
+    width: 100%;
+    height: 65%;
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.post-user-img {
+    width: 75px;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+
+.feed-post {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.pagination button {
+    width: 35px;
+    height: 35px;
+    border: 2px solid #168d1cb0;
+    background-color: #168d1cb0;
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 
+        transform 0.15s ease,
+        background-color 0.15s ease,
+        box-shadow 0.15s ease;
+    padding-bottom: 4px;
+}
+
+.pagination button:hover {
+    background-color: #168d1c71;
+}
+
+.pagination span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    opacity: 0.85;
+}
+

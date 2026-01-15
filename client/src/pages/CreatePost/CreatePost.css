@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.create-post-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 75px auto;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.create-post-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #F5F0BB;
+}
+
+textarea {
+    margin-top: 70px;
+    width: 600px;
+    height: 300px;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #ccc;
+    resize: none;
+    background-color: #1f1f1f;
+    color: white;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+textarea:focus {
+    border-color: #006400;
+    box-shadow: 0 0 8px rgba(0, 100, 0, 0.6);
+}
+
+.send-post-btn {
+    margin-top: 30px;
+    width: 160px;
+    height: 50px;
+    background-color: #006400;
+    border-radius: 25px;
+    border: none;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.send-post-btn:hover {
+    background-color: #004d00;
+    transform: translateY(-2px);
+}

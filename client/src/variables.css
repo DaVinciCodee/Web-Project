@@ -1,0 +1,15 @@
+:root {
+  /* Couleurs */
+  --background-black: #000;
+  --background-green-one: linear-gradient(to bottom, rgb(0, 80, 0), rgb(0, 20, 0));
+  --color-white: #fff;
+
+  /* Texte Size */
+  --font-size-title: 24px;
+  --font-size-base: 16px;
+
+  /* Tailles */
+  --left-sidebar-width: 275px;
+  --main-content-width: calc(100vw - var(--left-sidebar-width));
+
+}

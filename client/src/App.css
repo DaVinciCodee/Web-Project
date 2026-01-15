@@ -1,0 +1,32 @@
+@import './variables.css';
+
+.app-layout {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: var(--background-black);
+  display: flex;
+}
+
+.main-content {
+  width: var(--main-content-width);
+  min-height: 100vh;
+  border-right: 1px solid #2F3336;
+  border-left: 1px solid #2F3336;
+  background: var(--background-green-one);
+  background-attachment: fixed;
+}
+
+
+.right-sidebar, .left-sidebar {
+  width: var(--left-sidebar-width);
+}
+.right-sidebar {
+  flex-direction: column;
+  align-items: center; 
+}
+
+@media (max-width: 1000px) {
+  .right-sidebar {
+    display: none;
+  }
+}
