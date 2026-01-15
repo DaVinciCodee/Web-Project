@@ -3,7 +3,7 @@ import Vinyle from './vinyle.png';
 
 const Login = () => {
   const handleLogin = () => {
-    window.location.href = 'http://localhost:8000/api/auth/spotify';
+    window.location.href = 'https://spotimate-7eqq.onrender.com/api/auth/spotify';
   };
 
   return (

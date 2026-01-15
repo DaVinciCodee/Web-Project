@@ -19,11 +19,11 @@ function Feed() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch("http://localhost:8000/post/display-post");
+                const response = await fetch("https://spotimate-7eqq.onrender.com/post/display-post");
                 const data = await response.json();
 
                 const postsWithImages = await Promise.all(data.map(async (post) => {
-                    const userRes = await fetch(`http://localhost:8000/explore-routes/users/?q=${post.postUserName}`);
+                    const userRes = await fetch(`https://spotimate-7eqq.onrender.com/explore-routes/users/?q=${post.postUserName}`);
                     const userData = await userRes.json();
                     return {
                         ...post,
@@ -65,7 +65,7 @@ function Feed() {
         );
 
         try {
-            await fetch(`http://localhost:8000/post/create-like/?q=${postId}`,{
+            await fetch(`https://spotimate-7eqq.onrender.com/post/create-like/?q=${postId}`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

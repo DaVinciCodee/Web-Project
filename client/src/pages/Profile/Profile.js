@@ -28,7 +28,7 @@ const Profile = () => {
         setLoading(false);
       });
 
-      fetch(`http://localhost:8000/api/users/recommendations?id=${spotifyId}`)
+      fetch(`https://spotimate-7eqq.onrender.com/api/users/recommendations?id=${spotifyId}`)
         .then(res => res.json())
         .then(data => {
           setRecommendations(data.slice(0, 4));
@@ -62,7 +62,7 @@ const Profile = () => {
             console.error("Erreur: ID de l'ami introuvable (undefined)");
             return;
         }
-        await axios.put(`http://localhost:8000/api/users/${idToFollow}/follow`, {
+        await axios.put(`https://spotimate-7eqq.onrender.com/api/users/${idToFollow}/follow`, {
             userId: myId
         });
         

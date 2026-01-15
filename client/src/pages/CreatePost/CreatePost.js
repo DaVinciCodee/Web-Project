@@ -13,7 +13,7 @@ function CreatePost() {
             spotifyId: localStorage.getItem("spotifyId"),
         };
 
-        fetch("http://localhost:8000/post/create-post", {
+        fetch("https://spotimate-7eqq.onrender.com/post/create-post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

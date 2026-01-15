@@ -12,7 +12,7 @@ const LinkPreview = ({ url }) => {
 
         const fetchMeta = async () => {
             try {
-                const res = await axios.post("http://localhost:8000/api/messages/get-url-metadata", { url });
+                const res = await axios.post("https://spotimate-7eqq.onrender.com/api/messages/get-url-metadata", { url });
                 setMetaData(res.data);
             } catch (err) {
                 console.error("Impossible de charger la preview", err);
