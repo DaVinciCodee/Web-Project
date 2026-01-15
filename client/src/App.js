@@ -16,7 +16,6 @@ function App() {
     <BrowserRouter>
       <div className="app-layout">
 
-        {/* Colonne Gauche : Sidebar */}
         {!isLoginPage && (
           <div className="left-sidebar">
             <Navbar />
@@ -24,7 +23,6 @@ function App() {
         )}
 
 
-        {/* Colonne Milieu : Feed/Contenu */}
         <div className="main-content" style={{
           width: isLoginPage ? "100vw" : "var(--main-content-width)",
         }}>
