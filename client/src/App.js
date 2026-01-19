@@ -6,6 +6,7 @@ import Messenger from './pages/Messenger/Messenger';
 import Explore from './pages/Explore/Explore'
 import Feed from './pages/Feed/Feed';
 import CreatePost from './pages/CreatePost/CreatePost';
+import About from './pages/About/About';
 import './App.css';
 
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/messages" element={<Messenger />} />
             <Route path="/feed" element={<Feed />} />
             <Route path='/createPost' element={<CreatePost />}></Route>
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
       </div>

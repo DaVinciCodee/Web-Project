@@ -1,0 +1,183 @@
+:root {
+  --sp-green: #1DB954;
+  --sp-black: #121212;
+  --sp-dark-grey: #181818;
+  --sp-light-grey: #282828;
+  --sp-text-white: #FFFFFF;
+  --sp-text-grey: #B3B3B3;
+}
+
+.about-container {
+  padding: 30px;
+  color: var(--sp-text-white);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.page-subtitle {
+  color: var(--sp-text-grey);
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-left: 4px solid var(--sp-green);
+  padding-left: 12px;
+  line-height: 1.2;
+}
+
+.section-mail {
+  font-size: 1.5rem;
+  font-weight: 350;
+  padding-left: 12px;
+  line-height: 1.2;
+}
+
+.about-description {
+  color: var(--sp-text-grey);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+
+.team-card {
+  background-color: var(--sp-dark-grey);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.team-card:hover {
+  background-color: var(--sp-light-grey);
+}
+
+.team-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.team-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  color: var(--sp-text-white);
+}
+
+.team-role {
+  font-size: 0.9rem;
+  color: var(--sp-text-grey);
+  margin-bottom: 16px;
+}
+
+.role-badge {
+  background-color: var(--sp-green);
+  color: black;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 500px;
+  margin-bottom: 12px;
+}
+
+.contact-btn {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--sp-text-white);
+  border-radius: 500px;
+  padding: 8px 24px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.contact-btn:hover {
+  border-color: var(--sp-text-white);
+  transform: scale(1.04);
+}
+
+.objectives-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+    max-width: 800px;
+}
+
+.objectives-list li {
+    margin-bottom: 25px;
+    color: #B3B3B3;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.objective-highlight {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 5px;
+    color: var(--sp-green, #1DB954);
+}
+
+.about-footer {
+    text-align: center;
+    margin-top: 80px; 
+    margin-bottom: 20px;
+    padding-top: 40px;
+    border-top: 1px solid #282828;
+    color: #B3B3B3;
+    font-size: 0.9rem;
+}
+
+.footer-highlight {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.footer-heart {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

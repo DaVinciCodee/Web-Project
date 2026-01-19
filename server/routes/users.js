@@ -7,6 +7,8 @@ const recommendationService = require('../services/recommendationService');
 const recommendationController = require('../controllers/recommendationController');
 const mongoose = require('mongoose');
 
+router.get('/team', userController.getTeamMembers);
+
 // Debug route to display compatibility matrix
 router.get('/debug-matrix', async (req, res) => {
   try {
@@ -116,6 +118,7 @@ router.put('/:id/follow', async (req, res) => {
       res.status(500).json({ error: err.message });
   }
 });
+
 
 // Routes for user profile operations
 router.get('/:spotifyId', userController.getUserProfile);

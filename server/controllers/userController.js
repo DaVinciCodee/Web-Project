@@ -56,3 +56,16 @@ exports.getUserNowPlaying = async (req, res) => {
         res.status(500).json({ message: "Erreur serveur lors de la récupération de la lecture en cours." });
     }
 };
+
+exports.getTeamMembers = async (req, res) => {
+  try {
+    const founders = ['Matlef', 'Turn down?', 'LRK_SPAW']; 
+    const team = await User.find({ user_name: { $in: founders } })
+                           .select('user_name profilePicture bio role spotifyId');
+
+    res.json(team);
+  } catch (error) {
+    console.error("Erreur getTeamMembers:", error);
+    res.status(500).json({ message: "Erreur serveur lors de la récupération de l'équipe." });
+  }
+};

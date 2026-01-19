@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { FiHome, FiSearch, FiBell, FiUser, FiLogOut, FiMessageCircle } from "react-icons/fi";
+import { FiHome, FiSearch, FiBell, FiUser, FiLogOut, FiMessageCircle, FiInfo } from "react-icons/fi";
 import { FaSpotify } from "react-icons/fa"; 
 import logo from './logo_spotimate_v2.png';
 import './Navbar.css';
@@ -46,6 +46,11 @@ const Navbar = () => {
         <Link to="/messages" className={`menu-item ${isActive('/messages')}`}>
           <FiMessageCircle className="icon" />
           <span className="label">Messages</span>
+        </Link>
+
+        <Link to="/about" className={`menu-item ${isActive('/about')}`}>
+          <FiInfo className="icon" />
+          <span className="label">À propos</span>
         </Link>
 
         <Link to="/profile" className={`menu-item ${isActive('/profile')}`}>
